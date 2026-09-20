@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 3.2 — Catalogue Two-Natures Logic</title>
+<link rel="stylesheet" href="diagram.css">
+</head>
+<body>
+<figure class="figure" id="figure">
+  <p class="figure__eyebrow">Figure 3.2</p>
+  <h2 class="figure__title">Catalogue &ldquo;two natures&rdquo; logic</h2>
+
+  <svg viewBox="0 0 1000 300" role="img" aria-label="A single nature field on a product feeds both the catalogue filter and the checkout delivery-date rule.">
+    <defs>
+      <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+      </marker>
+    </defs>
+
+    <rect class="d-hot" x="40" y="118" width="230" height="64" rx="9"/>
+    <text class="d-name" x="155" y="146" text-anchor="middle" fill="var(--accent)">products.nature</text>
+    <text class="d-sub" x="155" y="166" text-anchor="middle">everlasting  |  fresh</text>
+
+    <path class="d-flow" d="M270 138 C 360 138, 380 70, 470 70" marker-end="url(#a2)"/>
+    <path class="d-flow" d="M270 162 C 360 162, 380 230, 470 230" marker-end="url(#a2)"/>
+
+    <rect class="d-node" x="470" y="38" width="490" height="66" rx="9"/>
+    <text class="d-text" x="490" y="66">Catalogue filter &amp; product badges</text>
+    <text class="d-small" x="490" y="88">&ldquo;Everlasting / Fresh&rdquo; filter chip · &ldquo;Made to order&rdquo; and &ldquo;Same-day&rdquo; badges</text>
+
+    <rect class="d-node" x="470" y="196" width="490" height="66" rx="9"/>
+    <text class="d-text" x="490" y="224">Checkout delivery-date rule</text>
+    <text class="d-small" x="490" y="246">everlasting → today + lead_time_days · fresh → next day earliest, same-day flagged</text>
+  </svg>
+
+  <figcaption class="figure__cap">
+    One attribute on the product record, two behaviours. Keeping the distinction in the data model
+    means neither the shop nor the checkout has to special-case product types on its own.
+  </figcaption>
+</figure>
+</body>
+</html>

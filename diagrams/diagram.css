@@ -1,0 +1,44 @@
+/* Shared styling for Fleuréa Petals report diagrams (rendered to PNG). */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Karla:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap");
+
+:root{
+  --ivory:#FAF7F4; --blush:#F3D7CE; --rosewood:#A8493D; --sage:#93A583; --gold:#C6A063; --ink:#4A342E;
+  --bg:#FBF3EE; --surface:#FFFDFB; --surface-2:#F5E7DF;
+  --border:#E7D6CB; --border-strong:#D8C1B4;
+  --text:#4A342E; --text-muted:#8C776C;
+  --accent:#A8493D; --leaf:#5F7752; --leaf-soft:#E4EADD; --accent-soft:#F0DAD2;
+  --font-display:"Fraunces",Georgia,serif;
+  --font-body:"Karla","Segoe UI",system-ui,sans-serif;
+  --font-mono:"Space Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);}
+
+.figure{
+  width:1100px;
+  margin:0 auto;
+  padding:40px 44px 34px;
+  background:var(--surface);
+  border:1px solid var(--border);
+}
+.figure__eyebrow{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;
+}
+.figure__title{font-family:var(--font-display);font-weight:500;font-size:24px;margin:0 0 22px;}
+.figure__cap{margin-top:20px;font-size:12.5px;color:var(--text-muted);max-width:70ch;}
+
+svg{display:block;width:100%;height:auto;color:var(--text);}
+.d-name{font-family:var(--font-mono);font-weight:700;font-size:12px;fill:currentColor;}
+.d-sub{font-family:var(--font-mono);font-size:10px;fill:var(--text-muted);}
+.d-text{font-family:var(--font-body);font-size:12.5px;fill:currentColor;}
+.d-small{font-family:var(--font-body);font-size:11px;fill:var(--text-muted);}
+.d-lbl{font-family:var(--font-mono);font-size:10.5px;fill:var(--text-muted);}
+.d-node{fill:var(--surface);stroke:currentColor;stroke-width:1.4;}
+.d-node-2{fill:var(--surface-2);stroke:currentColor;stroke-width:1.4;}
+.d-hot{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.6;}
+.d-ok{fill:var(--leaf-soft);stroke:var(--leaf);stroke-width:1.6;}
+.d-flow{stroke:currentColor;stroke-width:1.5;fill:none;}
+.d-flow-dash{stroke:var(--text-muted);stroke-width:1.3;fill:none;stroke-dasharray:5 4;}
+.d-actor circle,.d-actor line{stroke:currentColor;stroke-width:1.6;fill:none;}

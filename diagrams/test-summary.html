@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 5.1 — Test Execution Summary</title>
+<link rel="stylesheet" href="diagram.css">
+<style>
+  .figure { width:1000px; }
+  .sum { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:26px; }
+  .sum div { background:var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:18px 20px; }
+  .sum b { font-family:var(--font-mono); font-size:30px; color:var(--accent); display:block; }
+  .sum span { font-size:13px; color:var(--text-muted); }
+  .bars { display:flex; flex-direction:column; gap:12px; }
+  .bar-row { display:grid; grid-template-columns:220px 1fr 58px; align-items:center; gap:14px; font-size:13px; }
+  .track { height:16px; background:var(--surface-2); border-radius:8px; overflow:hidden; }
+  .fill { height:100%; background:var(--leaf); border-radius:8px; }
+  .count { font-family:var(--font-mono); font-size:12px; color:var(--text-muted); text-align:right; white-space:nowrap; }
+</style>
+</head>
+<body>
+<figure class="figure" id="figure">
+  <p class="figure__eyebrow">Figure 5.1</p>
+  <h2 class="figure__title">Test execution summary</h2>
+
+  <div class="sum">
+    <div><b>18</b><span>Screens tested (page-by-page)</span></div>
+    <div><b>~315</b><span>Cases executed (load + clicks + API)</span></div>
+    <div><b>0</b><span>Failed / open</span></div>
+  </div>
+
+  <div class="bars">
+    <div class="bar-row"><span>On-load checks</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="count">75 / 75</span></div>
+    <div class="bar-row"><span>Interaction cases</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="count">110 / 110</span></div>
+    <div class="bar-row"><span>API — valid input</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="count">54 / 54</span></div>
+    <div class="bar-row"><span>API — invalid / empty input</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="count">48 / 48</span></div>
+    <div class="bar-row"><span>API — auth (missing / wrong token)</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="count">16 / 16</span></div>
+    <div class="bar-row"><span>API — not-found &amp; business rules</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="count">12 / 12</span></div>
+  </div>
+
+  <figcaption class="figure__cap">
+    All cases in the page-by-page catalogue (<span class="mono">tests/test-cases.md</span>) passed:
+    every screen's on-load state and interactions, and every API endpoint with valid, invalid,
+    empty and unauthorised input. Every functional requirement FR1–FR20 is covered — see Table 5.2.
+  </figcaption>
+</figure>
+</body>
+</html>

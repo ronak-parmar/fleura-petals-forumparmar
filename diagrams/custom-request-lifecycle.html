@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 3.11 — Custom Request Lifecycle</title>
+<link rel="stylesheet" href="diagram.css">
+<style>
+  .figure { width:1100px; }
+  .st { fill:var(--surface); stroke:currentColor; stroke-width:1.4; }
+  .st-ok { fill:var(--leaf-soft); stroke:var(--leaf); stroke-width:1.6; }
+  .st-hot { fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.6; }
+  .st-txt { font-family:var(--font-mono); font-size:10.5px; fill:currentColor; text-anchor:middle; }
+  .lc-flow { stroke:currentColor; stroke-width:1.5; fill:none; }
+  .lc-lbl { font-family:var(--font-mono); font-size:10px; fill:var(--text-muted); text-anchor:middle; }
+</style>
+</head>
+<body>
+<figure class="figure" id="figure">
+  <p class="figure__eyebrow">Figure 3.11</p>
+  <h2 class="figure__title">Custom request lifecycle</h2>
+
+  <svg viewBox="0 0 1000 300" role="img" aria-label="Custom request state machine. From the start a request is new, then reviewing, then quoted. From quoted it can go to accepted and then converted_to_order and closed, or to declined and then closed.">
+    <defs>
+      <marker id="lc2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+      </marker>
+    </defs>
+
+    <circle cx="30" cy="90" r="8" fill="currentColor"/>
+
+    <rect class="st" x="60"  y="70" width="90"  height="40" rx="20"/><text class="st-txt" x="105" y="94">new</text>
+    <rect class="st" x="190" y="70" width="120" height="40" rx="20"/><text class="st-txt" x="250" y="94">reviewing</text>
+    <rect class="st" x="350" y="70" width="100" height="40" rx="20"/><text class="st-txt" x="400" y="94">quoted</text>
+    <rect class="st" x="500" y="70" width="110" height="40" rx="20"/><text class="st-txt" x="555" y="94">accepted</text>
+    <rect class="st-hot" x="660" y="70" width="170" height="40" rx="20"/><text class="st-txt" x="745" y="94">converted_to_order</text>
+    <rect class="st-ok" x="880" y="70" width="90"  height="40" rx="20"/><text class="st-txt" x="925" y="94">closed</text>
+
+    <rect class="st" x="500" y="210" width="110" height="40" rx="20"/><text class="st-txt" x="555" y="234">declined</text>
+
+    <path class="lc-flow" d="M38 90 L58 90" marker-end="url(#lc2)"/>
+    <path class="lc-flow" d="M150 90 L188 90" marker-end="url(#lc2)"/>
+    <path class="lc-flow" d="M310 90 L348 90" marker-end="url(#lc2)"/>
+    <path class="lc-flow" d="M450 90 L498 90" marker-end="url(#lc2)"/>
+    <path class="lc-flow" d="M610 90 L658 90" marker-end="url(#lc2)"/>
+    <path class="lc-flow" d="M830 90 L878 90" marker-end="url(#lc2)"/>
+
+    <path class="lc-flow" d="M420 110 C 440 170, 480 205, 505 214" marker-end="url(#lc2)"/>
+    <path class="lc-flow" d="M610 230 C 740 230, 860 150, 905 112" marker-end="url(#lc2)"/>
+    <text class="lc-lbl" x="470" y="165">customer declines</text>
+  </svg>
+
+  <figcaption class="figure__cap">
+    No price is shown to the customer until the state reaches <span class="mono">quoted</span>, when
+    the administrator has recorded a response and a rough quote. Accepted requests are turned into a
+    normal order by the administrator.
+  </figcaption>
+</figure>
+</body>
+</html>

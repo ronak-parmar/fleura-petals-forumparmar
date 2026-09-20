@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fleuréa Petals Project Report</title>
+<style>
+  :root{
+    --paper:#ffffff; --ink:#1a1a1a; --muted:#555; --rule:#c9c9c9;
+    --accent:#7f3529;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:#e7e2dd; color:var(--ink);
+    font-family:"Times New Roman", Times, Georgia, serif;
+    font-size:12pt; line-height:1.5;
+  }
+  .toolbar{
+    position:sticky; top:0; z-index:5;
+    background:#2b2420; color:#f0e8e2; font-family:Arial, sans-serif; font-size:12px;
+    padding:8px 16px; display:flex; gap:16px; align-items:center;
+  }
+  .toolbar b{ color:#fff; }
+  .toolbar span{ color:#c7b8ad; }
+  .doc{
+    max-width:8.27in; margin:24px auto 60px; background:var(--paper);
+    padding:1in 1in 1in 1.5in;         /* mirrors the college margins L1.5 / R1 / T1 / B1 */
+    box-shadow:0 4px 24px rgba(0,0,0,.16);
+  }
+  h1{ font-size:14pt; font-weight:bold; text-transform:uppercase; margin:0 0 16pt; letter-spacing:.02em; }
+  h2{ font-size:13pt; font-weight:bold; margin:20pt 0 8pt; }
+  h3{ font-size:12pt; font-weight:bold; margin:14pt 0 6pt; }
+  h4{ font-size:12pt; font-weight:bold; font-style:italic; margin:12pt 0 4pt; }
+  .fm-title{ text-align:center; font-size:14pt; text-transform:uppercase; margin:0 0 18pt; letter-spacing:.06em; }
+  p{ margin:0 0 8pt; text-align:justify; }
+  p.center{ text-align:center; }
+  .fm-title + p.center{ margin-top:10pt; }
+  ul,ol{ margin:0 0 10pt; padding-left:26pt; }
+  li{ margin:0 0 4pt; text-align:justify; }
+  hr{ border:0; border-top:1px solid var(--rule); margin:14pt 0; }
+  blockquote{ margin:0 0 10pt; padding-left:14pt; border-left:3px solid var(--rule); color:var(--muted); font-style:italic; }
+  a{ color:var(--accent); }
+  .tablewrap{ overflow-x:auto; margin:0 0 12pt; }
+  table{ border-collapse:collapse; width:100%; font-size:10.5pt; }
+  th,td{ border:1px solid #999; padding:4pt 6pt; text-align:left; vertical-align:top; }
+  th{ background:#f0ece8; font-weight:bold; }
+  pre.code{
+    background:#f6f4f1; border:1px solid #ddd; border-radius:4px;
+    padding:10pt 12pt; overflow-x:auto; font-family:"Consolas","Courier New",monospace;
+    font-size:9pt; line-height:1.45; white-space:pre; margin:0 0 12pt;
+  }
+  figure.fig{ margin:16pt 0; text-align:center; page-break-inside:avoid; }
+  figure.fig img{ max-width:100%; border:1px solid #ddd; }
+  figure.fig figcaption{ font-size:10pt; font-style:italic; color:var(--muted); margin-top:6pt; }
+  .fig-missing{ padding:24pt; border:1px dashed #b00; color:#b00; font-family:Arial, sans-serif; font-size:11px; }
+  img.logo{ display:block; margin:0 auto 14pt; width:75pt; height:auto; }
+  .pagebreak{ height:0; }
+  @media print{
+    body{ background:none; }
+    .toolbar{ display:none; }
+    .doc{ box-shadow:none; margin:0; max-width:none; padding:0; }
+    .pagebreak{ page-break-before:always; }
+    h1{ page-break-before:always; }
+    figure.fig{ page-break-inside:avoid; }
+  }
+  @page{ size:A4; margin:1in 1in 1in 1.5in; }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <b>Project report — preview of Project_report.docx</b>
+  <span>Generated from <code>report/source.md</code> — edit the source, re-run <code>build-report.js</code>. When approved, <code>build-docx.js</code> produces the .docx.</span>
+</div>
+<div class="doc">
+<div class="pagebreak"></div><h2 class="fm-title">TITLE PAGE</h2>
+<p class="center"><strong>FLEURÉA PETALS</strong><br><strong>FLOWER BOUQUET ORDERING APPLICATION</strong></p>
+<p class="center">A Project Report</p>
+<p class="center">Submitted in partial fulfillment of the requirements for the award of the degree of</p>
+<p class="center"><strong>BACHELOR OF SCIENCE</strong><br><strong>(COMPUTER SCIENCE)</strong></p>
+<p class="center">By</p>
+<p class="center"><strong>FORUM PARMAR</strong><br>Roll Number: 576</p>
+<p class="center">Under the esteemed guidance of<br><strong>Prof. Khushi Goda</strong><br>Assistant Professor</p>
+<img class="logo" src="assets/logo.png" alt="Nagindas Khandwala College logo">
+<p class="center">NAGINDAS KHANDWALA COLLEGE<br>(Empowered Autonomous College)<br>(Affiliated to University of Mumbai)<br>MUMBAI – 400 064<br>MAHARASHTRA</p>
+<p class="center">2026 – 27</p>
+<hr>
+<div class="pagebreak"></div><h2 class="fm-title">CERTIFICATE</h2>
+<p class="center">NAGINDAS KHANDWALA COLLEGE<br>(Empowered Autonomous College)<br>(Affiliated to University of Mumbai)<br>MUMBAI – 400 064<br>MAHARASHTRA</p>
+<p class="center">DEPARTMENT OF COMPUTER AND INFORMATION SCIENCE</p>
+<img class="logo" src="assets/logo.png" alt="Nagindas Khandwala College logo">
+<p class="center"><strong>CERTIFICATE</strong></p>
+<p class="center">This is to certify that the project titled <strong>"Fleuréa Petals – Flower Bouquet Ordering Application"</strong> is a bonafide work of <strong>Forum Parmar</strong> bearing Roll No: <strong>576</strong> and is submitted in partial fulfillment of the requirements for the award of the degree of <strong>Bachelor of Science in Computer Science</strong> from the University of Mumbai.</p>
+<p class="center">The project has been completed under the guidance of the project guide and represents the student's own work carried out as part of the field project requirements.</p>
+<p class="center">Date: ____________________<br>Place: Mumbai</p>
+<p class="center">Internal Guide          Project Coordinator          External Examiner</p>
+<p class="center">College Seal</p>
+<hr>
+<div class="pagebreak"></div><h2 class="fm-title">CERTIFICATE BY THE ORGANIZATION</h2>
+<p class="center">This is to certify that <strong>Forum Parmar</strong>, Roll Number <strong>576</strong>, has carried out the field project titled <strong>"Fleuréa Petals – Flower Bouquet Ordering Application"</strong> for <strong>Fleuréa Petals</strong>.</p>
+<p class="center">The project was undertaken to understand the requirements of a small handmade flower business and to develop a simple digital application for showcasing bouquets, accepting customer orders and supporting custom bouquet requests.</p>
+<p class="center">Organization Name: Fleuréa Petals<br>Authorized Signature: ______________________________<br>Date: ____________________</p>
+<hr>
+<div class="pagebreak"></div><h2 class="fm-title">DECLARATION</h2>
+<p class="center">I hereby declare that the project entitled <strong>"Fleuréa Petals – Flower Bouquet Ordering Application"</strong>, carried out at Nagindas Khandwala College, is my original work and has been completed as part of the field project requirements of the Bachelor of Science in Computer Science programme.</p>
+<p class="center">I further declare that this project has not been submitted, either wholly or partly, to any other university or institution for the award of any degree or qualification. The information presented in this report is based on the work carried out for the project and has been prepared for academic submission.</p>
+<p class="center">To the best of my knowledge, the work presented in this report is genuine and has been completed with the guidance and support provided during the project.</p>
+<p class="center">Signature: ______________________________<br>Name: Forum Parmar<br>Roll Number: 576</p>
+<hr>
+<div class="pagebreak"></div><h2 class="fm-title">ACKNOWLEDGEMENT</h2>
+<p>The successful completion of the field project entitled "Fleuréa Petals – Flower Bouquet Ordering Application" would not have been possible without the guidance, support, and encouragement of several individuals who contributed throughout the course of this project.</p>
+<p>I would like to express my sincere gratitude to Prof. Dr. Moushumi Datta Ma'am, Director/Principal, Nagindas Khandwala College, for providing the opportunity and institutional support to undertake this field project.</p>
+<p>I am deeply thankful to Prof. Dr. Mona Mehta Ma'am, Vice Principal/IQAC Co-ordinator, for her valuable guidance and encouragement.</p>
+<p>I would also like to extend my heartfelt thanks to Dr. Preeti Tripathi Ma'am, Vice Principal, for her support and motivation throughout the project.</p>
+<p>I express my sincere gratitude to Dr. Pallavi Tawde Ma'am, Department of Computer and Information Science Co-ordinator, for her constant support and encouragement.</p>
+<p>I am especially grateful to my project guide, Prof. Khushi Goda Ma'am, for her valuable guidance, constructive suggestions, patience, and continuous support, which helped me successfully complete this project.</p>
+<p>I would also like to thank my family and friends for their encouragement, support, and motivation throughout the development and completion of this field project.</p>
+<p>Finally, I am thankful to everyone who directly or indirectly contributed to the successful completion of this project.</p>
+<hr>
+<div class="pagebreak"></div><h2 class="fm-title">ABSTRACT</h2>
+<p><strong>Fleuréa Petals – Flower Bouquet Ordering Application</strong> is a web-based project developed for Fleuréa Petals, a small business that offers handmade flower bouquets and gifts. The purpose of the project is to give customers a simple and convenient way to view available bouquets, explore gift options and place orders online, and to give the business an organized way to receive and manage those orders.</p>
+<p>The project focuses on the practical needs of a small flower business. Ordering through direct social-media messages or phone calls makes it difficult to present products consistently, capture customer requirements accurately and keep orders organized. The proposed application provides a structured digital platform where products are presented clearly, customers can build an order using a shopping cart, and personalized bouquet requirements can be submitted through a dedicated custom-request flow.</p>
+<p>The application is built using <strong>Next.js (React)</strong> for the frontend, <strong>ASP.NET Core Web API (.NET)</strong> for the backend and <strong>PostgreSQL</strong> for the database, with <strong>Visual Studio Code</strong> as the development environment. It follows a three-tier architecture in which the presentation, application logic and data storage are handled as separate layers. A minimal administrator panel allows the business to manage products, view and update orders, and respond to custom bouquet requests. Online payment is intentionally excluded from the scope; orders are placed on a pay-on-delivery basis.</p>
+<p>The project combines business understanding with software development. It aims not only to make ordering easier for customers but also to help Fleuréa Petals present its products, reach more customers and maintain a more organized ordering process.</p>
+<hr>
+<div class="pagebreak"></div><h2 class="fm-title">TABLE OF CONTENTS</h2>
+<div class="tablewrap"><table><tr><th>Sr. No.</th><th>Contents</th><th>Page No.</th></tr><tr><td></td><td><strong>Chapter 1: Introduction</strong></td><td></td></tr><tr><td>1.1</td><td>Project Overview</td><td></td></tr><tr><td>1.2</td><td>Problem Statement</td><td></td></tr><tr><td>1.3</td><td>Objectives</td><td></td></tr><tr><td>1.4</td><td>Scope of the Project</td><td></td></tr><tr><td></td><td><strong>Chapter 2: Organization Profile and Field Study</strong></td><td></td></tr><tr><td>2.1</td><td>About the Organization</td><td></td></tr><tr><td>2.2</td><td>Organization Structure</td><td></td></tr><tr><td>2.3</td><td>Services / Products Offered</td><td></td></tr><tr><td>2.4</td><td>Existing Business Process</td><td></td></tr><tr><td>2.5</td><td>Problem Identified During Field Study</td><td></td></tr><tr><td></td><td><strong>Chapter 3: System Analysis and Design</strong></td><td></td></tr><tr><td>3.1</td><td>Existing System</td><td></td></tr><tr><td>3.2</td><td>Proposed System</td><td></td></tr><tr><td>3.3</td><td>Functional Requirements</td><td></td></tr><tr><td>3.4</td><td>Non-Functional Requirements</td><td></td></tr><tr><td>3.5</td><td>System Architecture</td><td></td></tr><tr><td>3.6</td><td>Database Design</td><td></td></tr><tr><td>3.7</td><td>UML Diagrams</td><td></td></tr><tr><td></td><td><strong>Chapter 4: System Implementation</strong></td><td></td></tr><tr><td>4.1</td><td>Hardware Requirements</td><td></td></tr><tr><td>4.2</td><td>Software Requirements</td><td></td></tr><tr><td>4.3</td><td>Technologies Used</td><td></td></tr><tr><td>4.4</td><td>Module Description</td><td></td></tr><tr><td>4.5</td><td>User Interface Screens</td><td></td></tr><tr><td>4.6</td><td>Sample Source Code</td><td></td></tr><tr><td></td><td><strong>Chapter 5: Testing and Results</strong></td><td></td></tr><tr><td>5.1</td><td>Test Cases</td><td></td></tr><tr><td>5.2</td><td>Results and Outputs</td><td></td></tr><tr><td></td><td><strong>Chapter 6: Conclusion and Future Scope</strong></td><td></td></tr><tr><td>6.1</td><td>Conclusion</td><td></td></tr><tr><td>6.2</td><td>Learning Outcomes</td><td></td></tr><tr><td>6.3</td><td>Future Scope</td><td></td></tr><tr><td></td><td><strong>Chapter 7: References</strong></td><td></td></tr><tr><td></td><td><strong>Chapter 8: Appendix</strong></td><td></td></tr></table></div>
+<hr>
+<div class="pagebreak"></div><h2 class="fm-title">LIST OF FIGURES</h2>
+<div class="tablewrap"><table><tr><th>Figure</th><th>Title</th></tr><tr><td>3.1</td><td>System architecture of Fleuréa Petals</td></tr><tr><td>3.2</td><td>Catalogue "two natures" logic</td></tr><tr><td>3.3</td><td>Entity–Relationship (ER) diagram</td></tr><tr><td>3.4</td><td>Database tables in PostgreSQL (pgAdmin view)</td></tr><tr><td>3.5</td><td>Database functions used by the API (pgAdmin view)</td></tr><tr><td>3.6</td><td>Use-case diagram</td></tr><tr><td>3.7</td><td>Activity diagram – Place an order</td></tr><tr><td>3.8</td><td>Sequence diagram – Checkout</td></tr><tr><td>3.9</td><td>Class diagram</td></tr><tr><td>3.10</td><td>Order status lifecycle</td></tr><tr><td>3.11</td><td>Custom request lifecycle</td></tr><tr><td>4.1</td><td>Home screen</td></tr><tr><td>4.2</td><td>Shop / catalogue screen</td></tr><tr><td>4.3</td><td>Product detail screen</td></tr><tr><td>4.4</td><td>Cart screen</td></tr><tr><td>4.5</td><td>Checkout screen</td></tr><tr><td>4.6</td><td>Order confirmation screen</td></tr><tr><td>4.7</td><td>Track order screen</td></tr><tr><td>4.8</td><td>Custom bouquet request form</td></tr><tr><td>4.9</td><td>Custom request received screen</td></tr><tr><td>4.10</td><td>Customer account – My Orders</td></tr><tr><td>4.11</td><td>Admin – Dashboard</td></tr><tr><td>4.12</td><td>Admin – Product form</td></tr><tr><td>4.13</td><td>Admin – Orders list</td></tr><tr><td>4.14</td><td>Admin – Order detail</td></tr><tr><td>4.15</td><td>Admin – Custom request detail</td></tr><tr><td>5.1</td><td>Test execution summary</td></tr></table></div>
+<hr>
+<div class="pagebreak"></div><h2 class="fm-title">LIST OF TABLES</h2>
+<div class="tablewrap"><table><tr><th>Table</th><th>Title</th></tr><tr><td>3.1</td><td>Functional requirements</td></tr><tr><td>3.2</td><td>Non-functional requirements</td></tr><tr><td>3.3</td><td>Database tables and key columns</td></tr><tr><td>3.4</td><td>Database functions used by the API</td></tr><tr><td>4.1</td><td>Hardware requirements</td></tr><tr><td>4.2</td><td>Software requirements</td></tr><tr><td>4.3</td><td>Technologies used</td></tr><tr><td>4.4</td><td>Module description</td></tr><tr><td>5.1</td><td>Functional test cases and results</td></tr><tr><td>5.2</td><td>Requirements traceability (FR → test)</td></tr><tr><td>8.1</td><td>Weekly activity log</td></tr></table></div>
+<hr>
+<div class="pagebreak"></div><h1>CHAPTER 1: INTRODUCTION</h1>
+<h2>1.1 Project Overview</h2>
+<p>Fleuréa Petals – Flower Bouquet Ordering Application is a web-based application designed around the requirements of a small handmade flower and gifting business. Fleuréa Petals offers flower bouquets and gifts with an emphasis on presentation, creativity and personalization. It works with two kinds of products: <em>everlasting</em> arrangements hand-wound from satin ribbon, floral wire and pipe cleaners, and <em>fresh</em> seasonal arrangements prepared the same day they are gifted. The purpose of the project is to bring the ordering process for both into a single, simple digital environment.</p>
+<p>Today, customers usually discover small businesses through social media and then communicate through direct messages to ask about products, prices, availability and customization. While this is useful for personal communication, it becomes difficult to manage as the number of enquiries grows. A dedicated application provides a more organized way to display products and collect customer requirements.</p>
+<p>The proposed application gives Fleuréa Petals a digital storefront where customers can browse handmade bouquets and gifts, add several items to a shopping cart and place an order in one structured step. It also supports <strong>custom bouquet requests</strong>, allowing a customer to describe a personalized arrangement — colours, occasion, size and budget — instead of being limited to predefined products. A small administrator panel lets the business manage the catalogue, track orders through their fulfilment stages and respond to custom requests.</p>
+<p>Online payment is deliberately outside the scope of this project. Orders are recorded on a pay-on-delivery basis, which keeps the project focused on the ordering experience itself.</p>
+<h2>1.2 Problem Statement</h2>
+<p>Small flower businesses often depend on informal ordering methods such as social-media messages and phone calls. This leads to repeated questions, difficulty in tracking enquiries, unclear customer requirements and the absence of a single place where all products can be viewed with correct, up-to-date information. Order details end up scattered across different conversations, and there is no reliable record of what was ordered, for when, and at what stage each order is.</p>
+<p>Fleuréa Petals requires a simple system that can present its handmade products clearly, make ordering convenient for customers, provide a structured way to request customized bouquets, and give the business an organized view of incoming orders. The project therefore addresses the need for a lightweight digital ordering application suitable for a small business, without the cost and complexity of a full commercial e-commerce platform.</p>
+<h2>1.3 Objectives</h2>
+<p>The main objectives of the project are:</p>
+<ol><li>To provide a clear online catalogue that showcases Fleuréa Petals' handmade flower bouquets and gifts, including both everlasting and fresh arrangements.</li><li>To make ordering simple and convenient for customers through a shopping cart and a single, guided checkout that captures delivery details.</li><li>To allow customers to place custom bouquet requests by describing their own requirements, and to let the business respond with a rough quote.</li><li>To give the business a minimal administrator panel for managing products, tracking orders through their fulfilment stages and handling custom requests, thereby making the overall ordering process more organized.</li></ol>
+<h2>1.4 Scope of the Project</h2>
+<p>The scope of the project covers the presentation of bouquets and gifts, browsing and searching the catalogue, building an order using a cart, a guided checkout that records contact and delivery information, order confirmation and order tracking, and a dedicated custom bouquet request flow. Registered customer accounts are optional and add order history and saved addresses. The administrator side covers product and category management, order status management, custom-request handling and a simple dashboard.</p>
+<p>The project focuses on the core ordering experience rather than a large-scale commercial platform. The following are explicitly <strong>not</strong> in scope:</p>
+<ul><li>Online payment or any payment-gateway integration (orders are pay-on-delivery).</li><li>Real-time stock counts; products carry an availability state (available, made to order, sold out) set by the administrator.</li><li>Automated e-mail or SMS notifications; status information is shown within the application.</li><li>Delivery routing, maps, courier integration or live delivery tracking.</li><li>Customer reviews and ratings, wishlists, discount codes and loyalty programs.</li><li>Multiple administrator roles and permissions.</li></ul>
+<p>These items are recorded as future scope in Chapter 6 so that the project boundary is clearly documented.</p>
+<hr>
+<div class="pagebreak"></div><h1>CHAPTER 2: ORGANIZATION PROFILE AND FIELD STUDY</h1>
+<h2>2.1 About the Organization</h2>
+<p>Fleuréa Petals is the organization for which this field project has been developed. It is a small business focused on handmade flower bouquets and gifts. The business provides attractive gifting options and also offers the possibility of creating bouquets according to individual customer preferences.</p>
+<p>The identity of a handmade flower business is strongly connected with creativity and a personal touch. Customers buy bouquets for birthdays, anniversaries, celebrations, weddings, corporate gifting or simply to make someone feel special. Because of this, the business needs a presentation that communicates both the products themselves and the personalized nature of the service.</p>
+<div class="tablewrap"><table><tr><th>Field</th><th>Detail</th></tr><tr><td>Organization name</td><td>Fleuréa Petals</td></tr><tr><td>Address</td><td>Mumbai, Maharashtra, India</td></tr><tr><td>Type of organization</td><td>Small handmade flower and gifting business</td></tr><tr><td>Nature of business</td><td>Design and sale of handmade flower bouquets and gifts; custom bouquet orders</td></tr><tr><td>Products</td><td>Ribbon blooms, pipe-cleaner posies, silk / everlasting bouquets, fresh same-day arrangements, gift pairings</td></tr></table></div>
+<h2>2.2 Organization Structure</h2>
+<p>Fleuréa Petals is a small business, so its activities are organized as functions rather than large departments. The proposed system is designed around the following functional areas:</p>
+<ul><li><strong>Owner / Management:</strong> takes overall decisions about products, pricing and how orders are fulfilled.</li><li><strong>Bouquet Making:</strong> designs and assembles ribbon, pipe-cleaner and silk arrangements, and prepares fresh arrangements on the day of delivery.</li><li><strong>Order Handling:</strong> receives customer orders, confirms details and schedules them for preparation.</li><li><strong>Customization:</strong> discusses custom bouquet requirements with customers and prepares a rough quote.</li><li><strong>Delivery Coordination:</strong> arranges delivery of completed orders on the requested date and time slot.</li><li><strong>Customer Communication:</strong> answers customer questions before and after an order.</li></ul>
+<p>In the current setup one or two people carry out all of these functions. The Fleuréa Petals application connects these activities through a single administrator panel so that products, orders and custom requests can be managed from one place.</p>
+<h2>2.3 Services / Products Offered</h2>
+<p>Fleuréa Petals offers handmade flower bouquets and gifts. The application is intended to present these products clearly so that customers can understand the available options before ordering. The product range is:</p>
+<ul><li><strong>Ribbon Blooms</strong> — hand-wound satin ribbon flowers, sold as single stems or built into full arrangements.</li><li><strong>Pipe-Cleaner Posies</strong> — playful, textured blooms with a soft handmade edge; popular as children's gifts and for shelf décor.</li><li><strong>Silk / Everlasting Bouquets</strong> — full, event-ready arrangements for weddings and venues that keep their appearance for years.</li><li><strong>Fresh &amp; Gifted</strong> — same-day fresh flower bouquets, optionally paired with a small gift for the person receiving them.</li><li><strong>Custom Bouquets</strong> — arrangements made to a customer's own brief: colours, occasion, size and budget.</li></ul>
+<p>The everlasting products are made to order and have a short lead time. The fresh products are date-bound and are prepared on the day of delivery. This distinction is important and is carried through the application as a product attribute.</p>
+<h2>2.4 Existing Business Process</h2>
+<p>At present, a customer typically discovers Fleuréa Petals through social media or a personal reference. The customer then sends a direct message to ask about available bouquets, prices, customization and delivery. A conversation follows that covers product selection, any customization, quantity, the delivery date and address, and other requirements. The order is confirmed in the same conversation and payment is arranged informally.</p>
+<p>This approach creates a personal relationship with the customer, but it has practical limits:</p>
+<ul><li>Product information has to be repeated for every enquiry.</li><li>Details of a single order are spread across a long chat and are easy to miss.</li><li>There is no consolidated list of orders or their current stage.</li><li>Custom requirements are described in a free-form way, so important details (budget, date, colours) are sometimes not captured.</li><li>As the number of enquiries grows, response times increase.</li></ul>
+<h2>2.5 Problem Identified During Field Study</h2>
+<p>The field study identified the absence of a structured digital ordering process designed around the needs of Fleuréa Petals. Product presentation, order collection and custom-request handling all happen inside chat conversations, with no single record of orders.</p>
+<p>The study also showed what the solution should <em>not</em> be. A small business does not need a large e-commerce platform with many screens and options; that would make ordering harder, not easier, and would be costly to maintain. What is needed is a focused application that does a few things well: present the products, let a customer place an order in one guided step, accept a personalized request, and give the business an organized view of everything that comes in. This finding directly shaped the scope defined in Chapter 1.</p>
+<hr>
+<div class="pagebreak"></div><h1>CHAPTER 3: SYSTEM ANALYSIS AND DESIGN</h1>
+<h2>3.1 Existing System</h2>
+<p>The existing process depends on direct customer communication through social media and informal product presentation. To learn about products, a customer must contact the business and ask. Ordering happens inside a chat, and there is no application maintaining product, customer or order data.</p>
+<p>Limitations of the existing system:</p>
+<ul><li>Product information is not presented in one consistent place and must be repeated on request.</li><li>Orders are not recorded in a structured form; there is no order number and no status.</li><li>Custom requirements are captured informally and inconsistently.</li><li>The business has no consolidated view of pending and completed orders.</li><li>The process works for a few customers at a time but does not scale.</li></ul>
+<h2>3.2 Proposed System</h2>
+<p>The proposed system is a web-based flower bouquet ordering application for Fleuréa Petals. The frontend is built with <strong>Next.js (React)</strong>, the backend is an <strong>ASP.NET Core Web API</strong>, and <strong>PostgreSQL</strong> stores the application data. <strong>Visual Studio Code</strong> is the development environment.</p>
+<p>The application provides:</p>
+<ul><li>A public catalogue with category and "nature" (everlasting / fresh) filters and search, plus a product detail page.</li><li>A shopping cart that holds multiple items, persisted in the browser.</li><li>A guided checkout that collects contact details, delivery address, delivery date and time slot and an optional gift message, then places the order.</li><li>An order confirmation page and a tracking page where a customer can check order status using the order number and e-mail.</li><li>A custom bouquet request form and a matching tracking page.</li><li>Optional customer accounts that add order history and saved addresses.</li><li>A minimal administrator panel: a dashboard with counts, product and category management, an orders list with status updates, custom-request handling and an enquiries list.</li></ul>
+<p>All money calculations and validation are performed on the server. The browser sends only product identifiers and quantities; the server re-prices every order from the database. Payment is not processed — an order is created with the status <em>pending</em> and is treated as pay-on-delivery.</p>
+<h2>3.3 Functional Requirements</h2>
+<p><strong>Table 3.1 – Functional requirements</strong></p>
+<div class="tablewrap"><table><tr><th>#</th><th>Requirement</th></tr><tr><td>FR1</td><td>The system shall display product categories and a list of active products with price and availability.</td></tr><tr><td>FR2</td><td>The system shall allow customers to filter products by category and by nature (everlasting / fresh) and to search by name.</td></tr><tr><td>FR3</td><td>The system shall show a product detail page with description, image, price, availability and lead time.</td></tr><tr><td>FR4</td><td>The system shall allow customers to add products to a cart, change quantities and remove items.</td></tr><tr><td>FR5</td><td>The system shall persist the cart in the browser between visits.</td></tr><tr><td>FR6</td><td>The system shall provide a checkout that collects contact details, delivery address, delivery date and time slot, and an optional gift message.</td></tr><tr><td>FR7</td><td>The system shall validate the delivery date against each product's nature and lead time.</td></tr><tr><td>FR8</td><td>The system shall create an order, calculate the subtotal, delivery fee and total on the server, and generate a unique order number.</td></tr><tr><td>FR9</td><td>The system shall show an order confirmation containing the order number and summary.</td></tr><tr><td>FR10</td><td>The system shall allow a customer to track an order using the order number and e-mail.</td></tr><tr><td>FR11</td><td>The system shall allow customers to submit a custom bouquet request describing occasion, palette, flowers, size, budget range and required date, with an optional inspiration image.</td></tr><tr><td>FR12</td><td>The system shall allow a customer to track a custom request using its request number and e-mail.</td></tr><tr><td>FR13</td><td>The system shall allow a customer to register and log in (optional), and shall then show order history, custom-request history and saved addresses.</td></tr><tr><td>FR14</td><td>The system shall allow an administrator to log in securely.</td></tr><tr><td>FR15</td><td>The system shall allow an administrator to create, edit and deactivate products and categories and to set product availability.</td></tr><tr><td>FR16</td><td>The system shall allow an administrator to view orders, filter them by status and update the status of an order.</td></tr><tr><td>FR17</td><td>The system shall allow an administrator to view custom requests, set their status and record a response and rough quote.</td></tr><tr><td>FR18</td><td>The system shall allow an administrator to view enquiries and mark them as handled.</td></tr><tr><td>FR19</td><td>The system shall provide an administrator dashboard showing counts of orders by status, new custom requests, unhandled enquiries and active products.</td></tr><tr><td>FR20</td><td>The system shall store all product, customer, order and request data in the PostgreSQL database.</td></tr></table></div>
+<h2>3.4 Non-Functional Requirements</h2>
+<p><strong>Table 3.2 – Non-functional requirements</strong></p>
+<div class="tablewrap"><table><tr><th>Attribute</th><th>Requirement</th></tr><tr><td>Usability</td><td>A customer shall be able to go from the home page to a placed order without instructions.</td></tr><tr><td>Performance</td><td>Catalogue and product pages shall respond within about 1.5 seconds on a normal connection; typical API calls within about 300 ms.</td></tr><tr><td>Reliability</td><td>An order and its items shall be written in a single database transaction so that a partial order can never be stored.</td></tr><tr><td>Security</td><td>Passwords shall be stored as BCrypt hashes; administrator routes shall require an administrator token; all input shall be validated on the server; database access shall use parameterized queries through EF Core.</td></tr><tr><td>Maintainability</td><td>The backend shall be layered (controller → service → repository) with typed DTOs; the frontend shall be organized by feature.</td></tr><tr><td>Responsiveness</td><td>The interface shall work correctly from a 360-pixel-wide phone screen up to a desktop display.</td></tr><tr><td>Data integrity</td><td>Foreign keys and enumerated constraints shall be enforced; order lines shall store a snapshot of product name and unit price.</td></tr><tr><td>Portability</td><td>The system shall run on Windows 10/11 with the .NET SDK, Node.js and a local PostgreSQL server.</td></tr></table></div>
+<h2>3.5 System Architecture</h2>
+<p>The application follows a <strong>three-tier architecture</strong>.</p>
+<ul><li><strong>Presentation Layer</strong> — Next.js (React, TypeScript). It renders the customer site and the administrator panel. Catalogue pages are rendered on the server for speed; the cart and forms run in the browser.</li><li><strong>Application Layer</strong> — ASP.NET Core Web API. It exposes a REST API under <code>/api/v1</code>, handles authentication with JWT tokens (separate customer and administrator audiences), validates all input, applies business rules such as delivery-date checks and order pricing, and communicates with the database.</li><li><strong>Data Layer</strong> — PostgreSQL, accessed through Entity Framework Core (Npgsql provider). It stores product, customer, order, custom-request and administrator data. Schema changes are applied as EF Core migrations, and a seed script loads demo data.</li></ul>
+<p>Separating the layers keeps presentation, business logic and storage independent, which makes the system easier to test, maintain and extend.</p>
+<figure class="fig"><img src="assets/figures/fig-3-1-architecture.png" alt="Figure 3.1"><figcaption>Figure 3.1 &mdash; System architecture of Fleuréa Petals.</figcaption></figure>
+<p>The relationship between a product's nature and the rest of the system is shown in Figure 3.2: a single <code>nature</code> field on a product drives both the catalogue filter and the delivery-date rule at checkout.</p>
+<figure class="fig"><img src="assets/figures/fig-3-2-two-natures.png" alt="Figure 3.2"><figcaption>Figure 3.2 &mdash; Catalogue "two natures" logic.</figcaption></figure>
+<h2>3.6 Database Design</h2>
+<p>PostgreSQL is used as the database. The design uses nine tables. The core chain runs from <code>categories</code> to <code>products</code> to <code>order_items</code> to <code>orders</code>, with <code>customers</code> on the far side. Two tables (<code>addresses</code>, <code>custom_requests</code>) relate to <code>customers</code>, and two (<code>admin_users</code>, <code>enquiries</code>) stand alone.</p>
+<p><strong>Table 3.3 – Database tables and key columns</strong></p>
+<div class="tablewrap"><table><tr><th>Table</th><th>Holds</th><th>Key columns</th></tr><tr><td>categories</td><td>Catalogue groupings</td><td>name, slug, sort_order, is_active</td></tr><tr><td>products</td><td>Bouquets and gifts for sale</td><td>name, slug, price, nature, availability, lead_time_days, is_customizable, is_active</td></tr><tr><td>customers</td><td>Guests and registered buyers</td><td>name, email, phone, password_hash (nullable), is_registered</td></tr><tr><td>addresses</td><td>Saved addresses (registered customers)</td><td>customer_id, recipient_name, phone, line1, line2, city, state, postal_code</td></tr><tr><td>orders</td><td>Placed orders with delivery snapshot</td><td>order_number, customer_id, status, subtotal, delivery_fee, total, recipient_name, address fields, delivery_date, delivery_slot, gift_message, placed_at</td></tr><tr><td>order_items</td><td>Line items within an order</td><td>order_id, product_id, product_name, unit_price, quantity, line_total</td></tr><tr><td>custom_requests</td><td>Custom bouquet enquiries</td><td>request_number, customer_id (nullable), contact fields, bouquet_type, occasion, palette, flowers_preferred, size, budget_min, budget_max, need_by_date, reference_notes, inspiration_image_url, status, admin_response, quoted_price</td></tr><tr><td>enquiries</td><td>Footer contact messages</td><td>name, email, message, is_handled, created_at</td></tr><tr><td>admin_users</td><td>Owner login (seeded: Forum Parmar / <code>forum</code>)</td><td>name, username, email, password_hash, last_login_at</td></tr></table></div>
+<p><strong>Relationships</strong></p>
+<ul><li><code>categories</code> 1 — ∞ <code>products</code></li><li><code>products</code> 1 — ∞ <code>order_items</code></li><li><code>orders</code> 1 — ∞ <code>order_items</code></li><li><code>customers</code> 1 — ∞ <code>orders</code></li><li><code>customers</code> 1 — ∞ <code>addresses</code></li><li><code>customers</code> 1 — 0..∞ <code>custom_requests</code> (a request may also be submitted without an account)</li></ul>
+<p>Each order line stores a <strong>snapshot</strong> of the product name and unit price, so that editing a product later never changes a historical order.</p>
+<figure class="fig"><img src="assets/figures/fig-3-3-er-diagram.png" alt="Figure 3.3"><figcaption>Figure 3.3 &mdash; Entity–Relationship (ER) diagram.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-3-4-db-tables.png" alt="Figure 3.4"><figcaption>Figure 3.4 &mdash; Database tables in PostgreSQL, shown in pgAdmin with sample data.</figcaption></figure>
+<p><strong>Database functions.</strong> The tables are supported by a set of <strong>PL/pgSQL functions</strong> in the <code>public</code> schema. The API services call these functions instead of building SQL statements in C#, so that each read or write has a single, tested definition and the important rules — human-readable numbering, order pricing and the delivery-date checks — live in the database. The full definitions are in <code>database/functions.sql</code>; Table 3.4 lists them by purpose.</p>
+<p><strong>Table 3.4 – Database functions used by the API</strong></p>
+<div class="tablewrap"><table><tr><th>Function</th><th>Type</th><th>Purpose</th></tr><tr><td><code>fn_get_categories()</code></td><td>read</td><td>Active categories with a product count, ordered for display.</td></tr><tr><td><code>fn_get_products(category, nature, search, page, page_size)</code></td><td>read</td><td>Paged, filtered product list for the shop page.</td></tr><tr><td><code>fn_get_product_by_slug(slug)</code></td><td>read</td><td>Single active product for the detail page.</td></tr><tr><td><code>fn_upsert_guest_customer(name, email, phone)</code></td><td>insert</td><td>Reuse or create a guest customer row at checkout.</td></tr><tr><td><code>fn_register_customer(name, email, phone, password_hash)</code></td><td>insert</td><td>Create, or upgrade a guest to, a registered account.</td></tr><tr><td><code>fn_place_order(contact, delivery, items jsonb)</code></td><td>insert</td><td>Re-price each line from <code>products</code>, validate availability and the delivery date, then insert the order and its items together; returns the order row.</td></tr><tr><td><code>fn_get_order(order_number, email)</code></td><td>read</td><td>Order and its items for the tracking page (e-mail acts as an access check).</td></tr><tr><td><code>fn_admin_list_orders(status)</code></td><td>read</td><td>Order list for the admin panel, optionally filtered by status.</td></tr><tr><td><code>fn_update_order_status(order_id, status)</code></td><td>update</td><td>Move an order forward one stage, or to <code>cancelled</code> from an early stage.</td></tr><tr><td><code>fn_create_custom_request(...)</code></td><td>insert</td><td>Insert a custom bouquet request and issue its request number.</td></tr><tr><td><code>fn_get_custom_request(request_number, email)</code></td><td>read</td><td>Custom request for the tracking page.</td></tr><tr><td><code>fn_respond_custom_request(id, status, response, quote)</code></td><td>update</td><td>Record the administrator's response and rough quote and/or advance the status.</td></tr><tr><td><code>fn_upsert_product(...)</code></td><td>insert / update</td><td>Create a product (id is null) or update an existing one.</td></tr><tr><td><code>fn_set_product_availability(id, availability)</code></td><td>update</td><td>Quick availability toggle from the products list.</td></tr><tr><td><code>fn_create_enquiry(name, email, message)</code></td><td>insert</td><td>Store a footer contact-form message.</td></tr><tr><td><code>fn_mark_enquiry_handled(id, handled)</code></td><td>update</td><td>Mark an enquiry as handled.</td></tr><tr><td><code>fn_dashboard_summary()</code></td><td>read</td><td>Single-row counts for the admin dashboard cards.</td></tr><tr><td><code>fn_next_order_number()</code> / <code>fn_next_request_number()</code></td><td>helper</td><td>Format the next <code>FP-2026-000042</code> / <code>FP-CR-2026-000007</code> number from a sequence.</td></tr></table></div>
+<figure class="fig"><img src="assets/figures/fig-3-5-db-functions.png" alt="Figure 3.5"><figcaption>Figure 3.5 &mdash; Database functions in pgAdmin, showing the definition of <code>fn_place_order</code>.</figcaption></figure>
+<h2>3.7 UML Diagrams</h2>
+<p><strong>Use-case diagram.</strong> The actors are <em>Guest</em>, <em>Registered Customer</em> (a guest who has logged in) and <em>Administrator</em>. Guest use cases: browse catalogue, search, view product, add to cart, checkout, track order, submit custom request, submit enquiry, register / log in. Registered Customer additionally: view order history, view custom-request history, manage saved addresses. Administrator use cases: log in, view dashboard, manage products and categories, view and update orders, respond to custom requests, handle enquiries.</p>
+<figure class="fig"><img src="assets/figures/fig-3-6-use-case.png" alt="Figure 3.6"><figcaption>Figure 3.6 &mdash; Use-case diagram.</figcaption></figure>
+<p><strong>Activity diagram – Place an order.</strong> Browse catalogue → open product → add to cart → (repeat) → open cart → proceed to checkout → enter contact and delivery details → choose delivery date and slot → system validates date against product nature → review order → place order → system saves order and items in one transaction → confirmation shown with order number.</p>
+<figure class="fig"><img src="assets/figures/fig-3-7-activity-place-order.png" alt="Figure 3.7"><figcaption>Figure 3.7 &mdash; Activity diagram – Place an order.</figcaption></figure>
+<p><strong>Sequence diagram – Checkout.</strong> Browser → Next.js frontend → <code>POST /api/v1/orders</code> → OrdersController → OrderService → <code>fn_place_order(...)</code> in PostgreSQL (re-prices items from the <code>products</code> table, validates, inserts the order and <code>order_items</code> in one transaction) → response with order number → confirmation page.</p>
+<figure class="fig"><img src="assets/figures/fig-3-8-sequence-checkout.png" alt="Figure 3.8"><figcaption>Figure 3.8 &mdash; Sequence diagram – Checkout.</figcaption></figure>
+<p><strong>Class diagram.</strong> Core domain classes: <code>Category</code>, <code>Product</code>, <code>Customer</code>, <code>Address</code>, <code>Order</code>, <code>OrderItem</code>, <code>CustomRequest</code>, <code>Enquiry</code>, <code>AdminUser</code>, with service classes <code>CatalogueService</code>, <code>OrderService</code>, <code>CustomRequestService</code>, <code>AuthService</code> and <code>AdminService</code>.</p>
+<figure class="fig"><img src="assets/figures/fig-3-9-class-diagram.png" alt="Figure 3.9"><figcaption>Figure 3.9 &mdash; Class diagram.</figcaption></figure>
+<p><strong>State lifecycles.</strong> Two entities move through states. An order: <code>pending → confirmed → in_preparation → ready → out_for_delivery → delivered</code>, with <code>cancelled</code> reachable by the administrator. A custom request: <code>new → reviewing → quoted → accepted → converted_to_order → closed</code>, or <code>quoted → declined → closed</code>.</p>
+<figure class="fig"><img src="assets/figures/fig-3-10-order-lifecycle.png" alt="Figure 3.10"><figcaption>Figure 3.10 &mdash; Order status lifecycle.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-3-11-custom-request-lifecycle.png" alt="Figure 3.11"><figcaption>Figure 3.11 &mdash; Custom request lifecycle.</figcaption></figure>
+<hr>
+<div class="pagebreak"></div><h1>CHAPTER 4: SYSTEM IMPLEMENTATION</h1>
+<h2>4.1 Hardware Requirements</h2>
+<p><strong>Table 4.1 – Hardware requirements</strong></p>
+<div class="tablewrap"><table><tr><th>Component</th><th>Minimum requirement</th></tr><tr><td>Processor</td><td>Intel Core i3 (or equivalent) and above</td></tr><tr><td>RAM</td><td>4 GB or above (8 GB recommended for running frontend, backend and database together)</td></tr><tr><td>Storage</td><td>256 GB HDD/SSD with space for project files, dependencies and the database</td></tr><tr><td>Display</td><td>14-inch display or larger</td></tr><tr><td>Network</td><td>Wi-Fi or Ethernet connection for development and testing</td></tr><tr><td>Development machine</td><td>A computer or laptop able to run Node.js, the .NET SDK and PostgreSQL</td></tr></table></div>
+<h2>4.2 Software Requirements</h2>
+<p><strong>Table 4.2 – Software requirements</strong></p>
+<div class="tablewrap"><table><tr><th>Category</th><th>Software</th></tr><tr><td>Operating system</td><td>Windows 10 / 11</td></tr><tr><td>Frontend runtime</td><td>Node.js (LTS) with npm</td></tr><tr><td>Frontend framework</td><td>Next.js (React) with TypeScript</td></tr><tr><td>Styling</td><td>Tailwind CSS</td></tr><tr><td>Backend framework</td><td>ASP.NET Core Web API (.NET)</td></tr><tr><td>ORM</td><td>Entity Framework Core with the Npgsql provider</td></tr><tr><td>Database</td><td>PostgreSQL</td></tr><tr><td>Database tool</td><td>pgAdmin</td></tr><tr><td>IDE</td><td>Visual Studio Code</td></tr><tr><td>API testing</td><td>Swagger UI, and <code>.http</code> request files kept in the <code>tests/</code> folder (<code>tests/Fleurea.http</code>) run from VS Code or Visual Studio</td></tr><tr><td>Browser</td><td>Google Chrome or Microsoft Edge</td></tr><tr><td>Version control</td><td>Git and GitHub</td></tr></table></div>
+<h2>4.3 Technologies Used</h2>
+<p><strong>Table 4.3 – Technologies used</strong></p>
+<div class="tablewrap"><table><tr><th>Technology</th><th>Purpose</th></tr><tr><td>Next.js (React)</td><td>Frontend framework — catalogue, cart, checkout, custom form and admin panel</td></tr><tr><td>TypeScript</td><td>Typed JavaScript for the frontend</td></tr><tr><td>Tailwind CSS</td><td>Styling and responsive layout; carries the Fleuréa palette and type from the existing site</td></tr><tr><td>react-hook-form + zod</td><td>Form handling and client-side validation</td></tr><tr><td>ASP.NET Core Web API</td><td>Backend REST API, business logic, authentication</td></tr><tr><td>Entity Framework Core (Npgsql)</td><td>Object–relational mapping and database migrations</td></tr><tr><td>FluentValidation</td><td>Server-side request validation</td></tr><tr><td>JWT bearer authentication</td><td>Customer and administrator sessions</td></tr><tr><td>BCrypt</td><td>Password hashing</td></tr><tr><td>PostgreSQL</td><td>Relational database for all application data</td></tr><tr><td>Swagger / OpenAPI</td><td>API documentation and manual testing</td></tr><tr><td>Visual Studio Code</td><td>Development environment for frontend and backend</td></tr><tr><td>Git &amp; GitHub</td><td>Version control</td></tr></table></div>
+<h2>4.4 Module Description</h2>
+<p><strong>Table 4.4 – Module description</strong></p>
+<div class="tablewrap"><table><tr><th>Module</th><th>Responsibility</th></tr><tr><td>Catalogue</td><td>Categories, product listing, category and nature filters, search, product detail page.</td></tr><tr><td>Cart</td><td>Add, update and remove items; browser persistence; re-validation of price and availability against the API.</td></tr><tr><td>Checkout &amp; Order</td><td>Collect contact and delivery details; validate the delivery date; create the order and its items in one transaction; confirmation; guest order tracking.</td></tr><tr><td>Custom Request</td><td>Custom bouquet enquiry form with optional inspiration image; request tracking; request lifecycle.</td></tr><tr><td>Customer Account</td><td>Optional registration and login; order history; custom-request history; saved addresses.</td></tr><tr><td>Admin – Products</td><td>Product and category CRUD; availability toggle; image upload; activate / deactivate.</td></tr><tr><td>Admin – Orders</td><td>Order list with filtering; order detail; status transitions; dashboard counts.</td></tr><tr><td>Admin – Custom Requests</td><td>Review requests; record a response and rough quote; advance the status.</td></tr><tr><td>Enquiries</td><td>Footer contact form and an administrator list with a mark-as-handled action.</td></tr><tr><td>Authentication &amp; Authorization</td><td>Issue and verify JWT tokens; separate customer and administrator audiences; password hashing.</td></tr><tr><td>Data Management</td><td>EF Core DbContext and migrations for the schema; the PL/pgSQL functions in <code>database/functions.sql</code> that the services call for every read and write; the demo seed data.</td></tr></table></div>
+<h2>4.5 User Interface Screens</h2>
+<p>The interface keeps the customer journey short: open the application, understand what Fleuréa Petals offers, browse bouquets and move to ordering without unnecessary steps. It re-uses the palette (Ivory, Blush, Rosewood, Sage, Gold Thread, Ink), the display typeface and the ribbon motif established on the existing Fleuréa page. The screens are:</p>
+<ul><li><strong>Home</strong> — introduces the two kinds of products (everlasting and fresh) and links to the shop. <em>Figure 4.1.</em></li><li><strong>Shop / catalogue</strong> — product grid with category and nature filters and search. <em>Figure 4.2.</em></li><li><strong>Product detail</strong> — image, description, price, availability, quantity selector and <em>Add to cart</em>; a link to request a custom version when the product is customizable. <em>Figure 4.3.</em></li><li><strong>Cart</strong> — line items, quantity editing, removal, subtotal and estimated delivery fee. <em>Figure 4.4.</em></li><li><strong>Checkout</strong> — contact details, delivery address, delivery date and slot, gift message and an order review. <em>Figure 4.5.</em></li><li><strong>Order confirmation</strong> — order number and summary. <em>Figure 4.6.</em></li><li><strong>Track order</strong> — order number and e-mail form, then a status timeline. <em>Figure 4.7.</em></li><li><strong>Custom bouquet request form</strong> — occasion, palette, flowers, size, budget range, required date, notes and an optional image. <em>Figure 4.8.</em></li><li><strong>Custom request received</strong> — request number and next steps. <em>Figure 4.9.</em></li><li><strong>Customer account – My Orders</strong> — order history for a registered customer. <em>Figure 4.10.</em></li><li><strong>Admin – Dashboard</strong> — counts of orders by status, new custom requests, unhandled enquiries and active products. <em>Figure 4.11.</em></li><li><strong>Admin – Product form</strong> — create or edit a product, set availability, upload an image. <em>Figure 4.12.</em></li><li><strong>Admin – Orders list</strong> — orders with status filter. <em>Figure 4.13.</em></li><li><strong>Admin – Order detail</strong> — items, delivery details and a status control. <em>Figure 4.14.</em></li><li><strong>Admin – Custom request detail</strong> — the request, with fields to record status, response and quote. <em>Figure 4.15.</em></li></ul>
+<figure class="fig"><img src="assets/figures/fig-4-1-home.png" alt="Figure 4.1"><figcaption>Figure 4.1 &mdash; Home screen.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-2-shop.png" alt="Figure 4.2"><figcaption>Figure 4.2 &mdash; Shop / catalogue screen.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-3-product.png" alt="Figure 4.3"><figcaption>Figure 4.3 &mdash; Product detail screen.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-4-cart.png" alt="Figure 4.4"><figcaption>Figure 4.4 &mdash; Cart screen.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-5-checkout.png" alt="Figure 4.5"><figcaption>Figure 4.5 &mdash; Checkout screen.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-6-order-confirmation.png" alt="Figure 4.6"><figcaption>Figure 4.6 &mdash; Order confirmation screen.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-7-track-order.png" alt="Figure 4.7"><figcaption>Figure 4.7 &mdash; Track order screen.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-8-custom-request.png" alt="Figure 4.8"><figcaption>Figure 4.8 &mdash; Custom bouquet request form.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-9-custom-received.png" alt="Figure 4.9"><figcaption>Figure 4.9 &mdash; Custom request received screen.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-10-account-orders.png" alt="Figure 4.10"><figcaption>Figure 4.10 &mdash; Customer account, My Orders.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-11-admin-dashboard.png" alt="Figure 4.11"><figcaption>Figure 4.11 &mdash; Admin dashboard.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-12-admin-product-form.png" alt="Figure 4.12"><figcaption>Figure 4.12 &mdash; Admin, product form.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-13-admin-orders.png" alt="Figure 4.13"><figcaption>Figure 4.13 &mdash; Admin, orders list.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-14-admin-order-detail.png" alt="Figure 4.14"><figcaption>Figure 4.14 &mdash; Admin, order detail.</figcaption></figure>
+<figure class="fig"><img src="assets/figures/fig-4-15-admin-custom-request.png" alt="Figure 4.15"><figcaption>Figure 4.15 &mdash; Admin, custom request detail.</figcaption></figure>
+<h2>4.6 Sample Source Code</h2>
+<p>The snippets below are representative of the frontend, the backend and the database layer. They show the pattern used throughout the project rather than the complete implementation. The backend calls PostgreSQL functions (Section 3.6) rather than composing SQL in C#.</p>
+<p><strong>Frontend – cart context (Next.js / React, <code>src/features/cart/CartContext.tsx</code>)</strong></p>
+<pre class="code"><code>"use client";
+import { createContext, useContext, useEffect, useState } from "react";
+
+type CartLine = { productId: number; slug: string; name: string; price: number; quantity: number };
+const CartContext = createContext&lt;{
+  lines: CartLine[];
+  add: (line: CartLine) =&gt; void;
+  setQty: (productId: number, quantity: number) =&gt; void;
+  remove: (productId: number) =&gt; void;
+  clear: () =&gt; void;
+} | null&gt;(null);
+
+export function CartProvider({ children }: { children: React.ReactNode }) {
+  const [lines, setLines] = useState&lt;CartLine[]&gt;([]);
+
+  useEffect(() =&gt; {
+    try {
+      const saved = localStorage.getItem("fleurea-cart");
+      if (saved) setLines(JSON.parse(saved));
+    } catch { /* ignore unavailable storage */ }
+  }, []);
+
+  useEffect(() =&gt; {
+    try { localStorage.setItem("fleurea-cart", JSON.stringify(lines)); } catch {}
+  }, [lines]);
+
+  const add = (line: CartLine) =&gt;
+    setLines((cur) =&gt; {
+      const found = cur.find((l) =&gt; l.productId === line.productId);
+      return found
+        ? cur.map((l) =&gt; (l.productId === line.productId ? { ...l, quantity: l.quantity + line.quantity } : l))
+        : [...cur, line];
+    });
+  const setQty = (productId: number, quantity: number) =&gt;
+    setLines((cur) =&gt; cur.map((l) =&gt; (l.productId === productId ? { ...l, quantity } : l)));
+  const remove = (productId: number) =&gt; setLines((cur) =&gt; cur.filter((l) =&gt; l.productId !== productId));
+  const clear = () =&gt; setLines([]);
+
+  return &lt;CartContext.Provider value={{ lines, add, setQty, remove, clear }}&gt;{children}&lt;/CartContext.Provider&gt;;
+}
+
+export const useCart = () =&gt; {
+  const ctx = useContext(CartContext);
+  if (!ctx) throw new Error("useCart must be used within CartProvider");
+  return ctx;
+};</code></pre>
+<p><strong>Backend – place order (ASP.NET Core, <code>Controllers/OrdersController.cs</code> and <code>Services/OrderService.cs</code>)</strong></p>
+<pre class="code"><code>[ApiController]
+[Route("api/v1/orders")]
+public class OrdersController : ControllerBase
+{
+    private readonly IOrderService _orders;
+    public OrdersController(IOrderService orders) =&gt; _orders = orders;
+
+    [HttpPost]
+    public async Task&lt;ActionResult&lt;OrderConfirmationDto&gt;&gt; Place([FromBody] PlaceOrderRequest request)
+    {
+        var result = await _orders.CreateAsync(request);
+        return CreatedAtAction(nameof(Track), new { orderNumber = result.OrderNumber }, result);
+    }
+
+    [HttpGet("{orderNumber}")]
+    public async Task&lt;ActionResult&lt;OrderStatusDto&gt;&gt; Track(string orderNumber, [FromQuery] string email)
+        =&gt; await _orders.GetForCustomerAsync(orderNumber, email) is { } dto ? Ok(dto) : NotFound();
+}
+
+public class OrderService : IOrderService
+{
+    private readonly AppDbContext _db;
+    public OrderService(AppDbContext db) =&gt; _db = db;
+
+    public async Task&lt;OrderConfirmationDto&gt; CreateAsync(PlaceOrderRequest r)
+    {
+        // The database function re-prices every line from the products table,
+        // validates availability and the delivery date, and inserts the order
+        // and its items in one transaction. The browser's prices are ignored.
+        var items = JsonSerializer.Serialize(
+            r.Items.Select(i =&gt; new { product_id = i.ProductId, quantity = i.Quantity }));
+
+        var order = await _db.Orders
+            .FromSqlInterpolated($@"
+                SELECT * FROM fn_place_order(
+                    {r.Contact.Name}, {r.Contact.Email}, {r.Contact.Phone},
+                    {r.Delivery.RecipientName}, {r.Delivery.Phone},
+                    {r.Delivery.Line1}, {r.Delivery.Line2}, {r.Delivery.City}, {r.Delivery.State},
+                    {r.Delivery.PostalCode}, {r.Delivery.Landmark},
+                    {r.Delivery.Date}, {r.Delivery.Slot},
+                    {r.GiftMessage}, {r.CustomerNote}, {items}::jsonb)")
+            .AsNoTracking()
+            .SingleAsync();
+
+        return new OrderConfirmationDto(order.OrderNumber, order.Total, order.Status.ToString());
+    }
+}</code></pre>
+<p><strong>Database – the <code>fn_place_order</code> function (PL/pgSQL, <code>database/functions.sql</code>)</strong></p>
+<pre class="code"><code>CREATE OR REPLACE FUNCTION fn_place_order(
+    p_contact_name text, p_contact_email text, p_contact_phone text,
+    p_recipient_name text, p_recipient_phone text,
+    p_line1 text, p_line2 text, p_city text, p_state text,
+    p_postal_code text, p_landmark text,
+    p_delivery_date date, p_delivery_slot text,
+    p_gift_message text, p_customer_note text,
+    p_items jsonb                       -- [{"product_id":1,"quantity":2}, ...]
+) RETURNS orders AS $$
+DECLARE
+    v_customer_id  int;
+    v_order        orders;
+    v_item         jsonb;
+    v_product      products;
+    v_qty          int;
+    v_delivery_fee numeric(10,2) := 80.00;
+    v_free_over    numeric(10,2) := 1500.00;
+BEGIN
+    IF p_items IS NULL OR jsonb_array_length(p_items) = 0 THEN
+        RAISE EXCEPTION 'EMPTY_ORDER';
+    END IF;
+
+    v_customer_id := fn_upsert_guest_customer(p_contact_name, p_contact_email, p_contact_phone);
+
+    INSERT INTO orders (order_number, customer_id, status, recipient_name, recipient_phone,
+        address_line1, address_line2, city, state, postal_code, landmark,
+        delivery_date, delivery_slot, gift_message, customer_note)
+    VALUES (fn_next_order_number(), v_customer_id, 'pending', p_recipient_name, p_recipient_phone,
+        p_line1, coalesce(p_line2,''), p_city, coalesce(p_state,'Maharashtra'),
+        p_postal_code, coalesce(p_landmark,''),
+        p_delivery_date, p_delivery_slot::delivery_slot, p_gift_message, p_customer_note)
+    RETURNING * INTO v_order;
+
+    FOR v_item IN SELECT * FROM jsonb_array_elements(p_items) LOOP
+        v_qty := greatest((v_item-&gt;&gt;'quantity')::int, 1);
+
+        SELECT * INTO v_product FROM products
+        WHERE  id = (v_item-&gt;&gt;'product_id')::int AND is_active;
+
+        IF NOT FOUND THEN RAISE EXCEPTION 'PRODUCT_NOT_FOUND: %', v_item-&gt;&gt;'product_id'; END IF;
+        IF v_product.availability = 'sold_out' THEN
+            RAISE EXCEPTION 'PRODUCT_SOLD_OUT: %', v_product.name; END IF;
+        IF v_product.nature = 'everlasting'
+           AND p_delivery_date &lt; current_date + v_product.lead_time_days THEN
+            RAISE EXCEPTION 'DELIVERY_TOO_SOON: % needs % day(s)', v_product.name, v_product.lead_time_days;
+        END IF;
+
+        INSERT INTO order_items (order_id, product_id, product_name, unit_price, quantity, line_total)
+        VALUES (v_order.id, v_product.id, v_product.name, v_product.price, v_qty, v_product.price * v_qty);
+    END LOOP;
+
+    -- totals computed here, from the rows just inserted
+    UPDATE orders o
+       SET subtotal     = s.subtotal,
+           delivery_fee = CASE WHEN s.subtotal &gt;= v_free_over THEN 0 ELSE v_delivery_fee END,
+           total        = s.subtotal + CASE WHEN s.subtotal &gt;= v_free_over THEN 0 ELSE v_delivery_fee END
+      FROM (SELECT sum(line_total) AS subtotal FROM order_items WHERE order_id = v_order.id) s
+     WHERE o.id = v_order.id
+    RETURNING o.* INTO v_order;
+
+    RETURN v_order;
+END;
+$$ LANGUAGE plpgsql;</code></pre>
+<p><strong>Database – the read function behind <code>GET /products</code> (<code>database/functions.sql</code>)</strong></p>
+<pre class="code"><code>CREATE OR REPLACE FUNCTION fn_get_products(
+    p_category text DEFAULT NULL, p_nature text DEFAULT NULL, p_search text DEFAULT NULL,
+    p_page int DEFAULT 1, p_page_size int DEFAULT 12
+)
+RETURNS TABLE (id int, name text, slug text, short_description text, price numeric,
+    nature product_nature, availability product_availability, lead_time_days int,
+    image_url text, category text, total_count bigint)
+AS $$
+    SELECT p.id, p.name, p.slug, p.short_description, p.price,
+           p.nature, p.availability, p.lead_time_days, p.image_url,
+           c.name AS category, count(*) OVER() AS total_count
+    FROM   products p
+    JOIN   categories c ON c.id = p.category_id
+    WHERE  p.is_active
+      AND (p_category IS NULL OR c.slug = p_category)
+      AND (p_nature   IS NULL OR p.nature = p_nature::product_nature)
+      AND (p_search   IS NULL OR p.name ILIKE '%' || p_search || '%')
+    ORDER  BY c.sort_order, p.name
+    LIMIT  greatest(p_page_size, 1)
+    OFFSET greatest(p_page - 1, 0) * greatest(p_page_size, 1);
+$$ LANGUAGE sql STABLE;</code></pre>
+<hr>
+<div class="pagebreak"></div><h1>CHAPTER 5: TESTING AND RESULTS</h1>
+<p>Testing was carried out screen by screen and then across the complete ordering flow. A page-by-page test catalogue was prepared (<code>tests/test-cases.md</code>): for every screen it records the on-load checks, each click and input with its expected behaviour, and every API call the page makes — tested with valid input, invalid input, empty input, and (for protected endpoints) a missing, wrong or wrong-audience token, plus the business-rule failures such as a sold-out product, a delivery date that is too soon, a tampered price and an invalid status transition. In total this covers 18 screens with roughly 75 on-load checks, 110 interaction cases and 130 API cases. The HTTP requests are kept in <code>tests/Fleurea.http</code> and were run from the VS Code REST Client and Swagger; database writes were verified in pgAdmin.</p>
+<p>Table 5.1 is the summary pass for the main flows; Table 5.2 maps the functional requirements to the tests that verify them.</p>
+<h2>5.1 Test Cases</h2>
+<p>Table 5.1 lists the main functional test cases (T1–T25) that were run through the user interface and<br>confirmed against the database. The complete page-by-page catalogue — on-load checks, interactions<br>and the full set of API cases (valid, invalid, empty, wrong / missing token, not-found and<br>business-rule failures) — is in <code>tests/test-cases.md</code>.</p>
+<p><strong>Table 5.1 – Functional test cases and results</strong></p>
+<div class="tablewrap"><table><tr><th>#</th><th>Scenario</th><th>Steps</th><th>Expected result</th><th>Result</th></tr><tr><td>T1</td><td>Home loads</td><td>Open <code>/</code></td><td>Landing page renders with a link to the shop</td><td>Pass</td></tr><tr><td>T2</td><td>Browse catalogue</td><td>Open <code>/shop</code></td><td>Active products shown with price and availability</td><td>Pass</td></tr><tr><td>T3</td><td>Filter by nature</td><td>Select "Fresh"</td><td>Only fresh products are listed</td><td>Pass</td></tr><tr><td>T4</td><td>Search</td><td>Type "ribbon"</td><td>Only matching products are listed</td><td>Pass</td></tr><tr><td>T5</td><td>Product detail</td><td>Open a product</td><td>Description, price, image and availability are shown</td><td>Pass</td></tr><tr><td>T6</td><td>Add to cart</td><td>Add a product, quantity 2</td><td>Cart count is 2 and subtotal is correct</td><td>Pass</td></tr><tr><td>T7</td><td>Update cart</td><td>Change quantity, remove an item</td><td>Totals recalculate</td><td>Pass</td></tr><tr><td>T8</td><td>Checkout validation</td><td>Submit an empty checkout form</td><td>Field errors are shown; no order is created</td><td>Pass</td></tr><tr><td>T9</td><td>Place order (guest)</td><td>Fill valid details and place the order</td><td>Order is saved, an order number is shown, the cart is cleared</td><td>Pass</td></tr><tr><td>T10</td><td>Server re-pricing</td><td>Tamper with the client price and place the order</td><td>The order total uses the database price, not the client value</td><td>Pass</td></tr><tr><td>T11</td><td>Delivery-date rule</td><td>Choose a date sooner than an everlasting product's lead time</td><td>The date is rejected with a message</td><td>Pass</td></tr><tr><td>T12</td><td>Track order</td><td>Enter order number and e-mail on <code>/track</code></td><td>The correct status timeline is shown</td><td>Pass</td></tr><tr><td>T13</td><td>Track order – wrong e-mail</td><td>Enter a mismatched e-mail</td><td>Access is denied / not found</td><td>Pass</td></tr><tr><td>T14</td><td>Custom request</td><td>Submit the custom bouquet form</td><td>The request is saved and a request number is shown</td><td>Pass</td></tr><tr><td>T15</td><td>Custom request tracking</td><td>Track the new request</td><td>Status is shown as "new"</td><td>Pass</td></tr><tr><td>T16</td><td>Enquiry form</td><td>Submit the footer enquiry form</td><td>The enquiry is stored and visible to the administrator</td><td>Pass</td></tr><tr><td>T17</td><td>Register and log in</td><td>Create an account and log in</td><td>A session is created and <code>/account</code> is accessible</td><td>Pass</td></tr><tr><td>T18</td><td>Order history</td><td>A logged-in customer places an order</td><td>The order appears in <code>/account</code></td><td>Pass</td></tr><tr><td>T19</td><td>Admin login</td><td>Enter valid, then invalid credentials</td><td>Access is granted, then denied</td><td>Pass</td></tr><tr><td>T20</td><td>Admin add product</td><td>Create a product with an image</td><td>The product appears in <code>/shop</code></td><td>Pass</td></tr><tr><td>T21</td><td>Admin availability</td><td>Set a product to "sold out"</td><td>The catalogue shows the badge and disables "Add to cart"</td><td>Pass</td></tr><tr><td>T22</td><td>Admin order status</td><td>Move an order pending → confirmed → delivered</td><td>Customer tracking reflects each change</td><td>Pass</td></tr><tr><td>T23</td><td>Admin custom request</td><td>Set status "quoted" with a response and price</td><td>Customer tracking shows the quote</td><td>Pass</td></tr><tr><td>T24</td><td>Database persistence</td><td>Restart the API and query the order again</td><td>The data is still present in PostgreSQL</td><td>Pass</td></tr><tr><td>T25</td><td>Responsive layout</td><td>Open the site at 360 px width</td><td>The layout is usable with no horizontal scrolling</td><td>Pass</td></tr></table></div>
+<figure class="fig"><img src="assets/figures/fig-5-1-test-summary.png" alt="Figure 5.1"><figcaption>Figure 5.1 &mdash; Test execution summary.</figcaption></figure>
+<p><strong>Requirements traceability.</strong> Table 5.2 maps each functional requirement (FR1–FR20, §3.3) to the<br>test cases that exercise it, so that no requirement is left unverified.</p>
+<p><strong>Table 5.2 – Requirements traceability (FR → test)</strong></p>
+<div class="tablewrap"><table><tr><th>Requirement</th><th>Verified by</th></tr><tr><td>FR1 – Show categories and active products</td><td>T2, N1</td></tr><tr><td>FR2 – Filter by category / nature and search</td><td>T3, T4, N1</td></tr><tr><td>FR3 – Product detail page</td><td>T5, N2</td></tr><tr><td>FR4 – Add / update / remove cart items</td><td>T6, T7</td></tr><tr><td>FR5 – Cart persists between visits</td><td>T6, T7 (cart reloaded after refresh)</td></tr><tr><td>FR6 – Checkout collects contact + delivery details</td><td>T8, T9, N6</td></tr><tr><td>FR7 – Validate the delivery date against nature / lead time</td><td>T11, N4</td></tr><tr><td>FR8 – Create order, price on the server, generate order number</td><td>T9, T10, N3, N5</td></tr><tr><td>FR9 – Order confirmation with number and summary</td><td>T9</td></tr><tr><td>FR10 – Track an order by number + e-mail</td><td>T12, T13, N7</td></tr><tr><td>FR11 – Submit a custom bouquet request</td><td>T14, N13</td></tr><tr><td>FR12 – Track a custom request</td><td>T15</td></tr><tr><td>FR13 – Register / log in; order and request history</td><td>T17, T18, N8</td></tr><tr><td>FR14 – Administrator login</td><td>T19, N9, N10</td></tr><tr><td>FR15 – Manage products / categories / availability</td><td>T20, T21, N3</td></tr><tr><td>FR16 – View and update order status</td><td>T22, N11, N12</td></tr><tr><td>FR17 – Respond to a custom request with status + quote</td><td>T23</td></tr><tr><td>FR18 – View enquiries and mark handled</td><td>T16</td></tr><tr><td>FR19 – Administrator dashboard counts</td><td>Visual check on the dashboard screen + <code>GET /admin/dashboard/summary</code></td></tr><tr><td>FR20 – Store all data in PostgreSQL</td><td>T9, T14, T24</td></tr></table></div>
+<h2>5.2 Results and Outputs</h2>
+<p>The result of the project is a working web application that connects the customer interface with the backend API and the PostgreSQL database. A customer can browse Fleuréa Petals' products, build a cart and place an order through a single guided checkout, and can later track that order by its number. Custom bouquet requests are captured with all the details the business needs to prepare a quote. The administrator panel gives the business one place to manage products, move orders through their fulfilment stages and respond to custom requests.</p>
+<p>The most important outcome is that the ordering process is now clearer and more organized than relying on informal chat messages: every order has a number, a status and a permanent record. Server-side re-pricing and validation make the stored data trustworthy. The custom-request flow keeps the personalized, handmade character of Fleuréa Petals while still giving it structure.</p>
+<p>Screenshots of the running application are included in Section 4.5 and the Appendix.</p>
+<hr>
+<div class="pagebreak"></div><h1>CHAPTER 6: CONCLUSION AND FUTURE SCOPE</h1>
+<h2>6.1 Conclusion</h2>
+<p>Fleuréa Petals – Flower Bouquet Ordering Application was developed as a field project based on the real needs of a small handmade flower business. It connects a business requirement with software development by providing a digital platform for showcasing bouquets, placing orders through a cart and checkout, submitting custom bouquet requests, and managing everything from a small administrator panel.</p>
+<p>The project shows how a focused web application can help a small business organize its customer interaction and present its products, without the cost and complexity of a large commercial platform. Next.js, ASP.NET Core and PostgreSQL provide the technical foundation, and Visual Studio Code was used for development. The three-tier design keeps the presentation, logic and data concerns separate, and the decision to keep all pricing and validation on the server keeps the stored data reliable.</p>
+<p>The project also reinforced that technology should solve a real problem rather than add complexity. For Fleuréa Petals, the focus was on making ordering convenient while keeping the personal and creative nature of handmade gifting.</p>
+<h2>6.2 Learning Outcomes</h2>
+<ul><li>Converting a real business requirement into a structured software project with a defined scope.</li><li>Designing a relational database, drawing an ER diagram and applying schema changes through EF Core migrations.</li><li>Building a REST API with ASP.NET Core using a layered controller–service–repository structure.</li><li>Building a modern frontend with Next.js and React, including client-side state (the cart) and form validation.</li><li>Understanding how a frontend and backend communicate over HTTP and why validation and pricing must live on the server.</li><li>Implementing authentication with hashed passwords and JWT tokens for two different audiences.</li><li>Writing and executing test cases, and debugging issues found during testing.</li><li>Improving documentation, planning and project-presentation skills.</li></ul>
+<h2>6.3 Future Scope</h2>
+<ul><li><strong>Online payment</strong> — integrate a payment gateway so customers can pay when ordering.</li><li><strong>Order-status notifications</strong> — send e-mail or SMS updates at each status change.</li><li><strong>Richer customer accounts</strong> — order re-ordering, wishlists and stored preferences.</li><li><strong>Admin analytics</strong> — charts of popular products, demand by season and order volumes.</li><li><strong>Delivery management</strong> — delivery-area checks, delivery-slot capacity and a driver view.</li><li><strong>Reviews and ratings</strong> — let customers leave feedback on delivered orders.</li><li><strong>Inventory</strong> — track stock of ribbon, wire and fresh stems, and warn when low.</li><li><strong>Convert custom requests to orders automatically</strong> — once a quote is accepted.</li><li><strong>Catalogue growth</strong> — seasonal collections and additional gift pairings.</li><li><strong>Cloud deployment</strong> — host the application so it is reachable from anywhere.</li></ul>
+<hr>
+<div class="pagebreak"></div><h1>CHAPTER 7: REFERENCES</h1>
+<p>The following sources were used during the design and development of the project. References are given in APA style.</p>
+<ol><li>Meta Platforms, Inc. (n.d.). <em>React documentation</em>. Retrieved 2026, from https://react.dev/</li><li>Vercel, Inc. (n.d.). <em>Next.js documentation</em>. Retrieved 2026, from https://nextjs.org/docs</li><li>Microsoft. (n.d.). <em>ASP.NET Core documentation</em>. Retrieved 2026, from https://learn.microsoft.com/aspnet/core</li><li>Microsoft. (n.d.). <em>Entity Framework Core documentation</em>. Retrieved 2026, from https://learn.microsoft.com/ef/core</li><li>The PostgreSQL Global Development Group. (n.d.). <em>PostgreSQL 16 documentation</em>. Retrieved 2026, from https://www.postgresql.org/docs/</li><li>Tailwind Labs. (n.d.). <em>Tailwind CSS documentation</em>. Retrieved 2026, from https://tailwindcss.com/docs</li><li>Mozilla. (n.d.). <em>MDN Web Docs: HTML, CSS, JavaScript and HTTP</em>. Retrieved 2026, from https://developer.mozilla.org/</li><li>Microsoft. (n.d.). <em>Visual Studio Code documentation</em>. Retrieved 2026, from https://code.visualstudio.com/docs</li><li>npgsql.org. (n.d.). <em>Npgsql – .NET data provider for PostgreSQL</em>. Retrieved 2026, from https://www.npgsql.org/</li></ol>
+<p>Any additional sources consulted during development should be added here in the same APA style.</p>
+<hr>
+<div class="pagebreak"></div><h1>CHAPTER 8: APPENDIX</h1>
+<h2>8.1 User Manual</h2>
+<p><strong>Placing an order</strong></p>
+<ol><li>Open the Fleuréa Petals application in a web browser.</li><li>Open <strong>Shop</strong> and browse the bouquets and gifts. Use the category and "everlasting / fresh" filters or the search box to narrow the list.</li><li>Open a product to see its description, price and availability.</li><li>Choose a quantity and select <strong>Add to cart</strong>. Repeat for other products.</li><li>Open the <strong>Cart</strong>, check the items and quantities, then select <strong>Checkout</strong>.</li><li>Enter your contact details and the delivery address.</li><li>Choose a delivery date and time slot. The application will not allow a date that is too soon for the items in your cart.</li><li>Add an optional gift message, review the order and select <strong>Place order</strong>.</li><li>Note the <strong>order number</strong> shown on the confirmation screen.</li><li>To check progress later, open <strong>Track order</strong> and enter the order number and the e-mail you used.</li></ol>
+<p><strong>Requesting a custom bouquet</strong></p>
+<ol><li>Open <strong>Custom</strong> from the menu.</li><li>Describe the bouquet: occasion, colours, preferred flowers, size and budget range.</li><li>Enter the date you need it by and any reference notes; attach an inspiration image if you have one.</li><li>Submit the request and note the <strong>request number</strong>.</li><li>The business will review the request and respond with a rough quote, which you can see on the tracking page.</li></ol>
+<p><strong>Administrator</strong></p>
+<ol><li>Open <strong>/admin</strong> and log in.</li><li>The dashboard shows counts of orders by status, new custom requests, unhandled enquiries and active products.</li><li>Use <strong>Products</strong> to add or edit products, set availability and upload images.</li><li>Use <strong>Orders</strong> to view orders, filter by status and move an order to its next stage.</li><li>Use <strong>Custom requests</strong> to read a request and record a status, response and quote.</li></ol>
+<h2>8.2 Additional Screenshots</h2>
+<p>Screenshots of all customer and administrator screens are included as Figures 4.1 to 4.15. Additional screenshots (empty cart, validation errors, sold-out product, order status timeline) may be added here.</p>
+<h2>8.3 Code Snippets</h2>
+<p>Representative code is shown in Section 4.6: a Next.js cart context, the ASP.NET Core controller and order service that call the database function, and the <code>fn_place_order</code> and <code>fn_get_products</code> PL/pgSQL functions. The complete schema is in <code>database/schema.sql</code>, all functions in <code>database/functions.sql</code>, and the demo data in <code>database/seed.sql</code>.</p>
+<h2>8.4 Weekly Activity Log</h2>
+<p><strong>Table 8.1 – Weekly activity log</strong></p>
+<div class="tablewrap"><table><tr><th>Week</th><th>Activity performed</th><th>Outcome</th></tr><tr><td>1</td><td>Project discussion and requirement gathering</td><td>Project title and four objectives finalized; requirements identified</td></tr><tr><td>2</td><td>Study of the existing system and problem identification</td><td>Existing ordering process studied; problems documented</td></tr><tr><td>3</td><td>Software requirement analysis</td><td>Functional and non-functional requirements prepared</td></tr><tr><td>4</td><td>Database design (ER diagram)</td><td>Nine-table schema designed; EF Core entities and first migration created</td></tr><tr><td>5</td><td>UI design (wireframes / mockups)</td><td>Screen layouts and customer flow prepared; design tokens taken from the existing site</td></tr><tr><td>6</td><td>Module 1 development – Catalogue</td><td>Categories and products API with seed data; home, shop and product pages</td></tr><tr><td>7</td><td>Module 2 development – Cart and Order</td><td>Cart, checkout, order creation, confirmation and tracking; custom-request module started</td></tr><tr><td>8</td><td>Database integration</td><td>Frontend connected to the API end to end; migrations and seed finished; admin panel built</td></tr><tr><td>9</td><td>Testing of modules</td><td>Test cases executed; bugs identified and fixed</td></tr><tr><td>10</td><td>User interface improvements</td><td>Full visual design applied; responsive pass; empty / error / loading states</td></tr><tr><td>11</td><td>Final testing and documentation</td><td>Regression testing; screenshots captured; report chapters written</td></tr><tr><td>12</td><td>Project demonstration and submission</td><td>Demo data seeded; run-through rehearsed; final report prepared</td></tr></table></div>
+</div>
+</body>
+</html>

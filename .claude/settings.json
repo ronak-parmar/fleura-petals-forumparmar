@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ' *)",
+      "Bash(awk '{s+=$5} END {print \"total\", s/1024/1024 \"MB across\", NR, \"files\"}')",
+      "Bash(awk '{print $5/1024\"KB\", $NF}')",
+      "Bash(node scripts/build-report.js --inline)",
+      "Bash(node -e \"const fs=require\\('fs'\\);fs.rmSync\\('tests/Fleurea.Api.Tests',{recursive:true,force:true}\\);console.log\\('removed'\\);console.log\\(fs.readdirSync\\('tests'\\)\\);\")",
+      "Bash(node scripts/render-figures.js all)",
+      "Bash(node scripts/build-docx.js)",
+      "Bash(node -e \"const fs=require\\('fs'\\);['_contact-sheet.html','_contact-sheet.png','_report-preview-top.png','_report-full.png','_slice-a.png','_slice-b.png','_slice-c.png','_slice-ch3-er.png','_slice-ch4-code.png','_slice-fig.png','_slice-code.png'].forEach\\(f=>{try{fs.unlinkSync\\('report/assets/'+f\\);console.log\\('rm',f\\)}catch\\(e\\){}}\\);\")",
+      "Bash(node \"C:/Users/RONAKP~1/AppData/Local/Temp/claude/d--Forum-Parmar/7f45d1e4-7d36-4a0d-8d0d-8d39eea2a858/scratchpad/reffmt.js\")",
+      "Bash(npx --yes create-next-app@latest app --ts --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
+      "Bash(mkdir -p \"D:\\\\Forum Parmar\\\\app\\\\src\\\\app\\\\shop\\\\[slug]\")",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(mv \"ribbon rose.jpg\" \"rosewood-ribbon-bouquet.jpg\")",
+      "Bash(mv \"pipeclearner boqueue.jpg\" \"blush-pipe-cleaner-posy.jpg\")",
+      "Bash(mv \"sage silk garden.jpg\" \"sage-garden-silk-bouquet.jpg\")",
+      "Bash(mv \"fresh flower boqueue.jpg\" \"golden-hour-fresh-gift.jpg\")",
+      "Bash('C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe' --headless=new --disable-gpu --window-size=900,3200 '--screenshot=D:\\\\Forum Parmar\\\\.claude\\\\tmp\\\\report-full2.png' 'file:///D:/Forum Parmar/report/report.html')"
+    ],
+    "additionalDirectories": [
+      "D:\\Forum Parmar\\app\\src\\app\\shop"
+    ]
+  }
+}

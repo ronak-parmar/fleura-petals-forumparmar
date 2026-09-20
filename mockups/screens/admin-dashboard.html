@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 4.11 — Admin: Dashboard</title>
+<link rel="stylesheet" href="../shared/fleurea.css">
+</head>
+<body>
+<div class="browser" style="width:1320px">
+  <div class="browser__bar">
+    <div class="browser__dots"><i></i><i></i><i></i></div>
+    <div class="browser__url">fleureapetals.app/admin</div>
+  </div>
+  <div class="browser__viewport">
+    <div class="admin">
+      <aside class="admin__side">
+        <div class="admin__brand">Fleuréa · Studio</div>
+        <ul class="admin__nav">
+          <li><a href="#" class="active">Dashboard</a></li>
+          <li><a href="#">Orders</a></li>
+          <li><a href="#">Custom requests</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Enquiries</a></li>
+          <li class="admin__whoami">Signed in as <b>Forum Parmar</b></li>
+          <li><a href="#">Log out</a></li>
+        </ul>
+      </aside>
+      <main class="admin__main">
+        <div class="admin__head">
+          <h1>Dashboard</h1>
+          <span class="muted" style="font-size:13px">Tuesday, 9 September 2026</span>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat"><b>4</b><span>Orders pending</span></div>
+          <div class="stat"><b>6</b><span>Orders in progress</span></div>
+          <div class="stat"><b>2</b><span>New custom requests</span></div>
+          <div class="stat"><b>3</b><span>Unhandled enquiries</span></div>
+        </div>
+
+        <div class="stack" style="gap:20px">
+          <div class="card">
+            <h3>Orders needing attention</h3>
+            <table class="table" style="border:0">
+              <thead><tr><th>Order</th><th>Recipient</th><th>Deliver by</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">FP-2026-000042</td><td>Beena Parmar</td><td>Sat 12 Sep</td><td><span class="badge badge--warn">Pending</span></td></tr>
+                <tr><td class="mono">FP-2026-000041</td><td>Kabir Shah</td><td>Thu 10 Sep</td><td><span class="badge badge--info">In preparation</span></td></tr>
+                <tr><td class="mono">FP-2026-000040</td><td>Meera Iyer</td><td>Wed 9 Sep</td><td><span class="badge badge--info">Out for delivery</span></td></tr>
+                <tr><td class="mono">FP-2026-000039</td><td>Sana Qureshi</td><td>Fri 11 Sep</td><td><span class="badge badge--warn">Pending</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <h3>New custom requests</h3>
+            <table class="table" style="border:0">
+              <thead><tr><th>Request</th><th>Occasion</th><th>Need by</th><th>Budget</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">FP-CR-2026-000007</td><td>25th anniversary</td><td>Fri 2 Oct</td><td>₹2.5k–4k</td></tr>
+                <tr><td class="mono">FP-CR-2026-000006</td><td>Birthday</td><td>Sun 14 Sep</td><td>₹800–1.2k</td></tr>
+              </tbody>
+            </table>
+            <p class="muted" style="font-size:12px;margin-top:10px">Active products: 5 &nbsp;·&nbsp; Sold out: 1</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+</body>
+</html>

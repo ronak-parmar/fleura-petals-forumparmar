@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 3.4 — Database in PostgreSQL</title>
+<link rel="stylesheet" href="diagram.css">
+<style>
+  .figure { width:1320px; }
+  .pg {
+    width:1240px; margin:0 auto;
+    border:1px solid #b9c0c9; border-radius:8px; overflow:hidden;
+    font-family:"Segoe UI", system-ui, sans-serif; color:#2b2f36; background:#f4f6f8;
+    font-size:12.5px;
+  }
+  .pg__menu {
+    display:flex; align-items:center; gap:18px;
+    background:linear-gradient(#fbfcfd,#eef1f4); border-bottom:1px solid #cfd6dd;
+    padding:7px 14px; font-size:12px; color:#4a515b;
+  }
+  .pg__menu b { color:#2b2f36; font-weight:600; }
+  .pg__menu .sp { flex:1; }
+  .pg__menu .ico { width:16px; height:16px; border-radius:3px; background:#d7dee6; display:inline-block; }
+  .pg__body { display:grid; grid-template-columns:270px 1fr; min-height:560px; }
+  .pg__tree {
+    background:#fbfcfd; border-right:1px solid #cfd6dd; padding:10px 0; font-size:12px; color:#3a4048;
+  }
+  .pg__tree .row { padding:3px 12px; white-space:nowrap; display:flex; align-items:center; gap:6px; }
+  .pg__tree .row.sel { background:#dcebfb; }
+  .pg__tree .tw { color:#8a929c; width:10px; display:inline-block; text-align:center; }
+  .pg__tree .db { color:#2f6fb3; }
+  .pg__tree .tbl { color:#3a4048; }
+  .pg__tree .tbl.hot { color:#a8493d; font-weight:600; }
+  .pg__work { display:flex; flex-direction:column; background:#fff; }
+  .pg__tabs { display:flex; border-bottom:1px solid #cfd6dd; background:#f0f3f6; font-size:12px; }
+  .pg__tabs span { padding:8px 16px; border-right:1px solid #cfd6dd; color:#6b727c; }
+  .pg__tabs span.on { background:#fff; color:#2b2f36; border-bottom:2px solid #2f6fb3; }
+  .pg__sql {
+    font-family:"Space Mono", ui-monospace, Consolas, monospace; font-size:12px;
+    padding:12px 16px; color:#2b2f36; background:#fdfdfe; border-bottom:1px solid #e3e8ed;
+  }
+  .pg__sql .kw { color:#2f6fb3; font-weight:700; }
+  .pg__grid { flex:1; overflow:auto; }
+  table.pgt { border-collapse:collapse; width:100%; font-size:12px; }
+  table.pgt th, table.pgt td { border:1px solid #dde3e9; padding:5px 10px; text-align:left; white-space:nowrap; }
+  table.pgt thead th { background:#eef1f4; color:#4a515b; font-weight:600; position:sticky; top:0; }
+  table.pgt td.n { text-align:right; font-family:"Space Mono",monospace; }
+  table.pgt td.mono { font-family:"Space Mono",monospace; color:#3a4048; }
+  table.pgt tbody tr:nth-child(even) { background:#fafbfc; }
+  .pg__status {
+    border-top:1px solid #cfd6dd; background:#f0f3f6; padding:7px 16px; font-size:11.5px; color:#4a7a3f;
+  }
+  .pg__pillbar { display:flex; gap:8px; padding:8px 16px; border-bottom:1px solid #e3e8ed; background:#fbfcfd; }
+  .pg__pillbar span { font-size:11px; color:#6b727c; border:1px solid #d7dee6; border-radius:4px; padding:2px 8px; }
+</style>
+</head>
+<body>
+<figure class="figure" id="figure">
+  <p class="figure__eyebrow">Figure 3.4</p>
+  <h2 class="figure__title">Database tables in PostgreSQL (pgAdmin view)</h2>
+
+  <div class="pg">
+    <div class="pg__menu">
+      <b>pgAdmin 4</b><span>File</span><span>Object</span><span>Tools</span><span>Help</span>
+      <span class="sp"></span>
+      <i class="ico"></i><i class="ico"></i><i class="ico"></i>
+    </div>
+    <div class="pg__body">
+      <div class="pg__tree">
+        <div class="row"><span class="tw">▾</span> Servers (1)</div>
+        <div class="row" style="padding-left:26px"><span class="tw">▾</span> PostgreSQL 16</div>
+        <div class="row" style="padding-left:42px"><span class="tw">▾</span> Databases (2)</div>
+        <div class="row db" style="padding-left:58px"><span class="tw">▾</span> fleurea</div>
+        <div class="row" style="padding-left:74px"><span class="tw">▾</span> Schemas (1)</div>
+        <div class="row" style="padding-left:90px"><span class="tw">▾</span> public</div>
+        <div class="row" style="padding-left:106px"><span class="tw">▾</span> Tables (9)</div>
+        <div class="row tbl" style="padding-left:124px">▦ addresses</div>
+        <div class="row tbl" style="padding-left:124px">▦ admin_users</div>
+        <div class="row tbl" style="padding-left:124px">▦ categories</div>
+        <div class="row tbl" style="padding-left:124px">▦ custom_requests</div>
+        <div class="row tbl" style="padding-left:124px">▦ enquiries</div>
+        <div class="row tbl" style="padding-left:124px">▦ order_items</div>
+        <div class="row tbl" style="padding-left:124px">▦ orders</div>
+        <div class="row tbl hot sel" style="padding-left:124px">▦ products</div>
+        <div class="row tbl" style="padding-left:124px">▦ customers</div>
+        <div class="row" style="padding-left:106px"><span class="tw">▸</span> Views</div>
+        <div class="row" style="padding-left:106px"><span class="tw">▸</span> Functions (18)</div>
+        <div class="row" style="padding-left:106px"><span class="tw">▸</span> Sequences (2)</div>
+      </div>
+
+      <div class="pg__work">
+        <div class="pg__tabs"><span>Query</span><span class="on">Data Output</span><span>Messages</span><span>Notifications</span></div>
+        <div class="pg__sql"><span class="kw">SELECT</span> * <span class="kw">FROM</span> products <span class="kw">ORDER BY</span> id;</div>
+        <div class="pg__pillbar"><span>public.products</span><span>9 columns</span><span>6 rows</span></div>
+        <div class="pg__grid">
+          <table class="pgt">
+            <thead>
+              <tr>
+                <th>id<br><small>[PK] integer</small></th>
+                <th>category_id<br><small>integer</small></th>
+                <th>name<br><small>text</small></th>
+                <th>slug<br><small>text</small></th>
+                <th>price<br><small>numeric</small></th>
+                <th>nature<br><small>text</small></th>
+                <th>availability<br><small>text</small></th>
+                <th>lead_time_days<br><small>integer</small></th>
+                <th>is_active<br><small>boolean</small></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="n">1</td><td class="n">1</td><td>Rosewood Ribbon Bouquet</td><td class="mono">rosewood-ribbon-bouquet</td><td class="n">1450.00</td><td>everlasting</td><td>available</td><td class="n">4</td><td class="mono">true</td></tr>
+              <tr><td class="n">2</td><td class="n">1</td><td>Blush Pipe-Cleaner Posy</td><td class="mono">blush-pipe-cleaner-posy</td><td class="n">650.00</td><td>everlasting</td><td>available</td><td class="n">3</td><td class="mono">true</td></tr>
+              <tr><td class="n">3</td><td class="n">2</td><td>Sage Garden Silk Bouquet</td><td class="mono">sage-garden-silk-bouquet</td><td class="n">2200.00</td><td>everlasting</td><td>made_to_order</td><td class="n">7</td><td class="mono">true</td></tr>
+              <tr><td class="n">4</td><td class="n">3</td><td>Morning Market Fresh Bunch</td><td class="mono">morning-market-fresh-bunch</td><td class="n">900.00</td><td>fresh</td><td>available</td><td class="n">1</td><td class="mono">true</td></tr>
+              <tr><td class="n">5</td><td class="n">3</td><td>Golden Hour Fresh &amp; Gift</td><td class="mono">golden-hour-fresh-gift</td><td class="n">1350.00</td><td>fresh</td><td>available</td><td class="n">1</td><td class="mono">true</td></tr>
+              <tr><td class="n">6</td><td class="n">4</td><td>Petite Everlasting Jar</td><td class="mono">petite-everlasting-jar</td><td class="n">550.00</td><td>everlasting</td><td>sold_out</td><td class="n">5</td><td class="mono">true</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pg__status">Successfully run. Total query runtime: 47 msec. 6 rows retrieved.</div>
+      </div>
+    </div>
+  </div>
+
+  <figcaption class="figure__cap">
+    The nine tables of the <span class="mono">fleurea</span> database in the <span class="mono">public</span>
+    schema, with sample data shown for <span class="mono">products</span>. Sample rows are seeded by the
+    project's seed script.
+  </figcaption>
+</figure>
+</body>
+</html>

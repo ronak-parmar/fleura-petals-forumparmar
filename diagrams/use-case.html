@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 3.6 — Use-Case Diagram</title>
+<link rel="stylesheet" href="diagram.css">
+<style>
+  .figure { width:1180px; }
+  .uc { fill:var(--surface); stroke:currentColor; stroke-width:1.3; }
+  .uc-txt { font-family:var(--font-body); font-size:11.5px; fill:currentColor; text-anchor:middle; }
+  .uc-line { stroke:var(--text-muted); stroke-width:1; fill:none; }
+  .sysbox { fill:none; stroke:var(--border-strong); stroke-width:1.5; }
+  .syslabel { font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; fill:var(--text-muted); }
+  .actor-lbl { font-family:var(--font-body); font-size:11.5px; fill:currentColor; text-anchor:middle; font-weight:600; }
+</style>
+</head>
+<body>
+<figure class="figure" id="figure">
+  <p class="figure__eyebrow">Figure 3.6</p>
+  <h2 class="figure__title">Use-case diagram</h2>
+
+  <svg viewBox="0 0 1000 700" role="img" aria-label="Use-case diagram. Guest can browse catalogue, view product details, add to cart, checkout and place order, track order, submit a custom request, and register or log in. Registered Customer additionally views order history and manages saved addresses, and is a generalization of Guest. Administrator can log in, view dashboard, manage products and categories, view and update order status, respond to custom requests, and handle enquiries.">
+    <defs>
+      <marker id="gen" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="14" markerHeight="14" orient="auto">
+        <path d="M1 1 L13 7 L1 13 Z" fill="var(--surface)" stroke="currentColor" stroke-width="1"/>
+      </marker>
+    </defs>
+
+    <!-- system boundary -->
+    <rect class="sysbox" x="250" y="26" width="530" height="640" rx="10"/>
+    <text class="syslabel" x="515" y="18" text-anchor="middle">Fleuréa Petals Application</text>
+
+    <!-- actors -->
+    <g class="d-actor">
+      <circle cx="80" cy="150" r="13"/>
+      <line x1="80" y1="163" x2="80" y2="205"/>
+      <line x1="58" y1="178" x2="102" y2="178"/>
+      <line x1="80" y1="205" x2="63" y2="235"/>
+      <line x1="80" y1="205" x2="97" y2="235"/>
+    </g>
+    <text class="actor-lbl" x="80" y="256">Guest</text>
+
+    <g class="d-actor">
+      <circle cx="80" cy="440" r="13"/>
+      <line x1="80" y1="453" x2="80" y2="495"/>
+      <line x1="58" y1="468" x2="102" y2="468"/>
+      <line x1="80" y1="495" x2="63" y2="525"/>
+      <line x1="80" y1="495" x2="97" y2="525"/>
+    </g>
+    <text class="actor-lbl" x="80" y="546">Registered</text>
+    <text class="actor-lbl" x="80" y="561">Customer</text>
+
+    <g class="d-actor">
+      <circle cx="925" cy="360" r="13"/>
+      <line x1="925" y1="373" x2="925" y2="415"/>
+      <line x1="903" y1="388" x2="947" y2="388"/>
+      <line x1="925" y1="415" x2="908" y2="445"/>
+      <line x1="925" y1="415" x2="942" y2="445"/>
+    </g>
+    <text class="actor-lbl" x="925" y="466">Administrator</text>
+
+    <!-- generalization -->
+    <line class="uc-line" x1="80" y1="415" x2="80" y2="270" marker-end="url(#gen)"/>
+
+    <!-- customer use cases (left column, cx=390) -->
+    <g>
+      <ellipse class="uc" cx="390" cy="70"  rx="108" ry="21"/><text class="uc-txt" x="390" y="74">Browse catalogue</text>
+      <ellipse class="uc" cx="390" cy="138" rx="108" ry="21"/><text class="uc-txt" x="390" y="142">View product details</text>
+      <ellipse class="uc" cx="390" cy="206" rx="108" ry="21"/><text class="uc-txt" x="390" y="210">Add to cart</text>
+      <ellipse class="uc" cx="390" cy="274" rx="108" ry="21"/><text class="uc-txt" x="390" y="278">Checkout &amp; place order</text>
+      <ellipse class="uc" cx="390" cy="342" rx="108" ry="21"/><text class="uc-txt" x="390" y="346">Track order</text>
+      <ellipse class="uc" cx="390" cy="410" rx="108" ry="21"/><text class="uc-txt" x="390" y="414">Submit custom request</text>
+      <ellipse class="uc" cx="390" cy="478" rx="108" ry="21"/><text class="uc-txt" x="390" y="482">Register / Log in</text>
+      <ellipse class="uc" cx="390" cy="556" rx="108" ry="21"/><text class="uc-txt" x="390" y="560">View order history</text>
+      <ellipse class="uc" cx="390" cy="624" rx="108" ry="21"/><text class="uc-txt" x="390" y="628">Manage saved addresses</text>
+    </g>
+
+    <!-- admin use cases (right column, cx=640) -->
+    <g>
+      <ellipse class="uc" cx="640" cy="120" rx="112" ry="21"/><text class="uc-txt" x="640" y="124">Log in (admin)</text>
+      <ellipse class="uc" cx="640" cy="210" rx="112" ry="21"/><text class="uc-txt" x="640" y="214">View dashboard</text>
+      <ellipse class="uc" cx="640" cy="300" rx="112" ry="21"/><text class="uc-txt" x="640" y="304">Manage products &amp; categories</text>
+      <ellipse class="uc" cx="640" cy="390" rx="112" ry="21"/><text class="uc-txt" x="640" y="394">View &amp; update order status</text>
+      <ellipse class="uc" cx="640" cy="480" rx="112" ry="21"/><text class="uc-txt" x="640" y="484">Respond to custom requests</text>
+      <ellipse class="uc" cx="640" cy="570" rx="112" ry="21"/><text class="uc-txt" x="640" y="574">Handle enquiries</text>
+    </g>
+
+    <!-- guest connectors -->
+    <g>
+      <path class="uc-line" d="M100 185 C 180 130, 220 90, 282 74"/>
+      <path class="uc-line" d="M104 182 C 190 165, 220 150, 282 140"/>
+      <path class="uc-line" d="M106 190 C 200 200, 220 204, 282 206"/>
+      <path class="uc-line" d="M106 196 C 200 250, 220 268, 282 274"/>
+      <path class="uc-line" d="M104 200 C 200 300, 220 332, 282 342"/>
+      <path class="uc-line" d="M100 210 C 190 350, 215 396, 282 410"/>
+      <path class="uc-line" d="M96 214 C 170 400, 210 462, 282 478"/>
+    </g>
+    <!-- registered customer connectors -->
+    <g>
+      <path class="uc-line" d="M104 470 C 190 340, 220 292, 282 278"/>
+      <path class="uc-line" d="M106 460 C 200 520, 220 548, 282 556"/>
+      <path class="uc-line" d="M104 476 C 200 590, 220 618, 282 624"/>
+    </g>
+    <!-- admin connectors -->
+    <g>
+      <path class="uc-line" d="M905 350 C 850 200, 830 140, 752 122"/>
+      <path class="uc-line" d="M905 352 C 850 260, 830 220, 752 210"/>
+      <path class="uc-line" d="M905 356 C 850 320, 830 304, 752 300"/>
+      <path class="uc-line" d="M905 366 C 850 380, 830 388, 752 390"/>
+      <path class="uc-line" d="M905 372 C 850 440, 830 470, 752 480"/>
+      <path class="uc-line" d="M903 380 C 850 500, 830 556, 752 570"/>
+    </g>
+  </svg>
+
+  <figcaption class="figure__cap">
+    A Registered Customer is a Guest who has logged in (generalization arrow), gaining order
+    history and saved addresses. The Administrator works entirely within the admin panel.
+  </figcaption>
+</figure>
+</body>
+</html>

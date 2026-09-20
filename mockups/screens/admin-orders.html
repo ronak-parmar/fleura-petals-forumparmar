@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 4.13 — Admin: Orders list</title>
+<link rel="stylesheet" href="../shared/fleurea.css">
+</head>
+<body>
+<div class="browser" style="width:1320px">
+  <div class="browser__bar">
+    <div class="browser__dots"><i></i><i></i><i></i></div>
+    <div class="browser__url">fleureapetals.app/admin/orders?status=pending</div>
+  </div>
+  <div class="browser__viewport">
+    <div class="admin">
+      <aside class="admin__side">
+        <div class="admin__brand">Fleuréa · Studio</div>
+        <ul class="admin__nav">
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#" class="active">Orders</a></li>
+          <li><a href="#">Custom requests</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Enquiries</a></li>
+          <li class="admin__whoami">Signed in as <b>Forum Parmar</b></li>
+          <li><a href="#">Log out</a></li>
+        </ul>
+      </aside>
+      <main class="admin__main">
+        <div class="admin__head"><h1>Orders</h1><span class="muted" style="font-size:13px">18 orders</span></div>
+
+        <div class="filters" style="margin-bottom:18px">
+          <span class="chip">All</span>
+          <span class="chip on">Pending</span>
+          <span class="chip">Confirmed</span>
+          <span class="chip">In preparation</span>
+          <span class="chip">Ready</span>
+          <span class="chip">Out for delivery</span>
+          <span class="chip">Delivered</span>
+          <span class="chip">Cancelled</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Order</th><th>Recipient</th><th>Placed</th><th>Deliver by</th><th>Slot</th><th>Items</th><th>Total</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">FP-2026-000042</td><td>Aarti Deshmukh</td><td>9 Sep</td><td>Sat 12 Sep</td><td>Morning</td><td>3</td><td>₹3,650</td><td><span class="badge badge--warn">Pending</span></td></tr>
+              <tr><td class="mono">FP-2026-000039</td><td>Sana Qureshi</td><td>9 Sep</td><td>Fri 11 Sep</td><td>Evening</td><td>1</td><td>₹2,200</td><td><span class="badge badge--warn">Pending</span></td></tr>
+              <tr><td class="mono">FP-2026-000037</td><td>Devang Patel</td><td>8 Sep</td><td>Thu 10 Sep</td><td>Afternoon</td><td>2</td><td>₹1,750</td><td><span class="badge badge--warn">Pending</span></td></tr>
+              <tr><td class="mono">FP-2026-000036</td><td>Naina Rao</td><td>8 Sep</td><td>Sun 13 Sep</td><td>Morning</td><td>1</td><td>₹900</td><td><span class="badge badge--warn">Pending</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted" style="font-size:12px;margin-top:12px">Click a row to open the order and update its status.</p>
+      </main>
+    </div>
+  </div>
+</div>
+</body>
+</html>

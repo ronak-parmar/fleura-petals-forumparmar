@@ -1,0 +1,252 @@
+### Fleuréa Petals API — request tests
+### Open in VS Code (REST Client extension) or Visual Studio and send each request.
+### Base URL of the running ASP.NET Core API.
+
+@base = https://localhost:7043/api/v1
+@adminToken = PASTE_ADMIN_JWT_HERE
+
+# ---------------------------------------------------------------------------
+# CATALOGUE  (public)
+# ---------------------------------------------------------------------------
+
+### List active categories
+GET {{base}}/categories
+
+### List products — everlasting only, page 1
+GET {{base}}/products?nature=everlasting&page=1&pageSize=12
+
+### Search products
+GET {{base}}/products?search=ribbon
+
+### Product detail
+GET {{base}}/products/rosewood-ribbon-bouquet
+
+# ---------------------------------------------------------------------------
+# ORDERING  (public)
+# ---------------------------------------------------------------------------
+
+### Place an order  ->  calls fn_place_order in PostgreSQL
+POST {{base}}/orders
+Content-Type: application/json
+
+{
+  "items": [
+    { "productId": 1, "quantity": 1 },
+    { "productId": 2, "quantity": 2 }
+  ],
+  "contact":  { "name": "Beena Parmar", "email": "beena.parmar@example.com", "phone": "9800000012" },
+  "delivery": {
+    "recipientName": "Beena Parmar", "phone": "9800000012",
+    "line1": "14, Rose Villa, Linking Road", "line2": "",
+    "city": "Mumbai", "state": "Maharashtra", "postalCode": "400052", "landmark": "",
+    "date": "2026-09-12", "slot": "morning"
+  },
+  "giftMessage": "Happy birthday, Ma.",
+  "customerNote": ""
+}
+
+### Negative test — empty cart (expect 400 EMPTY_ORDER)
+POST {{base}}/orders
+Content-Type: application/json
+
+{ "items": [], "contact": { "name": "X", "email": "x@x.com", "phone": "0" },
+  "delivery": { "recipientName": "X", "phone": "0", "line1": "a", "line2": "", "city": "Mumbai",
+    "state": "Maharashtra", "postalCode": "400001", "landmark": "", "date": "2026-09-12", "slot": "morning" } }
+
+### Negative test — delivery date too soon for a made-to-order item (expect 400 DELIVERY_TOO_SOON)
+POST {{base}}/orders
+Content-Type: application/json
+
+{
+  "items": [ { "productId": 3, "quantity": 1 } ],
+  "contact":  { "name": "Test", "email": "test@example.com", "phone": "9999999999" },
+  "delivery": { "recipientName": "Test", "phone": "9999999999", "line1": "1 A Road", "line2": "",
+    "city": "Mumbai", "state": "Maharashtra", "postalCode": "400001", "landmark": "",
+    "date": "2026-01-01", "slot": "evening" }
+}
+
+### Track an order (guest)
+GET {{base}}/orders/FP-2026-000042?email=beena.parmar@example.com
+
+### Track — wrong e-mail (expect 404 / access denied)
+GET {{base}}/orders/FP-2026-000042?email=someone.else@example.com
+
+# ---------------------------------------------------------------------------
+# CUSTOM REQUESTS  (public)
+# ---------------------------------------------------------------------------
+
+### Submit a custom bouquet request
+POST {{base}}/custom-requests
+Content-Type: application/json
+
+{
+  "contactName": "Ronak Parmar", "contactEmail": "ronak.parmar@example.com", "contactPhone": "9700000040",
+  "bouquetType": "mixed", "occasion": "25th wedding anniversary",
+  "palette": "Ivory, blush, a little gold", "flowersPreferred": "Roses and lisianthus",
+  "size": "large", "budgetMin": 2500, "budgetMax": 4000,
+  "needByDate": "2026-10-02", "referenceNotes": "Photographs well on a dinner table.",
+  "inspirationImageUrl": null
+}
+
+### Track a custom request
+GET {{base}}/custom-requests/FP-CR-2026-000007?email=ronak.parmar@example.com
+
+### Footer enquiry
+POST {{base}}/enquiries
+Content-Type: application/json
+
+{ "name": "Priya N", "email": "priya@example.com", "message": "Do you deliver to Thane?" }
+
+# ---------------------------------------------------------------------------
+# CUSTOMER ACCOUNT  (optional)
+# ---------------------------------------------------------------------------
+
+### Register
+POST {{base}}/auth/register
+Content-Type: application/json
+
+{ "name": "Beena Parmar", "email": "beena.parmar@example.com", "phone": "9800000012", "password": "petals-secret" }
+
+### Login
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "email": "beena.parmar@example.com", "password": "petals-secret" }
+
+# ---------------------------------------------------------------------------
+# ADMIN  (requires admin JWT — log in as "forum")
+# ---------------------------------------------------------------------------
+
+### Admin login  (seeded account: username "forum")
+POST {{base}}/admin/auth/login
+Content-Type: application/json
+
+{ "username": "forum", "password": "petals123" }
+
+### Dashboard summary  ->  fn_dashboard_summary()
+GET {{base}}/admin/dashboard/summary
+Authorization: Bearer {{adminToken}}
+
+### List pending orders
+GET {{base}}/admin/orders?status=pending
+Authorization: Bearer {{adminToken}}
+
+### Advance an order's status  ->  fn_update_order_status(...)
+PUT {{base}}/admin/orders/42/status
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{ "status": "confirmed" }
+
+### Respond to a custom request  ->  fn_respond_custom_request(...)
+PUT {{base}}/admin/custom-requests/7
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{ "status": "quoted", "adminResponse": "Two options attached, both within budget.", "quotedPrice": 3400 }
+
+### Create a product  ->  fn_upsert_product(...)
+POST {{base}}/admin/products
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "categoryId": 1, "name": "Ivory & Gold Ribbon Spray", "slug": "ivory-gold-ribbon-spray",
+  "shortDescription": "Ivory ribbon roses with fine gold thread.", "description": "...",
+  "nature": "everlasting", "price": 1650, "isCustomizable": true,
+  "availability": "available", "leadTimeDays": 4, "isActive": true
+}
+
+### Toggle availability  ->  fn_set_product_availability(...)
+PUT {{base}}/admin/products/6/availability
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{ "availability": "sold_out" }
+
+# ===========================================================================
+# NEGATIVE & EDGE CASES  (expected to fail — that is the point)
+# ===========================================================================
+
+### N1  Search with no matches -> 200 with an empty list, not an error
+GET {{base}}/products?search=xylophone
+
+### N2  Unknown product slug -> 404
+GET {{base}}/products/does-not-exist
+
+### N3  Order a sold-out product -> 400  PRODUCT_SOLD_OUT
+POST {{base}}/orders
+Content-Type: application/json
+
+{ "items": [ { "productId": 6, "quantity": 1 } ],
+  "contact": { "name": "Beena Parmar", "email": "beena.parmar@example.com", "phone": "9800000012" },
+  "delivery": { "recipientName": "Beena Parmar", "phone": "9800000012", "line1": "14 Rose Villa", "line2": "",
+    "city": "Mumbai", "state": "Maharashtra", "postalCode": "400052", "landmark": "",
+    "date": "2026-12-01", "slot": "morning" } }
+
+### N4  Fresh item ordered for same day -> 400  DELIVERY_TOO_SOON
+POST {{base}}/orders
+Content-Type: application/json
+
+{ "items": [ { "productId": 4, "quantity": 1 } ],
+  "contact": { "name": "Beena Parmar", "email": "beena.parmar@example.com", "phone": "9800000012" },
+  "delivery": { "recipientName": "Beena Parmar", "phone": "9800000012", "line1": "14 Rose Villa", "line2": "",
+    "city": "Mumbai", "state": "Maharashtra", "postalCode": "400052", "landmark": "",
+    "date": "2026-09-09", "slot": "morning" } }
+
+### N5  Client sends its own price -> ignored; order total uses catalogue price
+POST {{base}}/orders
+Content-Type: application/json
+
+{ "items": [ { "productId": 1, "quantity": 1, "price": 1 } ],
+  "contact": { "name": "Beena Parmar", "email": "beena.parmar@example.com", "phone": "9800000012" },
+  "delivery": { "recipientName": "Beena Parmar", "phone": "9800000012", "line1": "14 Rose Villa", "line2": "",
+    "city": "Mumbai", "state": "Maharashtra", "postalCode": "400052", "landmark": "",
+    "date": "2026-09-20", "slot": "morning" } }
+
+### N6  Checkout with missing required fields -> 400 with field errors
+POST {{base}}/orders
+Content-Type: application/json
+
+{ "items": [ { "productId": 1, "quantity": 1 } ], "contact": { "name": "", "email": "not-an-email", "phone": "" },
+  "delivery": { "recipientName": "", "phone": "", "line1": "", "line2": "", "city": "", "state": "",
+    "postalCode": "", "landmark": "", "date": null, "slot": "midnight" } }
+
+### N7  Track an order with the wrong e-mail -> 404 / access denied
+GET {{base}}/orders/FP-2026-000042?email=someone.else@example.com
+
+### N8  Register with an e-mail that already has an account -> 409  EMAIL_TAKEN
+POST {{base}}/auth/register
+Content-Type: application/json
+
+{ "name": "Beena Parmar", "email": "beena.parmar@example.com", "phone": "9800000012", "password": "another" }
+
+### N9  Admin login with a wrong password -> 401
+POST {{base}}/admin/auth/login
+Content-Type: application/json
+
+{ "username": "forum", "password": "wrong" }
+
+### N10  Admin endpoint without a token -> 401
+GET {{base}}/admin/orders
+
+### N11  Invalid order status transition (skip / go backwards) -> 409  INVALID_TRANSITION
+PUT {{base}}/admin/orders/42/status
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{ "status": "pending" }
+
+### N12  Cancel an order that is already out for delivery -> 409  CANNOT_CANCEL
+PUT {{base}}/admin/orders/40/status
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{ "status": "cancelled" }
+
+### N13  Custom request missing the required "need by" date -> 400
+POST {{base}}/custom-requests
+Content-Type: application/json
+
+{ "contactName": "Ronak Parmar", "contactEmail": "ronak.parmar@example.com", "contactPhone": "9700000040",
+  "bouquetType": "ribbon", "occasion": "Birthday", "size": "standard" }

@@ -1,0 +1,908 @@
+<title>Fleuréa Petals Build Plan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+
+<style>
+:root {
+  /* Fleuréa named palette (from the existing site) */
+  --ivory:#FBF3EE; --blush:#F3D7CE; --rosewood:#A8493D;
+  --sage:#93A583; --gold:#C6A063; --ink:#4A342E;
+
+  /* resolved tokens — light */
+  --bg:#FBF3EE;
+  --surface:#FFFDFB;
+  --surface-2:#F5E7DF;
+  --border:#E7D6CB;
+  --border-strong:#D8C1B4;
+  --text:#4A342E;
+  --text-muted:#8C776C;
+  --accent:#A8493D;
+  --accent-soft:#F0DAD2;
+  --leaf:#5F7752;
+  --leaf-soft:#E4EADD;
+  --thread:#A97E3C;
+
+  --maxw:1080px;
+  --radius:9px;
+
+  --font-display:"Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:"Karla", "Segoe UI", system-ui, sans-serif;
+  --font-mono:"Space Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#211812;
+    --surface:#2B2018;
+    --surface-2:#342719;
+    --border:#463629;
+    --border-strong:#5A473A;
+    --text:#F1E6DC;
+    --text-muted:#B7A594;
+    --accent:#E08C74;
+    --accent-soft:#3C2822;
+    --leaf:#A9C098;
+    --leaf-soft:#2B3626;
+    --thread:#D6B074;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:#211812;
+  --surface:#2B2018;
+  --surface-2:#342719;
+  --border:#463629;
+  --border-strong:#5A473A;
+  --text:#F1E6DC;
+  --text-muted:#B7A594;
+  --accent:#E08C74;
+  --accent-soft:#3C2822;
+  --leaf:#A9C098;
+  --leaf-soft:#2B3626;
+  --thread:#D6B074;
+}
+
+* { box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,h4 { font-family:var(--font-display); font-weight:400; line-height:1.12; text-wrap:balance; margin:0; }
+p { margin:0; }
+a { color:var(--accent); text-underline-offset:2px; }
+
+.eyebrow {
+  font-family:var(--font-mono);
+  font-size:.7rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--thread);
+  margin:0 0 .6rem;
+}
+
+/* ---------- top bar ---------- */
+.topbar {
+  position:sticky; top:0; z-index:20;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:1rem;
+  padding:.55rem clamp(1rem,4vw,2rem);
+}
+.topbar .mark {
+  font-family:var(--font-display);
+  font-style:italic;
+  font-size:1.15rem;
+  color:var(--accent);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.navlinks {
+  list-style:none; margin:0; padding:0;
+  display:flex; gap:.15rem;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.navlinks::-webkit-scrollbar { display:none; }
+.navlinks a {
+  display:block;
+  padding:.35rem .6rem;
+  font-size:.82rem;
+  color:var(--text-muted);
+  text-decoration:none;
+  white-space:nowrap;
+  border-radius:6px;
+}
+.navlinks a:hover { color:var(--text); background:var(--surface-2); }
+#theme-toggle {
+  margin-left:auto;
+  flex-shrink:0;
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  background:transparent;
+  border:1px solid var(--border-strong);
+  border-radius:6px;
+  padding:.35rem .6rem;
+  cursor:pointer;
+}
+#theme-toggle:hover { color:var(--text); border-color:var(--text-muted); }
+
+/* ---------- layout ---------- */
+main {
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:clamp(2.5rem,6vw,4.5rem) clamp(1rem,4vw,2rem) 3rem;
+  display:flex;
+  flex-direction:column;
+  gap:clamp(3rem,7vw,5rem);
+}
+section { scroll-margin-top:4rem; }
+.section-head { margin-bottom:1.6rem; max-width:60ch; }
+.section-head h2 { font-size:clamp(1.55rem,3.2vw,2.1rem); }
+.section-head p { color:var(--text-muted); margin-top:.5rem; }
+
+.prose { max-width:65ch; }
+.prose p + p { margin-top:.9rem; }
+
+/* ---------- hero ---------- */
+.hero h1 {
+  font-size:clamp(2.1rem,5.5vw,3.3rem);
+  font-weight:400;
+}
+.hero .lede {
+  margin-top:1rem;
+  max-width:54ch;
+  font-size:1.08rem;
+  color:var(--text-muted);
+}
+.decisions {
+  margin-top:1.8rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+}
+.chip {
+  font-size:.8rem;
+  padding:.3rem .7rem;
+  border-radius:999px;
+  border:1px solid var(--border-strong);
+  background:var(--surface);
+  color:var(--text);
+}
+.chip.on { border-color:var(--accent); color:var(--accent); }
+.chip.off { color:var(--text-muted); text-decoration:line-through; text-decoration-color:var(--border-strong); }
+
+/* ---------- ribbon divider ---------- */
+.ribbon { display:block; width:100%; height:26px; color:var(--border-strong); }
+
+/* ---------- cards / grids ---------- */
+.grid {
+  display:grid;
+  gap:1rem;
+  grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+}
+.card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.1rem 1.15rem;
+}
+.card h3 { font-size:1.02rem; font-family:var(--font-body); font-weight:700; }
+.card h3 .k { font-family:var(--font-mono); font-weight:400; font-size:.82rem; color:var(--text-muted); display:block; margin-top:.15rem; }
+.card p { font-size:.9rem; color:var(--text-muted); margin-top:.4rem; }
+
+.two-col {
+  display:grid;
+  gap:1.25rem;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* ---------- diagrams ---------- */
+figure { margin:0; }
+.diagram {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:clamp(1rem,3vw,1.6rem);
+  color:var(--text);
+}
+.diagram-scroll { overflow-x:auto; }
+.diagram svg { display:block; width:100%; height:auto; }
+.diagram svg.wide { min-width:680px; }
+figcaption {
+  margin-top:.85rem;
+  font-size:.85rem;
+  color:var(--text-muted);
+  text-align:center;
+}
+.diagram text { font-family:var(--font-body); fill:currentColor; }
+.diagram .t-name { font-family:var(--font-mono); font-weight:700; font-size:12px; }
+.diagram .t-hint { fill:var(--text-muted); font-size:10px; }
+.diagram .lbl { fill:var(--text-muted); font-size:11px; font-family:var(--font-mono); }
+.diagram .node { fill:var(--surface); stroke:currentColor; stroke-width:1.4; }
+.diagram .node-hot { fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.6; }
+.diagram .node-ok { fill:var(--leaf-soft); stroke:var(--leaf); stroke-width:1.6; }
+.diagram .flow { stroke:currentColor; stroke-width:1.6; fill:none; }
+.diagram .flow-dash { stroke:var(--text-muted); stroke-width:1.4; fill:none; stroke-dasharray:5 4; }
+.diagram .pill { fill:var(--surface); stroke:currentColor; stroke-width:1.4; }
+
+/* ---------- tables ---------- */
+.table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius); }
+table { border-collapse:collapse; width:100%; font-size:.9rem; min-width:520px; }
+th, td { text-align:left; padding:.6rem .8rem; border-bottom:1px solid var(--border); vertical-align:top; }
+thead th {
+  background:var(--surface-2);
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:.78rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+tbody tr:last-child td { border-bottom:0; }
+td code, .mono { font-family:var(--font-mono); font-size:.84em; }
+td .col { color:var(--text-muted); font-family:var(--font-mono); font-size:.82rem; }
+
+/* ---------- API ---------- */
+.api-cols { display:grid; gap:1.25rem; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); }
+.api-panel { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.1rem 1.15rem; }
+.api-panel h3 { font-family:var(--font-body); font-weight:700; font-size:.95rem; margin-bottom:.7rem; }
+.api-panel ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.5rem; }
+.api-panel li { font-family:var(--font-mono); font-size:.8rem; line-height:1.4; display:flex; gap:.5rem; }
+.verb { flex-shrink:0; width:3.2em; font-weight:700; }
+.v-get { color:var(--leaf); }
+.v-post { color:var(--accent); }
+.v-put { color:var(--thread); }
+.v-del { color:var(--text-muted); }
+
+/* ---------- timeline ---------- */
+.phase-key { display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; margin-bottom:1.5rem; font-size:.82rem; }
+.phase-key span { display:flex; align-items:center; gap:.4rem; color:var(--text-muted); }
+.phase-key i { width:12px; height:12px; border-radius:3px; display:inline-block; }
+.timeline { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.5rem; }
+.wk {
+  display:grid;
+  grid-template-columns:2.4rem 1fr;
+  gap:1rem;
+  align-items:baseline;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:3px solid var(--phase, var(--border-strong));
+  border-radius:var(--radius);
+  padding:.85rem 1rem;
+}
+.wk-n { font-family:var(--font-mono); font-size:.95rem; color:var(--phase, var(--text-muted)); font-weight:700; }
+.wk h4 { font-family:var(--font-body); font-weight:700; font-size:.95rem; }
+.wk p { font-size:.88rem; color:var(--text-muted); margin-top:.25rem; }
+[data-phase="discovery"] { --phase:var(--gold); }
+[data-phase="design"]    { --phase:var(--sage); }
+[data-phase="build"]     { --phase:var(--rosewood); }
+[data-phase="harden"]    { --phase:var(--text-muted); }
+[data-phase="ship"]      { --phase:var(--ink); }
+:root[data-theme="dark"] [data-phase="ship"],
+:root:not([data-theme="light"]) [data-phase="ship"] { --phase:var(--leaf); }
+
+/* ---------- scope ---------- */
+.scope-list { list-style:none; margin:.4rem 0 0; padding:0; display:flex; flex-direction:column; gap:.55rem; font-size:.92rem; }
+.scope-list li { display:flex; gap:.6rem; }
+.scope-list li::before { flex-shrink:0; font-family:var(--font-mono); font-weight:700; }
+.scope-in li::before { content:"+"; color:var(--leaf); }
+.scope-out li::before { content:"\00d7"; color:var(--accent); }
+
+/* ---------- footer ---------- */
+footer {
+  border-top:1px solid var(--border);
+  padding:2rem clamp(1rem,4vw,2rem);
+  max-width:var(--maxw);
+  margin:0 auto;
+  font-size:.85rem;
+  color:var(--text-muted);
+}
+footer a { color:var(--accent); }
+
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+}
+
+@media (max-width:560px) {
+  .wk { grid-template-columns:1fr; gap:.15rem; }
+}
+</style>
+
+<header class="topbar">
+  <span class="mark">Fleuréa</span>
+  <ul class="navlinks">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#catalogue">Catalogue</a></li>
+    <li><a href="#data">Data</a></li>
+    <li><a href="#lifecycles">Lifecycles</a></li>
+    <li><a href="#journeys">Journeys</a></li>
+    <li><a href="#modules">Modules</a></li>
+    <li><a href="#api">API</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#scope">Scope</a></li>
+    <li><a href="#report">Report</a></li>
+  </ul>
+  <button id="theme-toggle" aria-label="Toggle light and dark theme" aria-pressed="false">Theme</button>
+</header>
+
+<main>
+
+  <section class="hero" id="overview">
+    <p class="eyebrow">Starting point</p>
+    <h1>From a single page to a working ordering platform.</h1>
+    <p class="lede">
+      Today Fleuréa Petals is one static marketing page &mdash; a palette, a wordmark, and copy
+      about ribbon-wound blooms and same-day fresh flowers. This plan grows that into a minimal
+      e-commerce site: browse a catalogue, fill a cart, place an order, request a custom bouquet,
+      and let the owner manage it all from a small admin panel.
+    </p>
+    <div class="decisions">
+      <span class="chip on">Optional accounts</span>
+      <span class="chip on">Minimal admin panel</span>
+      <span class="chip on">Multi-item cart</span>
+      <span class="chip on">Custom-bouquet requests</span>
+      <span class="chip off">Payment gateway</span>
+    </div>
+  </section>
+
+  <svg class="ribbon" viewBox="0 0 1120 46" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 23 C 140 3, 260 43, 400 23 S 680 3, 820 23 S 980 43, 1120 23" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="560" cy="12" r="2.4" fill="currentColor"/>
+    <circle cx="200" cy="34" r="1.6" fill="currentColor"/>
+    <circle cx="920" cy="34" r="1.6" fill="currentColor"/>
+  </svg>
+
+  <section id="architecture">
+    <div class="section-head">
+      <p class="eyebrow">System shape</p>
+      <h2>Three tiers, one repository.</h2>
+      <p>The stack is fixed by the project report: a Next.js front end talking to an ASP.NET Core
+        Web API over REST, with PostgreSQL behind it. Nothing exotic &mdash; the work is in the middle tier.</p>
+    </div>
+
+    <figure class="diagram">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 720 430" class="wide" role="img" aria-label="Three-tier architecture: Next.js presentation layer calls the ASP.NET Core API over REST, which reaches PostgreSQL through EF Core.">
+          <defs>
+            <marker id="ah-arch" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+
+          <rect class="node" x="160" y="20" width="400" height="96" rx="8"/>
+          <text class="t-name" x="360" y="48" text-anchor="middle">Presentation Layer</text>
+          <text x="360" y="70" text-anchor="middle" font-size="12">Next.js &middot; React &middot; TypeScript &middot; Tailwind</text>
+          <text class="t-hint" x="360" y="92" text-anchor="middle">Customer site + Admin panel &middot; server components for catalogue, client for cart</text>
+
+          <line class="flow" x1="360" y1="116" x2="360" y2="158" marker-end="url(#ah-arch)"/>
+          <text class="lbl" x="372" y="141">HTTPS &middot; JSON &middot; REST /api/v1</text>
+
+          <rect class="node-hot" x="160" y="160" width="400" height="104" rx="8"/>
+          <text class="t-name" x="360" y="188" text-anchor="middle" fill="var(--accent)">Application Layer</text>
+          <text x="360" y="210" text-anchor="middle" font-size="12">ASP.NET Core Web API (.NET)</text>
+          <text class="t-hint" x="360" y="232" text-anchor="middle">Controllers &rarr; Services &rarr; Repositories</text>
+          <text class="t-hint" x="360" y="248" text-anchor="middle">JWT auth (customer + admin) &middot; FluentValidation &middot; server-side re-pricing</text>
+
+          <line class="flow" x1="360" y1="264" x2="360" y2="306" marker-end="url(#ah-arch)"/>
+          <text class="lbl" x="372" y="289">EF Core &middot; Npgsql</text>
+
+          <rect class="node" x="160" y="308" width="400" height="96" rx="8"/>
+          <text class="t-name" x="360" y="336" text-anchor="middle">Data Layer</text>
+          <text x="360" y="358" text-anchor="middle" font-size="12">PostgreSQL</text>
+          <text class="t-hint" x="360" y="380" text-anchor="middle">9 tables &middot; EF Core migrations &middot; seed script for demo data</text>
+        </svg>
+      </div>
+      <figcaption>The middle tier is the new build. It owns every pricing and validation decision &mdash; the browser is never trusted with money.</figcaption>
+    </figure>
+  </section>
+
+  <section id="catalogue">
+    <div class="section-head">
+      <p class="eyebrow">Catalogue logic</p>
+      <h2>The catalogue has two natures.</h2>
+      <p>The existing site already splits the offer in two: everlasting ribbon / pipe-cleaner / silk
+        blooms, and fleeting same-day fresh arrangements. That single <span class="mono">nature</span>
+        field on a product drives both the shop filter and the checkout date rules.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <h3>Everlasting <span class="k">nature = everlasting</span></h3>
+        <p>Hand-wound ribbon, pipe-cleaner posies, silk event bouquets. Made to order, so each
+          product carries a <span class="mono">lead_time_days</span>. Checkout blocks dates sooner than that.</p>
+      </div>
+      <div class="card">
+        <h3>Fresh &amp; gifted <span class="k">nature = fresh</span></h3>
+        <p>Seasonal stems sourced the morning they are gifted, optionally paired with a gift.
+          Checkout allows next-day at the earliest and flags same-day as a call-to-confirm.</p>
+      </div>
+    </div>
+
+    <figure class="diagram" style="margin-top:1.25rem">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 660 180" role="img" aria-label="The product nature field feeds both the catalogue filter and the checkout delivery-date rule.">
+          <defs>
+            <marker id="ah-cat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+          <rect class="node-hot" x="30" y="66" width="180" height="48" rx="8"/>
+          <text class="t-name" x="120" y="88" text-anchor="middle" fill="var(--accent)">products.nature</text>
+          <text class="t-hint" x="120" y="104" text-anchor="middle">everlasting &middot; fresh</text>
+
+          <path class="flow" d="M210 78 C 280 78, 300 40, 380 40" marker-end="url(#ah-cat)"/>
+          <path class="flow" d="M210 102 C 280 102, 300 140, 380 140" marker-end="url(#ah-cat)"/>
+
+          <rect class="node" x="380" y="18" width="250" height="46" rx="8"/>
+          <text x="505" y="45" text-anchor="middle" font-size="12">Catalogue filter &amp; badges</text>
+
+          <rect class="node" x="380" y="118" width="250" height="46" rx="8"/>
+          <text x="505" y="145" text-anchor="middle" font-size="12">Checkout delivery-date rule</text>
+        </svg>
+      </div>
+      <figcaption>One field, two behaviours &mdash; kept in the data model rather than duplicated across screens.</figcaption>
+    </figure>
+  </section>
+
+  <section id="data">
+    <div class="section-head">
+      <p class="eyebrow">Data model</p>
+      <h2>Nine tables.</h2>
+      <p>The core chain runs catalogue &rarr; order. Two tables hang off the customer, and two
+        (<span class="mono">admin_users</span>, <span class="mono">enquiries</span>) stand alone.
+        This is the ER diagram for report &sect;3.6.</p>
+    </div>
+
+    <figure class="diagram">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 980 500" class="wide" role="img" aria-label="Entity relationship diagram. categories one-to-many products; products one-to-many order_items; orders one-to-many order_items; customers one-to-many orders; customers one-to-many addresses; customers zero-or-one-to-many custom_requests. admin_users and enquiries have no relationships.">
+          <defs>
+            <marker id="ah-er" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+
+          <!-- detached -->
+          <g>
+            <rect class="node" x="20" y="34" width="150" height="52" rx="7"/>
+            <text class="t-name" x="30" y="55">admin_users</text>
+            <text class="t-hint" x="30" y="74">username &middot; password_hash</text>
+          </g>
+          <g>
+            <rect class="node" x="20" y="414" width="150" height="52" rx="7"/>
+            <text class="t-name" x="30" y="435">enquiries</text>
+            <text class="t-hint" x="30" y="454">message &middot; is_handled</text>
+          </g>
+          <text class="lbl" x="20" y="104" font-size="10">standalone &mdash; no FKs</text>
+
+          <!-- core chain -->
+          <g>
+            <rect class="node" x="20" y="200" width="150" height="52" rx="7"/>
+            <text class="t-name" x="30" y="221">categories</text>
+            <text class="t-hint" x="30" y="240">name &middot; slug</text>
+          </g>
+          <g>
+            <rect class="node" x="220" y="200" width="150" height="52" rx="7"/>
+            <text class="t-name" x="230" y="221">products</text>
+            <text class="t-hint" x="230" y="240">price &middot; nature &middot; avail.</text>
+          </g>
+          <g>
+            <rect class="node-hot" x="420" y="200" width="150" height="52" rx="7"/>
+            <text class="t-name" x="430" y="221" fill="var(--accent)">order_items</text>
+            <text class="t-hint" x="430" y="240">qty &middot; unit_price &#10033; snapshot</text>
+          </g>
+          <g>
+            <rect class="node" x="640" y="200" width="150" height="52" rx="7"/>
+            <text class="t-name" x="650" y="221">orders</text>
+            <text class="t-hint" x="650" y="240">order_number &middot; status</text>
+          </g>
+          <g>
+            <rect class="node" x="810" y="200" width="150" height="52" rx="7"/>
+            <text class="t-name" x="820" y="221">customers</text>
+            <text class="t-hint" x="820" y="240">email &middot; is_registered</text>
+          </g>
+
+          <!-- satellites -->
+          <g>
+            <rect class="node" x="810" y="70" width="150" height="52" rx="7"/>
+            <text class="t-name" x="820" y="91">addresses</text>
+            <text class="t-hint" x="820" y="110">line1 &middot; city</text>
+          </g>
+          <g>
+            <rect class="node" x="620" y="360" width="170" height="52" rx="7"/>
+            <text class="t-name" x="630" y="381">custom_requests</text>
+            <text class="t-hint" x="630" y="400">request_number &middot; status &middot; quote</text>
+          </g>
+
+          <!-- edges -->
+          <line class="flow" x1="170" y1="226" x2="216" y2="226" marker-end="url(#ah-er)"/>
+          <text class="lbl" x="176" y="216">1:N</text>
+
+          <line class="flow" x1="370" y1="226" x2="416" y2="226" marker-end="url(#ah-er)"/>
+          <text class="lbl" x="376" y="216">1:N</text>
+
+          <line class="flow" x1="640" y1="226" x2="574" y2="226" marker-end="url(#ah-er)"/>
+          <text class="lbl" x="586" y="216">1:N</text>
+
+          <line class="flow" x1="810" y1="226" x2="794" y2="226" marker-end="url(#ah-er)"/>
+          <text class="lbl" x="792" y="246" text-anchor="end">1:N</text>
+
+          <line class="flow" x1="885" y1="200" x2="885" y2="126" marker-end="url(#ah-er)"/>
+          <text class="lbl" x="895" y="165">1:N</text>
+
+          <path class="flow" d="M830 252 C 790 300, 760 320, 730 356" marker-end="url(#ah-er)"/>
+          <text class="lbl" x="748" y="300">1:0..N</text>
+        </svg>
+      </div>
+      <figcaption><span class="mono">order_items</span> copies the product name and unit price at order time, so later catalogue edits never rewrite a past order.</figcaption>
+    </figure>
+
+    <div class="table-wrap" style="margin-top:1.25rem">
+      <table>
+        <thead><tr><th>Table</th><th>Holds</th><th>Key columns</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">categories</td><td>Catalogue groupings</td><td class="col">name, slug, sort_order</td></tr>
+          <tr><td class="mono">products</td><td>Bouquets &amp; gifts for sale</td><td class="col">price, nature, availability, lead_time_days, is_customizable</td></tr>
+          <tr><td class="mono">customers</td><td>Guests and registered buyers</td><td class="col">email, phone, password_hash?, is_registered</td></tr>
+          <tr><td class="mono">addresses</td><td>Saved addresses (registered only)</td><td class="col">recipient_name, line1, city, postal_code</td></tr>
+          <tr><td class="mono">orders</td><td>Placed orders + delivery snapshot</td><td class="col">order_number, status, subtotal, delivery_fee, total, delivery_date, slot</td></tr>
+          <tr><td class="mono">order_items</td><td>Lines within an order</td><td class="col">product_name, unit_price, quantity, line_total</td></tr>
+          <tr><td class="mono">custom_requests</td><td>Custom bouquet enquiries</td><td class="col">request_number, occasion, palette, budget range, need_by_date, status, quoted_price</td></tr>
+          <tr><td class="mono">enquiries</td><td>Footer contact messages</td><td class="col">name, email, message, is_handled</td></tr>
+          <tr><td class="mono">admin_users</td><td>Owner login</td><td class="col">username, password_hash</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="lifecycles">
+    <div class="section-head">
+      <p class="eyebrow">State &amp; lifecycle</p>
+      <h2>Two things move through states.</h2>
+      <p>An order marches forward through fulfilment; a custom request loops through review and
+        quoting until it is accepted, declined, or turned into a real order.</p>
+    </div>
+
+    <figure class="diagram">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 960 190" class="wide" role="img" aria-label="Order status flow: pending, confirmed, in_preparation, ready, out_for_delivery, delivered. Admin can move pending or confirmed to cancelled.">
+          <defs>
+            <marker id="ah-ord" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+          <g font-size="11" text-anchor="middle">
+            <rect class="pill" x="24"  y="30" width="120" height="38" rx="19"/><text x="84"  y="53">pending</text>
+            <rect class="pill" x="184" y="30" width="120" height="38" rx="19"/><text x="244" y="53">confirmed</text>
+            <rect class="pill" x="344" y="30" width="130" height="38" rx="19"/><text x="409" y="53">in_preparation</text>
+            <rect class="pill" x="514" y="30" width="90"  height="38" rx="19"/><text x="559" y="53">ready</text>
+            <rect class="pill" x="644" y="30" width="140" height="38" rx="19"/><text x="714" y="53">out_for_delivery</text>
+            <rect class="node-ok" x="824" y="30" width="112" height="38" rx="19"/><text x="880" y="53">delivered</text>
+            <rect class="node-hot" x="150" y="132" width="120" height="38" rx="19"/><text x="210" y="155">cancelled</text>
+          </g>
+          <g>
+            <line class="flow" x1="144" y1="49" x2="182" y2="49" marker-end="url(#ah-ord)"/>
+            <line class="flow" x1="304" y1="49" x2="342" y2="49" marker-end="url(#ah-ord)"/>
+            <line class="flow" x1="474" y1="49" x2="512" y2="49" marker-end="url(#ah-ord)"/>
+            <line class="flow" x1="604" y1="49" x2="642" y2="49" marker-end="url(#ah-ord)"/>
+            <line class="flow" x1="784" y1="49" x2="822" y2="49" marker-end="url(#ah-ord)"/>
+            <path class="flow-dash" d="M78 68 C 70 110, 120 128, 168 132" marker-end="url(#ah-ord)"/>
+            <path class="flow-dash" d="M232 68 C 232 100, 250 120, 262 130" marker-end="url(#ah-ord)"/>
+            <text class="lbl" x="96" y="112">admin</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Order status &mdash; the customer sees this as a timeline on the tracking page.</figcaption>
+    </figure>
+
+    <figure class="diagram" style="margin-top:1.25rem">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 960 210" class="wide" role="img" aria-label="Custom request flow: new, reviewing, quoted, then accepted leading to converted_to_order and closed, or declined leading to closed.">
+          <defs>
+            <marker id="ah-cr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+          <g font-size="11" text-anchor="middle">
+            <rect class="pill" x="24"  y="34" width="90"  height="38" rx="19"/><text x="69"  y="57">new</text>
+            <rect class="pill" x="164" y="34" width="120" height="38" rx="19"/><text x="224" y="57">reviewing</text>
+            <rect class="pill" x="334" y="34" width="100" height="38" rx="19"/><text x="384" y="57">quoted</text>
+            <rect class="pill" x="494" y="34" width="110" height="38" rx="19"/><text x="549" y="57">accepted</text>
+            <rect class="node-hot" x="654" y="34" width="160" height="38" rx="19"/><text x="734" y="57">converted_to_order</text>
+            <rect class="node-ok" x="854" y="34" width="90"  height="38" rx="19"/><text x="899" y="57">closed</text>
+            <rect class="pill" x="494" y="140" width="110" height="38" rx="19"/><text x="549" y="163">declined</text>
+          </g>
+          <g>
+            <line class="flow" x1="114" y1="53" x2="162" y2="53" marker-end="url(#ah-cr)"/>
+            <line class="flow" x1="284" y1="53" x2="332" y2="53" marker-end="url(#ah-cr)"/>
+            <line class="flow" x1="434" y1="53" x2="492" y2="53" marker-end="url(#ah-cr)"/>
+            <line class="flow" x1="604" y1="53" x2="652" y2="53" marker-end="url(#ah-cr)"/>
+            <line class="flow" x1="814" y1="53" x2="852" y2="53" marker-end="url(#ah-cr)"/>
+            <path class="flow" d="M404 72 C 420 110, 470 140, 500 150" marker-end="url(#ah-cr)"/>
+            <path class="flow" d="M604 159 C 720 159, 830 110, 890 74" marker-end="url(#ah-cr)"/>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Custom request &mdash; no price is shown until the owner writes <span class="mono">admin_response</span> and <span class="mono">quoted_price</span>.</figcaption>
+    </figure>
+  </section>
+
+  <section id="journeys">
+    <div class="section-head">
+      <p class="eyebrow">User journeys</p>
+      <h2>Three paths through the site.</h2>
+      <p>A buyer placing an order, a customer requesting something bespoke, and the owner working
+        the admin panel. These become the use-case and activity diagrams for the report.</p>
+    </div>
+
+    <figure class="diagram">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 960 320" class="wide" role="img" aria-label="Three journeys. Buyer: browse shop, product detail, cart, checkout, order placed, track. Custom: describe bouquet, request received, owner reviews and quotes, accept or convert. Owner: log in, dashboard, manage products orders and requests.">
+          <defs>
+            <marker id="ah-j" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+
+          <text class="lbl" x="20" y="30">Buyer</text>
+          <g font-size="10.5" text-anchor="middle">
+            <rect class="node" x="20"  y="44" width="150" height="40" rx="7"/><text x="95"  y="68">Browse shop + filter</text>
+            <rect class="node" x="210" y="44" width="150" height="40" rx="7"/><text x="285" y="68">Product detail</text>
+            <rect class="node" x="400" y="44" width="120" height="40" rx="7"/><text x="460" y="68">Cart</text>
+            <rect class="node" x="560" y="44" width="150" height="40" rx="7"/><text x="635" y="68">Checkout + dates</text>
+            <rect class="node-ok" x="750" y="44" width="120" height="40" rx="7"/><text x="810" y="63">Order placed</text><text x="810" y="76" class="t-hint">+ track</text>
+          </g>
+          <g>
+            <line class="flow" x1="170" y1="64" x2="208" y2="64" marker-end="url(#ah-j)"/>
+            <line class="flow" x1="360" y1="64" x2="398" y2="64" marker-end="url(#ah-j)"/>
+            <line class="flow" x1="520" y1="64" x2="558" y2="64" marker-end="url(#ah-j)"/>
+            <line class="flow" x1="710" y1="64" x2="748" y2="64" marker-end="url(#ah-j)"/>
+          </g>
+
+          <text class="lbl" x="20" y="150">Custom bouquet</text>
+          <g font-size="10.5" text-anchor="middle">
+            <rect class="node" x="20"  y="164" width="160" height="40" rx="7"/><text x="100" y="188">Describe bouquet</text>
+            <rect class="node" x="220" y="164" width="150" height="40" rx="7"/><text x="295" y="188">Request received</text>
+            <rect class="node" x="410" y="164" width="170" height="40" rx="7"/><text x="495" y="188">Owner reviews + quotes</text>
+            <rect class="node-hot" x="620" y="164" width="180" height="40" rx="7"/><text x="710" y="188">Accept &rarr; convert to order</text>
+          </g>
+          <g>
+            <line class="flow" x1="180" y1="184" x2="218" y2="184" marker-end="url(#ah-j)"/>
+            <line class="flow" x1="370" y1="184" x2="408" y2="184" marker-end="url(#ah-j)"/>
+            <line class="flow" x1="580" y1="184" x2="618" y2="184" marker-end="url(#ah-j)"/>
+          </g>
+
+          <text class="lbl" x="20" y="264">Owner</text>
+          <g font-size="10.5" text-anchor="middle">
+            <rect class="node" x="20"  y="278" width="120" height="40" rx="7"/><text x="80"  y="302">Log in</text>
+            <rect class="node" x="180" y="278" width="140" height="40" rx="7"/><text x="250" y="302">Dashboard counts</text>
+            <rect class="node" x="360" y="278" width="220" height="40" rx="7"/><text x="470" y="302">Manage products / orders / requests</text>
+          </g>
+          <g>
+            <line class="flow" x1="140" y1="298" x2="178" y2="298" marker-end="url(#ah-j)"/>
+            <line class="flow" x1="320" y1="298" x2="358" y2="298" marker-end="url(#ah-j)"/>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Every box on these three rows maps to one screen listed in the Modules and Report sections below.</figcaption>
+    </figure>
+  </section>
+
+  <section id="modules">
+    <div class="section-head">
+      <p class="eyebrow">Build modules</p>
+      <h2>Eleven modules.</h2>
+      <p>This is the breakdown for report &sect;4.4 &mdash; each is a self-contained slice of work
+        with its own screens, endpoints, and test cases.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>Catalogue</h3><p>Categories, product listing, nature/category filters, search, product detail.</p></div>
+      <div class="card"><h3>Cart</h3><p>Add / update / remove items, <span class="mono">localStorage</span> persistence, live re-pricing against the API.</p></div>
+      <div class="card"><h3>Checkout &amp; Order</h3><p>Contact + delivery capture, delivery-date rules, order creation in one transaction, confirmation, guest tracking.</p></div>
+      <div class="card"><h3>Custom Request</h3><p>Bespoke bouquet enquiry form, optional inspiration image, request tracking, lifecycle.</p></div>
+      <div class="card"><h3>Customer Account</h3><p>Optional register / login, order history, custom-request history, saved addresses.</p></div>
+      <div class="card"><h3>Admin &mdash; Products</h3><p>Product &amp; category CRUD, availability toggle, image upload, activate / deactivate.</p></div>
+      <div class="card"><h3>Admin &mdash; Orders</h3><p>Filterable order list, order detail, status transitions, dashboard counts.</p></div>
+      <div class="card"><h3>Admin &mdash; Custom Requests</h3><p>Review requests, record a response and rough quote, advance status.</p></div>
+      <div class="card"><h3>Enquiries</h3><p>Footer contact form plus an admin list with a mark-handled action.</p></div>
+      <div class="card"><h3>Auth &amp; Authorization</h3><p>JWT issue / verify, separate customer and admin audiences, BCrypt password hashing.</p></div>
+      <div class="card"><h3>Data Management</h3><p>EF Core <span class="mono">DbContext</span>, migrations, repositories, seed data for the demo.</p></div>
+    </div>
+  </section>
+
+  <section id="api">
+    <div class="section-head">
+      <p class="eyebrow">API surface</p>
+      <h2>One REST API, three audiences.</h2>
+      <p>Base path <span class="mono">/api/v1</span>. Public endpoints need no token; account and
+        admin endpoints carry a JWT of the matching audience.</p>
+    </div>
+    <div class="api-cols">
+      <div class="api-panel">
+        <h3>Public</h3>
+        <ul>
+          <li><span class="verb v-get">GET</span><span>/categories</span></li>
+          <li><span class="verb v-get">GET</span><span>/products?category&amp;nature&amp;search&amp;page</span></li>
+          <li><span class="verb v-get">GET</span><span>/products/{slug}</span></li>
+          <li><span class="verb v-post">POST</span><span>/orders</span></li>
+          <li><span class="verb v-get">GET</span><span>/orders/{orderNumber}?email</span></li>
+          <li><span class="verb v-post">POST</span><span>/custom-requests</span></li>
+          <li><span class="verb v-get">GET</span><span>/custom-requests/{no}?email</span></li>
+          <li><span class="verb v-post">POST</span><span>/enquiries</span></li>
+          <li><span class="verb v-post">POST</span><span>/uploads</span></li>
+        </ul>
+      </div>
+      <div class="api-panel">
+        <h3>Customer account</h3>
+        <ul>
+          <li><span class="verb v-post">POST</span><span>/auth/register</span></li>
+          <li><span class="verb v-post">POST</span><span>/auth/login</span></li>
+          <li><span class="verb v-get">GET</span><span>/auth/me</span></li>
+          <li><span class="verb v-get">GET</span><span>/me/orders</span></li>
+          <li><span class="verb v-get">GET</span><span>/me/custom-requests</span></li>
+          <li><span class="verb v-get">GET</span><span>/me/addresses</span></li>
+          <li><span class="verb v-post">POST</span><span>/me/addresses</span></li>
+          <li><span class="verb v-put">PUT</span><span>/me/addresses/{id}</span></li>
+          <li><span class="verb v-del">DEL</span><span>/me/addresses/{id}</span></li>
+        </ul>
+      </div>
+      <div class="api-panel">
+        <h3>Admin</h3>
+        <ul>
+          <li><span class="verb v-post">POST</span><span>/admin/auth/login</span></li>
+          <li><span class="verb v-get">GET</span><span>/admin/dashboard/summary</span></li>
+          <li><span class="verb v-post">POST</span><span>/admin/products</span></li>
+          <li><span class="verb v-put">PUT</span><span>/admin/products/{id}</span></li>
+          <li><span class="verb v-put">PUT</span><span>/admin/products/{id}/availability</span></li>
+          <li><span class="verb v-get">GET</span><span>/admin/orders?status</span></li>
+          <li><span class="verb v-put">PUT</span><span>/admin/orders/{id}/status</span></li>
+          <li><span class="verb v-put">PUT</span><span>/admin/custom-requests/{id}</span></li>
+          <li><span class="verb v-put">PUT</span><span>/admin/enquiries/{id}</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <div class="section-head">
+      <p class="eyebrow">Schedule</p>
+      <h2>Twelve weeks, matched to the activity log.</h2>
+      <p>The report already contains a week-by-week activity log. This is the concrete work behind
+        each row, so the log stays honest.</p>
+    </div>
+    <div class="phase-key">
+      <span><i style="background:var(--gold)"></i>Discovery</span>
+      <span><i style="background:var(--sage)"></i>Design</span>
+      <span><i style="background:var(--rosewood)"></i>Build</span>
+      <span><i style="background:var(--text-muted)"></i>Harden</span>
+      <span><i style="background:var(--ink)"></i>Ship</span>
+    </div>
+    <ol class="timeline">
+      <li class="wk" data-phase="discovery"><span class="wk-n">01</span><div><h4>Requirement gathering</h4><p>Finalise title and four objectives; lock this scope; list features.</p></div></li>
+      <li class="wk" data-phase="discovery"><span class="wk-n">02</span><div><h4>Study the existing process</h4><p>Document ordering-by-DM today; write the Chapter 2 field study.</p></div></li>
+      <li class="wk" data-phase="discovery"><span class="wk-n">03</span><div><h4>Requirement analysis</h4><p>Functional and non-functional requirements written up.</p></div></li>
+      <li class="wk" data-phase="design"><span class="wk-n">04</span><div><h4>Database design</h4><p>Model the nine tables, draw the ER diagram, create EF Core entities and the first migration.</p></div></li>
+      <li class="wk" data-phase="design"><span class="wk-n">05</span><div><h4>UI design</h4><p>Wireframe home, shop, product, cart, checkout, custom form, admin; extract design tokens from <span class="mono">test.html</span>.</p></div></li>
+      <li class="wk" data-phase="build"><span class="wk-n">06</span><div><h4>Module 1 &mdash; Catalogue</h4><p>API for categories and products with seed data; front end for home, shop, and product detail.</p></div></li>
+      <li class="wk" data-phase="build"><span class="wk-n">07</span><div><h4>Module 2 &mdash; Cart &amp; Order</h4><p>Cart state, checkout, <span class="mono">POST /orders</span>, confirmation and tracking; start the custom request module.</p></div></li>
+      <li class="wk" data-phase="build"><span class="wk-n">08</span><div><h4>Database integration</h4><p>Wire front end to API end to end; finish migrations and seed; build the admin panel; optional accounts.</p></div></li>
+      <li class="wk" data-phase="harden"><span class="wk-n">09</span><div><h4>Module testing</h4><p>Run the test cases, fix bugs, close server-side validation gaps.</p></div></li>
+      <li class="wk" data-phase="harden"><span class="wk-n">10</span><div><h4>UI improvements</h4><p>Port the full <span class="mono">test.html</span> visual design, responsive pass, empty / error / loading states.</p></div></li>
+      <li class="wk" data-phase="harden"><span class="wk-n">11</span><div><h4>Final testing &amp; documentation</h4><p>Regression pass; capture screenshots; write Chapters 4&ndash;5; APA references.</p></div></li>
+      <li class="wk" data-phase="ship"><span class="wk-n">12</span><div><h4>Demonstration &amp; submission</h4><p>Seed demo data, rehearse the run-through, export the final report PDF.</p></div></li>
+    </ol>
+  </section>
+
+  <section id="scope">
+    <div class="section-head">
+      <p class="eyebrow">Boundaries</p>
+      <h2>What is in, and what is deliberately not.</h2>
+      <p>The right-hand column belongs in the report's Scope section too &mdash; documented limits
+        are not gaps.</p>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <h3>In scope</h3>
+        <ul class="scope-list scope-in">
+          <li>Catalogue with category / nature filters and search</li>
+          <li>Multi-item cart, persisted client-side</li>
+          <li>Guest checkout with delivery date and slot</li>
+          <li>Order confirmation and guest order tracking</li>
+          <li>Custom bouquet request flow with tracking</li>
+          <li>Optional customer accounts and order history</li>
+          <li>Admin panel: products, orders, custom requests, enquiries</li>
+          <li>Dashboard counts</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Out of scope</h3>
+        <ul class="scope-list scope-out">
+          <li>Any payment gateway &mdash; orders are pay-on-delivery</li>
+          <li>Real stock counts &mdash; products have availability states only</li>
+          <li>Automated email / SMS &mdash; notifications are on-screen</li>
+          <li>Delivery routing, maps, courier integration, live tracking</li>
+          <li>Reviews, ratings, wishlists, coupons, loyalty</li>
+          <li>Multi-admin roles and permissions</li>
+          <li>Multi-currency</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="report">
+    <div class="section-head">
+      <p class="eyebrow">Report assets</p>
+      <h2>What to capture as you build.</h2>
+      <p>Collect these while the work is fresh &mdash; they fill Chapters 3&ndash;5 and the appendix.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Diagrams &mdash; &sect;3.5&ndash;3.7</h3>
+        <p>Architecture, ER, use-case (guest / registered / admin), activity (place an order),
+          sequence (checkout call chain), class (domain entities + services).</p>
+      </div>
+      <div class="card">
+        <h3>Screenshots &mdash; &sect;4.5, &sect;5.2, appendix</h3>
+        <p>Home, shop, product, cart, checkout, confirmation, track, custom form, custom received,
+          account, admin dashboard, admin product form, admin orders, admin order detail,
+          admin custom request.</p>
+      </div>
+      <div class="card">
+        <h3>Code snippets &mdash; &sect;4.6</h3>
+        <p>One Next.js component (<span class="mono">ProductCard</span> or <span class="mono">CartContext</span>),
+          one .NET controller action + service method showing server-side re-pricing, one PostgreSQL / EF query.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Planning aid for the Fleuréa Petals field project. Full detail in
+  <a href="ecom-plan.md">ecom-plan.md</a> &middot; report scaffolding notes in
+  <a href="understand.md">understand.md</a>. No payment processing is planned or implied.
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var KEY = "fleurea-plan-theme";
+  var btn = document.getElementById("theme-toggle");
+  function apply(t) {
+    if (t === "light" || t === "dark") root.setAttribute("data-theme", t);
+    else root.removeAttribute("data-theme");
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  if (saved) apply(saved);
+  function current() {
+    var attr = root.getAttribute("data-theme");
+    if (attr) return attr;
+    return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+  }
+  if (btn) {
+    btn.setAttribute("aria-pressed", String(current() === "dark"));
+    btn.addEventListener("click", function () {
+      var next = current() === "dark" ? "light" : "dark";
+      apply(next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+      btn.setAttribute("aria-pressed", String(next === "dark"));
+    });
+  }
+})();
+</script>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 3.10 — Order Status Lifecycle</title>
+<link rel="stylesheet" href="diagram.css">
+<style>
+  .figure { width:1100px; }
+  .st { fill:var(--surface); stroke:currentColor; stroke-width:1.4; }
+  .st-ok { fill:var(--leaf-soft); stroke:var(--leaf); stroke-width:1.6; }
+  .st-end { fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.6; }
+  .st-txt { font-family:var(--font-mono); font-size:11px; fill:currentColor; text-anchor:middle; }
+  .lc-flow { stroke:currentColor; stroke-width:1.5; fill:none; }
+  .lc-dash { stroke:var(--text-muted); stroke-width:1.3; fill:none; stroke-dasharray:5 4; }
+  .lc-lbl { font-family:var(--font-mono); font-size:10px; fill:var(--text-muted); text-anchor:middle; }
+</style>
+</head>
+<body>
+<figure class="figure" id="figure">
+  <p class="figure__eyebrow">Figure 3.10</p>
+  <h2 class="figure__title">Order status lifecycle</h2>
+
+  <svg viewBox="0 0 1000 260" role="img" aria-label="Order status state machine. From the start an order becomes pending, then confirmed, in_preparation, ready, out_for_delivery and delivered. The administrator can move a pending or confirmed order to cancelled.">
+    <defs>
+      <marker id="lc1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+      </marker>
+    </defs>
+
+    <circle cx="30" cy="70" r="8" fill="currentColor"/>
+
+    <rect class="st" x="60"  y="50" width="120" height="40" rx="20"/><text class="st-txt" x="120" y="74">pending</text>
+    <rect class="st" x="220" y="50" width="120" height="40" rx="20"/><text class="st-txt" x="280" y="74">confirmed</text>
+    <rect class="st" x="380" y="50" width="140" height="40" rx="20"/><text class="st-txt" x="450" y="74">in_preparation</text>
+    <rect class="st" x="560" y="50" width="90"  height="40" rx="20"/><text class="st-txt" x="605" y="74">ready</text>
+    <rect class="st" x="690" y="50" width="150" height="40" rx="20"/><text class="st-txt" x="765" y="74">out_for_delivery</text>
+    <rect class="st-ok" x="880" y="50" width="100" height="40" rx="20"/><text class="st-txt" x="930" y="74">delivered</text>
+
+    <rect class="st-end" x="200" y="180" width="120" height="40" rx="20"/><text class="st-txt" x="260" y="204">cancelled</text>
+
+    <path class="lc-flow" d="M38 70 L58 70" marker-end="url(#lc1)"/>
+    <path class="lc-flow" d="M180 70 L218 70" marker-end="url(#lc1)"/>
+    <path class="lc-flow" d="M340 70 L378 70" marker-end="url(#lc1)"/>
+    <path class="lc-flow" d="M520 70 L558 70" marker-end="url(#lc1)"/>
+    <path class="lc-flow" d="M650 70 L688 70" marker-end="url(#lc1)"/>
+    <path class="lc-flow" d="M840 70 L878 70" marker-end="url(#lc1)"/>
+
+    <path class="lc-dash" d="M110 90 C 95 150, 150 176, 200 184" marker-end="url(#lc1)"/>
+    <path class="lc-dash" d="M275 90 C 275 140, 275 160, 268 178" marker-end="url(#lc1)"/>
+    <text class="lc-lbl" x="150" y="150">admin cancels</text>
+  </svg>
+
+  <figcaption class="figure__cap">
+    The customer sees this sequence as a timeline on the order-tracking page. Only the administrator
+    changes an order's status, and only forward (or to <span class="mono">cancelled</span>).
+  </figcaption>
+</figure>
+</body>
+</html>

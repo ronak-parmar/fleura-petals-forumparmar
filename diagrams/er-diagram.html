@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 3.3 — ER Diagram</title>
+<link rel="stylesheet" href="diagram.css">
+<style>
+  .figure { width:1180px; }
+  .ent-col { font-family:var(--font-mono); font-size:10.5px; fill:var(--text); }
+  .ent-key { fill:var(--accent); }
+  .ent-div { stroke:var(--border-strong); stroke-width:1; }
+</style>
+</head>
+<body>
+<figure class="figure" id="figure">
+  <p class="figure__eyebrow">Figure 3.3</p>
+  <h2 class="figure__title">Entity–Relationship diagram</h2>
+
+  <svg viewBox="0 0 1050 770" role="img" aria-label="Entity relationship diagram for the Fleuréa Petals database. categories one-to-many products; products one-to-many order_items; orders one-to-many order_items; customers one-to-many orders; customers one-to-many addresses; customers one-to-zero-or-many custom_requests. admin_users and enquiries have no relationships.">
+    <defs>
+      <marker id="er" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+      </marker>
+    </defs>
+
+    <!-- admin_users : x20 y58 h150 -->
+    <g>
+      <rect class="d-node" x="20" y="58" width="175" height="150" rx="7"/>
+      <text class="d-name" x="32" y="80">admin_users</text>
+      <line class="ent-div" x1="20" y1="90" x2="195" y2="90"/>
+      <text class="ent-col ent-key" x="32" y="108">PK  id</text>
+      <text class="ent-col" x="32" y="124">name</text>
+      <text class="ent-col" x="32" y="140">username</text>
+      <text class="ent-col" x="32" y="156">email</text>
+      <text class="ent-col" x="32" y="172">password_hash</text>
+      <text class="ent-col" x="32" y="188">last_login_at</text>
+    </g>
+
+    <!-- enquiries : x20 y560 h154 -->
+    <g>
+      <rect class="d-node" x="20" y="560" width="175" height="140" rx="7"/>
+      <text class="d-name" x="32" y="582">enquiries</text>
+      <line class="ent-div" x1="20" y1="592" x2="195" y2="592"/>
+      <text class="ent-col ent-key" x="32" y="610">PK  id</text>
+      <text class="ent-col" x="32" y="626">name</text>
+      <text class="ent-col" x="32" y="642">email</text>
+      <text class="ent-col" x="32" y="658">message</text>
+      <text class="ent-col" x="32" y="674">is_handled</text>
+      <text class="ent-col" x="32" y="690">created_at</text>
+    </g>
+    <text class="d-lbl" x="20" y="726">admin_users and enquiries — standalone, no foreign keys</text>
+
+    <!-- categories : x20 y369 h122 -->
+    <g>
+      <rect class="d-node" x="20" y="369" width="175" height="122" rx="7"/>
+      <text class="d-name" x="32" y="391">categories</text>
+      <line class="ent-div" x1="20" y1="401" x2="195" y2="401"/>
+      <text class="ent-col ent-key" x="32" y="419">PK  id</text>
+      <text class="ent-col" x="32" y="435">name</text>
+      <text class="ent-col" x="32" y="451">slug</text>
+      <text class="ent-col" x="32" y="467">sort_order</text>
+      <text class="ent-col" x="32" y="483">is_active</text>
+    </g>
+
+    <!-- products : x225 y345 h178 -->
+    <g>
+      <rect class="d-node" x="225" y="345" width="180" height="178" rx="7"/>
+      <text class="d-name" x="237" y="367">products</text>
+      <line class="ent-div" x1="225" y1="377" x2="405" y2="377"/>
+      <text class="ent-col ent-key" x="237" y="395">PK  id</text>
+      <text class="ent-col ent-key" x="237" y="411">FK  category_id</text>
+      <text class="ent-col" x="237" y="427">name · slug</text>
+      <text class="ent-col" x="237" y="443">price</text>
+      <text class="ent-col" x="237" y="459">nature</text>
+      <text class="ent-col" x="237" y="475">availability</text>
+      <text class="ent-col" x="237" y="491">lead_time_days</text>
+      <text class="ent-col" x="237" y="507">is_customizable</text>
+    </g>
+
+    <!-- order_items : x435 y357 h154 -->
+    <g>
+      <rect class="d-hot" x="435" y="357" width="180" height="154" rx="7"/>
+      <text class="d-name" x="447" y="379" fill="var(--accent)">order_items</text>
+      <line class="ent-div" x1="435" y1="389" x2="615" y2="389"/>
+      <text class="ent-col ent-key" x="447" y="407">PK  id</text>
+      <text class="ent-col ent-key" x="447" y="423">FK  order_id</text>
+      <text class="ent-col ent-key" x="447" y="439">FK  product_id</text>
+      <text class="ent-col" x="447" y="455">product_name ✳</text>
+      <text class="ent-col" x="447" y="471">unit_price ✳</text>
+      <text class="ent-col" x="447" y="487">quantity · line_total</text>
+    </g>
+
+    <!-- orders : x645 y345 h178 -->
+    <g>
+      <rect class="d-node" x="645" y="345" width="180" height="178" rx="7"/>
+      <text class="d-name" x="657" y="367">orders</text>
+      <line class="ent-div" x1="645" y1="377" x2="825" y2="377"/>
+      <text class="ent-col ent-key" x="657" y="395">PK  id</text>
+      <text class="ent-col" x="657" y="411">order_number</text>
+      <text class="ent-col ent-key" x="657" y="427">FK  customer_id</text>
+      <text class="ent-col" x="657" y="443">status</text>
+      <text class="ent-col" x="657" y="459">subtotal · total</text>
+      <text class="ent-col" x="657" y="475">delivery_date</text>
+      <text class="ent-col" x="657" y="491">delivery_slot</text>
+      <text class="ent-col" x="657" y="507">placed_at</text>
+    </g>
+
+    <!-- customers : x855 y361 h146 -->
+    <g>
+      <rect class="d-node" x="855" y="361" width="180" height="146" rx="7"/>
+      <text class="d-name" x="867" y="383">customers</text>
+      <line class="ent-div" x1="855" y1="393" x2="1035" y2="393"/>
+      <text class="ent-col ent-key" x="867" y="411">PK  id</text>
+      <text class="ent-col" x="867" y="427">name · phone</text>
+      <text class="ent-col" x="867" y="443">email</text>
+      <text class="ent-col" x="867" y="459">password_hash?</text>
+      <text class="ent-col" x="867" y="475">is_registered</text>
+      <text class="ent-col" x="867" y="491">created_at</text>
+    </g>
+
+    <!-- addresses : x855 y150 h146 -->
+    <g>
+      <rect class="d-node" x="855" y="150" width="180" height="146" rx="7"/>
+      <text class="d-name" x="867" y="172">addresses</text>
+      <line class="ent-div" x1="855" y1="182" x2="1035" y2="182"/>
+      <text class="ent-col ent-key" x="867" y="200">PK  id</text>
+      <text class="ent-col ent-key" x="867" y="216">FK  customer_id</text>
+      <text class="ent-col" x="867" y="232">recipient_name</text>
+      <text class="ent-col" x="867" y="248">line1 · line2</text>
+      <text class="ent-col" x="867" y="264">city · state</text>
+      <text class="ent-col" x="867" y="280">postal_code</text>
+    </g>
+
+    <!-- custom_requests : x610 y566 h150 -->
+    <g>
+      <rect class="d-node" x="610" y="566" width="215" height="150" rx="7"/>
+      <text class="d-name" x="622" y="588">custom_requests</text>
+      <line class="ent-div" x1="610" y1="598" x2="825" y2="598"/>
+      <text class="ent-col ent-key" x="622" y="616">PK  id</text>
+      <text class="ent-col" x="622" y="632">request_number</text>
+      <text class="ent-col ent-key" x="622" y="648">FK  customer_id  (nullable)</text>
+      <text class="ent-col" x="622" y="664">occasion · palette · size</text>
+      <text class="ent-col" x="622" y="680">budget_min · budget_max</text>
+      <text class="ent-col" x="622" y="696">status · quoted_price</text>
+    </g>
+
+    <!-- edges -->
+    <line class="d-flow" x1="195" y1="430" x2="221" y2="430" marker-end="url(#er)"/>
+    <text class="d-lbl" x="208" y="422" text-anchor="middle">1 : N</text>
+
+    <line class="d-flow" x1="405" y1="432" x2="431" y2="432" marker-end="url(#er)"/>
+    <text class="d-lbl" x="418" y="424" text-anchor="middle">1 : N</text>
+
+    <line class="d-flow" x1="645" y1="432" x2="619" y2="432" marker-end="url(#er)"/>
+    <text class="d-lbl" x="632" y="424" text-anchor="middle">1 : N</text>
+
+    <line class="d-flow" x1="855" y1="434" x2="829" y2="434" marker-end="url(#er)"/>
+    <text class="d-lbl" x="843" y="456" text-anchor="middle">1 : N</text>
+
+    <line class="d-flow" x1="945" y1="361" x2="945" y2="300" marker-end="url(#er)"/>
+    <text class="d-lbl" x="957" y="332">1 : N</text>
+
+    <path class="d-flow" d="M895 507 C 865 535, 810 552, 775 564" marker-end="url(#er)"/>
+    <text class="d-lbl" x="820" y="532" text-anchor="middle">1 : 0..N</text>
+  </svg>
+
+  <figcaption class="figure__cap">
+    ✳ <b>order_items</b> stores a snapshot of the product name and unit price at the time the order
+    is placed, so later edits to a product never rewrite a past order. The core chain runs
+    categories → products → order_items → orders → customers.
+  </figcaption>
+</figure>
+</body>
+</html>

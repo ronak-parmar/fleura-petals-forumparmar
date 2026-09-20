@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 3.8 — Sequence Diagram: Checkout</title>
+<link rel="stylesheet" href="diagram.css">
+<style>
+  .figure { width:1200px; }
+  .ll { stroke:var(--border-strong); stroke-width:1.2; stroke-dasharray:4 4; }
+  .head { fill:var(--surface-2); stroke:currentColor; stroke-width:1.3; }
+  .head-txt { font-family:var(--font-body); font-size:11px; fill:currentColor; text-anchor:middle; font-weight:600; }
+  .act-bar { fill:var(--accent-soft); stroke:var(--accent); stroke-width:1; }
+  .msg { stroke:currentColor; stroke-width:1.3; fill:none; }
+  .ret { stroke:var(--text-muted); stroke-width:1.1; fill:none; stroke-dasharray:5 3; }
+  .msg-txt { font-family:var(--font-body); font-size:10.5px; fill:currentColor; text-anchor:middle; }
+  .msg-txt.mono { font-family:var(--font-mono); font-size:9.5px; }
+</style>
+</head>
+<body>
+<figure class="figure" id="figure">
+  <p class="figure__eyebrow">Figure 3.8</p>
+  <h2 class="figure__title">Sequence diagram &mdash; Checkout</h2>
+
+  <svg viewBox="0 0 1020 660" role="img" aria-label="Sequence diagram for checkout. The customer submits the checkout form to the Next.js frontend, which posts to OrdersController. OrdersController calls OrderService.CreateAsync. OrderService loads products through AppDbContext, which selects from PostgreSQL and returns rows. OrderService validates the delivery date, re-prices from the database and computes totals, then adds the order and items through AppDbContext, which inserts into PostgreSQL in a transaction and commits. OrderService returns a confirmation DTO, OrdersController returns 201 Created with the order number, and the frontend shows the confirmation page.">
+    <defs>
+      <marker id="fill" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+      </marker>
+      <marker id="open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+        <path d="M0 0 L10 5 L0 10" fill="none" stroke="var(--text-muted)" stroke-width="1.2"/>
+      </marker>
+    </defs>
+
+    <!-- lifelines + heads -->
+    <g>
+      <rect class="head" x="30"  y="22" width="120" height="34" rx="6"/><text class="head-txt" x="90"  y="43">Customer (Browser)</text>
+      <line class="ll" x1="90"  y1="56" x2="90"  y2="620"/>
+      <rect class="head" x="185" y="22" width="120" height="34" rx="6"/><text class="head-txt" x="245" y="43">Next.js Frontend</text>
+      <line class="ll" x1="245" y1="56" x2="245" y2="620"/>
+      <rect class="head" x="345" y="22" width="130" height="34" rx="6"/><text class="head-txt" x="410" y="43">OrdersController</text>
+      <line class="ll" x1="410" y1="56" x2="410" y2="620"/>
+      <rect class="head" x="520" y="22" width="120" height="34" rx="6"/><text class="head-txt" x="580" y="43">OrderService</text>
+      <line class="ll" x1="580" y1="56" x2="580" y2="620"/>
+      <rect class="head" x="690" y="22" width="140" height="34" rx="6"/><text class="head-txt" x="760" y="43">AppDbContext (EF)</text>
+      <line class="ll" x1="760" y1="56" x2="760" y2="620"/>
+      <rect class="head" x="885" y="22" width="110" height="34" rx="6"/><text class="head-txt" x="940" y="43">PostgreSQL</text>
+      <line class="ll" x1="940" y1="56" x2="940" y2="620"/>
+    </g>
+
+    <!-- activation bars -->
+    <rect class="act-bar" x="240" y="92"  width="10" height="470"/>
+    <rect class="act-bar" x="405" y="128" width="10" height="398"/>
+    <rect class="act-bar" x="575" y="162" width="10" height="330"/>
+    <rect class="act-bar" x="755" y="196" width="10" height="98"/>
+    <rect class="act-bar" x="755" y="376" width="10" height="96"/>
+
+    <!-- messages -->
+    <path class="msg" d="M90 92 L238 92" marker-end="url(#fill)"/>
+    <text class="msg-txt" x="164" y="86">submit checkout form</text>
+
+    <path class="msg" d="M250 128 L403 128" marker-end="url(#fill)"/>
+    <text class="msg-txt mono" x="326" y="122">POST /api/v1/orders  {items, delivery}</text>
+
+    <path class="msg" d="M415 162 L573 162" marker-end="url(#fill)"/>
+    <text class="msg-txt mono" x="494" y="156">CreateAsync(request)</text>
+
+    <path class="msg" d="M585 196 L753 196" marker-end="url(#fill)"/>
+    <text class="msg-txt" x="669" y="190">load products by id</text>
+
+    <path class="msg" d="M765 230 L933 230" marker-end="url(#fill)"/>
+    <text class="msg-txt mono" x="849" y="224">SELECT … FROM products</text>
+
+    <path class="ret" d="M933 262 L767 262" marker-end="url(#open)"/>
+    <text class="msg-txt" x="850" y="256">product rows</text>
+
+    <path class="ret" d="M753 294 L587 294" marker-end="url(#open)"/>
+    <text class="msg-txt" x="670" y="288">products</text>
+
+    <path class="msg" d="M585 330 C 660 330, 660 358, 587 358" marker-end="url(#fill)"/>
+    <text class="msg-txt" x="690" y="337">validate date · re-price · totals</text>
+
+    <path class="msg" d="M585 392 L753 392" marker-end="url(#fill)"/>
+    <text class="msg-txt" x="669" y="386">begin transaction · add order + items</text>
+
+    <path class="msg" d="M765 424 L933 424" marker-end="url(#fill)"/>
+    <text class="msg-txt mono" x="849" y="418">INSERT orders / order_items · COMMIT</text>
+
+    <path class="ret" d="M933 456 L767 456" marker-end="url(#open)"/>
+    <text class="msg-txt" x="850" y="450">ok</text>
+
+    <path class="ret" d="M753 490 L587 490" marker-end="url(#open)"/>
+    <text class="msg-txt" x="670" y="484">saved</text>
+
+    <path class="ret" d="M573 524 L415 524" marker-end="url(#open)"/>
+    <text class="msg-txt mono" x="494" y="518">OrderConfirmationDto</text>
+
+    <path class="ret" d="M403 558 L251 558" marker-end="url(#open)"/>
+    <text class="msg-txt mono" x="327" y="552">201 Created  {orderNumber}</text>
+
+    <path class="ret" d="M238 592 L92 592" marker-end="url(#open)"/>
+    <text class="msg-txt" x="165" y="586">show confirmation page</text>
+  </svg>
+
+  <figcaption class="figure__cap">
+    The browser sends only product identifiers and quantities. OrderService loads the current
+    prices from the database and computes the subtotal, delivery fee and total itself; the order
+    and its items are inserted together in one transaction.
+  </figcaption>
+</figure>
+</body>
+</html>

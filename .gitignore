@@ -1,0 +1,17 @@
+# Local Postgres binaries + data (machine-local generated state — see database/README.md)
+/database/pg/
+
+# .NET build output
+backend/**/bin/
+backend/**/obj/
+
+# Scratch/temp files (per CLAUDE.md: Claude's scratch files live here, not committed)
+/.claude/tmp/
+/.claude/settings.local.json
+
+# Misc scratch
+/_npmtest/
+
+# OS
+.DS_Store
+Thumbs.db

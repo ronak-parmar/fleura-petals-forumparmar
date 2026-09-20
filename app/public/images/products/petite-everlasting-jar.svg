@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" role="img" aria-label="Petite Everlasting Jar">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3D7CE"/>
+      <stop offset="0.6" stop-color="#E7C7BB"/>
+      <stop offset="1" stop-color="#93A583"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFDFB" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#FFFDFB" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#FFFDFB" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="400" fill="url(#bg)"/>
+
+  <!-- stems inside the jar -->
+  <g stroke="#5F7752" stroke-width="3" fill="none" opacity="0.5">
+    <path d="M250 255 L228 175"/>
+    <path d="M250 255 L250 165"/>
+    <path d="M250 255 L272 175"/>
+  </g>
+
+  <!-- small ribbon-rose blooms peeking above the rim -->
+  <g>
+    <circle cx="228" cy="168" r="20" fill="#A8493D"/>
+    <circle cx="223" cy="163" r="13" fill="#C4756A"/>
+    <circle cx="219" cy="159" r="6" fill="#EBCFC7"/>
+  </g>
+  <g>
+    <circle cx="250" cy="150" r="24" fill="#8C3529"/>
+    <circle cx="244" cy="144" r="16" fill="#A8493D"/>
+    <circle cx="238" cy="138" r="8" fill="#D08D80"/>
+  </g>
+  <g>
+    <circle cx="272" cy="168" r="19" fill="#A8493D"/>
+    <circle cx="267" cy="163" r="12" fill="#C4756A"/>
+    <circle cx="263" cy="159" r="6" fill="#EBCFC7"/>
+  </g>
+
+  <!-- mason jar -->
+  <path d="M205 200 L215 340 Q215 355 232 355 L268 355 Q285 355 285 340 L295 200 Z"
+        fill="#FFFDFB" opacity="0.35" stroke="#D8C1B4" stroke-width="3"/>
+  <rect x="205" y="200" width="90" height="14" fill="#D8C1B4" opacity="0.7"/>
+  <rect x="200" y="186" width="100" height="18" rx="4" fill="#C6A063"/>
+  <rect x="215" y="235" width="70" height="95" fill="url(#glass)"/>
+  <!-- horizontal ridge lines suggesting jar texture -->
+  <g stroke="#D8C1B4" stroke-width="2" opacity="0.6">
+    <line x1="212" y1="240" x2="288" y2="240"/>
+    <line x1="212" y1="270" x2="288" y2="270"/>
+    <line x1="213" y1="300" x2="287" y2="300"/>
+  </g>
+</svg>

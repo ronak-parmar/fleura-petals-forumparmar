@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 4.12 — Admin: Product form</title>
+<link rel="stylesheet" href="../shared/fleurea.css">
+</head>
+<body>
+<div class="browser" style="width:1320px">
+  <div class="browser__bar">
+    <div class="browser__dots"><i></i><i></i><i></i></div>
+    <div class="browser__url">fleureapetals.app/admin/products/1</div>
+  </div>
+  <div class="browser__viewport">
+    <div class="admin">
+      <aside class="admin__side">
+        <div class="admin__brand">Fleuréa · Studio</div>
+        <ul class="admin__nav">
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Orders</a></li>
+          <li><a href="#">Custom requests</a></li>
+          <li><a href="#" class="active">Products</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Enquiries</a></li>
+          <li class="admin__whoami">Signed in as <b>Forum Parmar</b></li>
+          <li><a href="#">Log out</a></li>
+        </ul>
+      </aside>
+      <main class="admin__main">
+        <div class="admin__head">
+          <h1>Edit product</h1>
+          <div style="display:flex;gap:10px"><a class="btn btn--ghost btn--sm" href="#">Cancel</a><a class="btn btn--primary btn--sm" href="#">Save product</a></div>
+        </div>
+
+        <div class="cols cols--2-1" style="gap:24px">
+          <div>
+            <div class="card" style="margin-bottom:18px">
+              <h3>Details</h3>
+              <div class="field"><label>Name</label><div class="control control--filled">Rosewood Ribbon Bouquet</div></div>
+              <div class="field"><label>Slug</label><div class="control control--filled">rosewood-ribbon-bouquet</div></div>
+              <div class="field"><label>Short description</label><div class="control control--filled">Deep rosewood satin roses on wired stems.</div></div>
+              <div class="field"><label>Full description</label><div class="control control--filled" style="min-height:64px">A full bouquet of deep rosewood satin roses, each petal hand-wound from ribbon and set on wired stems.</div></div>
+            </div>
+            <div class="card">
+              <h3>Pricing &amp; type</h3>
+              <div class="field-row">
+                <div class="field"><label>Category</label><div class="control control--filled">Ribbon Blooms</div></div>
+                <div class="field"><label>Nature</label><div class="control control--filled">Everlasting</div></div>
+              </div>
+              <div class="field-row">
+                <div class="field"><label>Price (₹)</label><div class="control control--filled">1450.00</div></div>
+                <div class="field"><label>Lead time (days)</label><div class="control control--filled">4</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card" style="margin-bottom:18px">
+              <h3>Image</h3>
+              <div style="height:150px;border-radius:8px;background:linear-gradient(150deg,var(--blush),var(--sage))"></div>
+              <a class="btn btn--ghost btn--sm btn--block" href="#" style="margin-top:12px">Replace image</a>
+            </div>
+            <div class="card">
+              <h3>Status</h3>
+              <div class="field"><label>Availability</label><div class="control control--filled">Available</div></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:13px;margin-top:6px">
+                <span>Customisable</span><span class="badge badge--ok">On</span></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:13px;margin-top:10px">
+                <span>Visible in shop</span><span class="badge badge--ok">On</span></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+</body>
+</html>

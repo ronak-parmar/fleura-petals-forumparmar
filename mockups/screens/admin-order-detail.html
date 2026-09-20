@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 4.14 — Admin: Order detail</title>
+<link rel="stylesheet" href="../shared/fleurea.css">
+</head>
+<body>
+<div class="browser" style="width:1320px">
+  <div class="browser__bar">
+    <div class="browser__dots"><i></i><i></i><i></i></div>
+    <div class="browser__url">fleureapetals.app/admin/orders/42</div>
+  </div>
+  <div class="browser__viewport">
+    <div class="admin">
+      <aside class="admin__side">
+        <div class="admin__brand">Fleuréa · Studio</div>
+        <ul class="admin__nav">
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#" class="active">Orders</a></li>
+          <li><a href="#">Custom requests</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Enquiries</a></li>
+          <li class="admin__whoami">Signed in as <b>Forum Parmar</b></li>
+          <li><a href="#">Log out</a></li>
+        </ul>
+      </aside>
+      <main class="admin__main">
+        <div class="admin__head">
+          <div>
+            <p class="muted" style="font-size:12.5px">Orders / FP-2026-000042</p>
+            <h1>Order FP-2026-000042</h1>
+          </div>
+          <span class="badge badge--warn" style="font-size:13px;padding:6px 14px">Pending</span>
+        </div>
+
+        <div class="cols cols--2-1" style="gap:24px">
+          <div>
+            <div class="card" style="margin-bottom:18px">
+              <h3>Items</h3>
+              <table class="table" style="border:0">
+                <thead><tr><th>Product</th><th>Unit price</th><th>Qty</th><th>Line total</th></tr></thead>
+                <tbody>
+                  <tr><td>Rosewood Ribbon Bouquet</td><td>₹1,450</td><td>1</td><td>₹1,450</td></tr>
+                  <tr><td>Blush Pipe-Cleaner Posy</td><td>₹650</td><td>2</td><td>₹1,300</td></tr>
+                  <tr><td>Morning Market Fresh Bunch</td><td>₹900</td><td>1</td><td>₹900</td></tr>
+                </tbody>
+              </table>
+              <div class="summary__total" style="margin-top:10px"><span>Total (pay on delivery)</span><span>₹3,650</span></div>
+            </div>
+            <div class="card">
+              <h3>Delivery &amp; contact</h3>
+              <p style="font-size:13px;color:var(--text-muted)">
+                Beena Parmar · 98•• ••• •12 · beena.parmar@example.com<br>
+                14, Rose Villa, Linking Road, Mumbai 400052<br>
+                Deliver Sat 12 Sep 2026 · Morning (9am–12pm)<br><br>
+                <b>Gift message:</b> &ldquo;Happy birthday, Ma — these won&rsquo;t wilt, just like you asked.&rdquo;
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <h3>Update status</h3>
+              <div class="field"><label>Move to</label><div class="control control--filled">Confirmed</div></div>
+              <a class="btn btn--primary btn--block" href="#" style="margin-top:6px">Update status</a>
+              <a class="btn btn--ghost btn--block" href="#" style="margin-top:10px">Cancel this order</a>
+              <hr style="border:0;border-top:1px solid var(--border);margin:16px 0">
+              <p class="muted" style="font-size:12px">Placed 9 Sep 2026, 8:12 pm<br>Customer: registered account</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Fleuréa Petals — design tokens
+   Mirrors mockups/shared/fleurea.css. Single light theme (matches the
+   reference mockups); this is a college project, not a themable product.
+   Tailwind v4 turns every --color- and --font- token below into a utility
+   class automatically (bg-ivory, text-ink, font-display, and so on).
+   ========================================================================== */
+@theme {
+  /* brand palette */
+  --color-ivory: #faf7f4;
+  --color-blush: #f3d7ce;
+  --color-rosewood: #a8493d;
+  --color-sage: #93a583;
+  --color-gold: #c6a063;
+  --color-ink: #4a342e;
+
+  /* resolved surface/text tokens */
+  --color-surface: #fffdfb;
+  --color-surface-2: #f5e7df;
+  --color-border: #e7d6cb;
+  --color-border-strong: #d8c1b4;
+  --color-text: #4a342e;
+  --color-text-muted: #8c776c;
+  --color-accent: #a8493d;
+  --color-accent-ink: #7f3529;
+  --color-accent-soft: #f0dad2;
+  --color-leaf: #5f7752;
+  --color-leaf-soft: #e4eadd;
+  --color-gold-ink: #8c6224;
+
+  /* semantic status colours (badges, banners) */
+  --color-ok-bg: #e4eadd;
+  --color-ok-fg: #3f5233;
+  --color-warn-bg: #f6e7cf;
+  --color-warn-fg: #8c6224;
+  --color-info-bg: #e7ddf0;
+  --color-info-fg: #5b4a73;
+  --color-dang-bg: #f3d9d4;
+  --color-dang-fg: #8a3529;
+
+  /* type */
+  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-body), "Segoe UI", system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  --radius-card: 0.6rem;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* Form controls don't inherit font-family by default in most browsers. */
+input, textarea, select, button {
+  font-family: inherit;
+}

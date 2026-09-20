@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figure 3.5 — Database Functions</title>
+<link rel="stylesheet" href="diagram.css">
+<style>
+  .figure { width:1320px; }
+  .pg {
+    width:1240px; margin:0 auto;
+    border:1px solid #b9c0c9; border-radius:8px; overflow:hidden;
+    font-family:"Segoe UI", system-ui, sans-serif; color:#2b2f36; background:#f4f6f8; font-size:12.5px;
+  }
+  .pg__menu { display:flex; align-items:center; gap:18px; background:linear-gradient(#fbfcfd,#eef1f4);
+    border-bottom:1px solid #cfd6dd; padding:7px 14px; font-size:12px; color:#4a515b; }
+  .pg__menu b { color:#2b2f36; font-weight:600; } .pg__menu .sp { flex:1; }
+  .pg__menu .ico { width:16px; height:16px; border-radius:3px; background:#d7dee6; display:inline-block; }
+  .pg__body { display:grid; grid-template-columns:300px 1fr; min-height:640px; }
+  .pg__tree { background:#fbfcfd; border-right:1px solid #cfd6dd; padding:10px 0; font-size:12px; color:#3a4048; }
+  .pg__tree .row { padding:3px 12px; white-space:nowrap; display:flex; align-items:center; gap:6px; }
+  .pg__tree .row.sel { background:#dcebfb; }
+  .pg__tree .tw { color:#8a929c; width:10px; display:inline-block; text-align:center; }
+  .pg__tree .db { color:#2f6fb3; }
+  .pg__tree .fn { color:#3a4048; }
+  .pg__tree .fn.hot { color:#a8493d; font-weight:600; }
+  .pg__work { display:flex; flex-direction:column; background:#fff; }
+  .pg__tabs { display:flex; border-bottom:1px solid #cfd6dd; background:#f0f3f6; font-size:12px; }
+  .pg__tabs span { padding:8px 16px; border-right:1px solid #cfd6dd; color:#6b727c; }
+  .pg__tabs span.on { background:#fff; color:#2b2f36; border-bottom:2px solid #2f6fb3; }
+  .pg__code {
+    flex:1; margin:0; padding:14px 16px; overflow:auto;
+    font-family:"Space Mono", ui-monospace, Consolas, monospace; font-size:11.5px; line-height:1.55;
+    color:#2b2f36; background:#fdfdfe; white-space:pre; tab-size:2;
+  }
+  .pg__code .kw { color:#2f6fb3; font-weight:700; }
+  .pg__code .st { color:#3f7f43; }
+  .pg__code .cm { color:#8a929c; font-style:italic; }
+  .pg__status { border-top:1px solid #cfd6dd; background:#f0f3f6; padding:7px 16px; font-size:11.5px; color:#4a7a3f; }
+</style>
+</head>
+<body>
+<figure class="figure" id="figure">
+  <p class="figure__eyebrow">Figure 3.5</p>
+  <h2 class="figure__title">Database functions used by the API (pgAdmin view)</h2>
+
+  <div class="pg">
+    <div class="pg__menu">
+      <b>pgAdmin 4</b><span>File</span><span>Object</span><span>Tools</span><span>Help</span>
+      <span class="sp"></span><i class="ico"></i><i class="ico"></i><i class="ico"></i>
+    </div>
+    <div class="pg__body">
+      <div class="pg__tree">
+        <div class="row"><span class="tw">▾</span> fleurea</div>
+        <div class="row" style="padding-left:26px"><span class="tw">▾</span> Schemas (1)</div>
+        <div class="row" style="padding-left:42px"><span class="tw">▾</span> public</div>
+        <div class="row" style="padding-left:58px"><span class="tw">▸</span> Tables (9)</div>
+        <div class="row" style="padding-left:58px"><span class="tw">▾</span> Functions (18)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_admin_list_orders(text)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_create_custom_request(...)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_create_enquiry(text, text, text)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_dashboard_summary()</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_get_categories()</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_get_custom_request(text, text)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_get_order(text, text)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_get_product_by_slug(text)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_get_products(text, text, text, int, int)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_mark_enquiry_handled(int, bool)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_next_order_number()</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_next_request_number()</div>
+        <div class="row fn hot sel" style="padding-left:78px">ƒ fn_place_order(...)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_register_customer(...)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_respond_custom_request(int, text, text, numeric)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_set_product_availability(int, text)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_update_order_status(int, text)</div>
+        <div class="row fn" style="padding-left:78px">ƒ fn_upsert_product(...)</div>
+        <div class="row" style="padding-left:58px"><span class="tw">▸</span> Sequences (2)</div>
+        <div class="row" style="padding-left:58px"><span class="tw">▸</span> Trigger Functions (1)</div>
+      </div>
+
+      <div class="pg__work">
+        <div class="pg__tabs"><span>Properties</span><span class="on">SQL</span><span>Statistics</span><span>Dependencies</span></div>
+<pre class="pg__code"><span class="cm">-- public.fn_place_order(...)  —  called by OrderService.CreateAsync()</span>
+<span class="kw">CREATE OR REPLACE FUNCTION</span> fn_place_order(
+    p_contact_name text, p_contact_email text, p_contact_phone text,
+    p_recipient_name text, p_recipient_phone text,
+    p_line1 text, p_line2 text, p_city text, p_state text,
+    p_postal_code text, p_landmark text,
+    p_delivery_date date, p_delivery_slot text,
+    p_gift_message text, p_customer_note text,
+    p_items jsonb                       <span class="cm">-- [{"product_id":1,"quantity":2}, ...]</span>
+) <span class="kw">RETURNS</span> orders <span class="kw">AS</span> $$
+<span class="kw">DECLARE</span>
+    v_customer_id  int;
+    v_order        orders;
+    v_item         jsonb;
+    v_product      products;
+    v_qty          int;
+    v_delivery_fee numeric(10,2) := 80.00;
+    v_free_over    numeric(10,2) := 1500.00;
+<span class="kw">BEGIN</span>
+    <span class="kw">IF</span> p_items <span class="kw">IS NULL</span> <span class="kw">OR</span> jsonb_array_length(p_items) = 0 <span class="kw">THEN</span>
+        <span class="kw">RAISE EXCEPTION</span> <span class="st">'EMPTY_ORDER'</span>;
+    <span class="kw">END IF</span>;
+
+    v_customer_id := fn_upsert_guest_customer(p_contact_name, p_contact_email, p_contact_phone);
+
+    <span class="kw">INSERT INTO</span> orders (order_number, customer_id, status, recipient_name, recipient_phone,
+        address_line1, address_line2, city, state, postal_code, landmark,
+        delivery_date, delivery_slot, gift_message, customer_note)
+    <span class="kw">VALUES</span> (fn_next_order_number(), v_customer_id, <span class="st">'pending'</span>, p_recipient_name, p_recipient_phone,
+        p_line1, coalesce(p_line2,<span class="st">''</span>), p_city, coalesce(p_state,<span class="st">'Maharashtra'</span>),
+        p_postal_code, coalesce(p_landmark,<span class="st">''</span>),
+        p_delivery_date, p_delivery_slot::delivery_slot, p_gift_message, p_customer_note)
+    <span class="kw">RETURNING</span> * <span class="kw">INTO</span> v_order;
+
+    <span class="kw">FOR</span> v_item <span class="kw">IN SELECT</span> * <span class="kw">FROM</span> jsonb_array_elements(p_items) <span class="kw">LOOP</span>
+        v_qty := greatest((v_item-&gt;&gt;<span class="st">'quantity'</span>)::int, 1);
+
+        <span class="kw">SELECT</span> * <span class="kw">INTO</span> v_product <span class="kw">FROM</span> products
+        <span class="kw">WHERE</span>  id = (v_item-&gt;&gt;<span class="st">'product_id'</span>)::int <span class="kw">AND</span> is_active;
+
+        <span class="kw">IF NOT FOUND THEN</span> <span class="kw">RAISE EXCEPTION</span> <span class="st">'PRODUCT_NOT_FOUND: %'</span>, v_item-&gt;&gt;<span class="st">'product_id'</span>; <span class="kw">END IF</span>;
+        <span class="kw">IF</span> v_product.availability = <span class="st">'sold_out'</span> <span class="kw">THEN</span>
+            <span class="kw">RAISE EXCEPTION</span> <span class="st">'PRODUCT_SOLD_OUT: %'</span>, v_product.name; <span class="kw">END IF</span>;
+        <span class="kw">IF</span> v_product.nature = <span class="st">'everlasting'</span>
+           <span class="kw">AND</span> p_delivery_date &lt; current_date + v_product.lead_time_days <span class="kw">THEN</span>
+            <span class="kw">RAISE EXCEPTION</span> <span class="st">'DELIVERY_TOO_SOON: % needs % day(s)'</span>,
+                v_product.name, v_product.lead_time_days; <span class="kw">END IF</span>;
+
+        <span class="kw">INSERT INTO</span> order_items (order_id, product_id, product_name, unit_price, quantity, line_total)
+        <span class="kw">VALUES</span> (v_order.id, v_product.id, v_product.name, v_product.price,
+                v_qty, v_product.price * v_qty);
+    <span class="kw">END LOOP</span>;
+
+    <span class="cm">-- totals are computed here, from the rows just inserted — never from the caller</span>
+    <span class="kw">UPDATE</span> orders o
+       <span class="kw">SET</span> subtotal     = s.subtotal,
+           delivery_fee = <span class="kw">CASE WHEN</span> s.subtotal &gt;= v_free_over <span class="kw">THEN</span> 0 <span class="kw">ELSE</span> v_delivery_fee <span class="kw">END</span>,
+           total        = s.subtotal + <span class="kw">CASE WHEN</span> s.subtotal &gt;= v_free_over <span class="kw">THEN</span> 0 <span class="kw">ELSE</span> v_delivery_fee <span class="kw">END</span>
+      <span class="kw">FROM</span> (<span class="kw">SELECT</span> sum(line_total) <span class="kw">AS</span> subtotal <span class="kw">FROM</span> order_items <span class="kw">WHERE</span> order_id = v_order.id) s
+     <span class="kw">WHERE</span> o.id = v_order.id
+    <span class="kw">RETURNING</span> o.* <span class="kw">INTO</span> v_order;
+
+    <span class="kw">RETURN</span> v_order;
+<span class="kw">END</span>;
+$$ <span class="kw">LANGUAGE</span> plpgsql;</pre>
+        <div class="pg__status">Function definition loaded. 18 functions in schema public.</div>
+      </div>
+    </div>
+  </div>
+
+  <figcaption class="figure__cap">
+    The API services call these functions rather than composing SQL in C#. Each read or write
+    has one function &mdash; so numbering (<span class="mono">fn_next_order_number</span>), pricing and the
+    delivery-date rules live in the database. <span class="mono">fn_place_order</span> re-prices every line
+    from the <span class="mono">products</span> table and writes the order and its items together.
+  </figcaption>
+</figure>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-label="Fleuréa Petals — ribbon-wound blooms and fresh seasonal arrangements">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3D7CE"/>
+      <stop offset="0.5" stop-color="#E6C3B6"/>
+      <stop offset="1" stop-color="#93A583"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.7" cy="0.3" r="0.6">
+      <stop offset="0" stop-color="#FFFDFB" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#FFFDFB" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="500" fill="url(#bg)"/>
+  <rect width="1200" height="500" fill="url(#glow)"/>
+
+  <!-- wide spray of stems -->
+  <g stroke="#5F7752" stroke-width="4" fill="none" opacity="0.45">
+    <path d="M600 470 L430 300"/>
+    <path d="M600 470 L520 260"/>
+    <path d="M600 470 L600 240"/>
+    <path d="M600 470 L690 258"/>
+    <path d="M600 470 L780 295"/>
+    <path d="M600 470 L340 350"/>
+    <path d="M600 470 L860 345"/>
+  </g>
+  <g fill="#5F7752" opacity="0.65">
+    <path d="M480 335 Q445 318 452 278 Q495 292 480 335 Z"/>
+    <path d="M720 335 Q755 318 748 278 Q705 292 720 335 Z"/>
+    <path d="M600 400 Q565 385 572 350 Q612 362 600 400 Z"/>
+  </g>
+
+  <!-- large ribbon-rose blooms spread across the width -->
+  <g>
+    <circle cx="430" cy="290" r="44" fill="#8C3529"/>
+    <circle cx="420" cy="280" r="30" fill="#A8493D"/>
+    <circle cx="410" cy="270" r="15" fill="#D08D80"/>
+  </g>
+  <g>
+    <circle cx="520" cy="248" r="38" fill="#A8493D"/>
+    <circle cx="511" cy="239" r="26" fill="#C4756A"/>
+    <circle cx="503" cy="231" r="13" fill="#EBCFC7"/>
+  </g>
+  <g>
+    <circle cx="600" cy="225" r="52" fill="#7F3529"/>
+    <circle cx="588" cy="213" r="36" fill="#A8493D"/>
+    <circle cx="577" cy="202" r="18" fill="#D08D80"/>
+  </g>
+  <g>
+    <circle cx="690" cy="246" r="38" fill="#93A583"/>
+    <circle cx="681" cy="237" r="26" fill="#B7C4A9"/>
+    <circle cx="673" cy="229" r="13" fill="#E4EADD"/>
+  </g>
+  <g>
+    <circle cx="780" cy="282" r="42" fill="#C6A063"/>
+    <circle cx="770" cy="272" r="29" fill="#DDBE8C"/>
+    <circle cx="761" cy="263" r="14" fill="#F5E7DF"/>
+  </g>
+  <g>
+    <circle cx="340" cy="338" r="28" fill="#A8493D"/>
+    <circle cx="333" cy="331" r="19" fill="#C4756A"/>
+    <circle cx="328" cy="326" r="9" fill="#EBCFC7"/>
+  </g>
+  <g>
+    <circle cx="860" cy="333" r="28" fill="#93A583"/>
+    <circle cx="853" cy="326" r="19" fill="#B7C4A9"/>
+    <circle cx="848" cy="321" r="9" fill="#E4EADD"/>
+  </g>
+
+  <!-- gold ribbon flourish across the base -->
+  <path d="M300 455 Q600 495 900 455" stroke="#C6A063" stroke-width="6" fill="none" opacity="0.6" stroke-linecap="round"/>
+</svg>
